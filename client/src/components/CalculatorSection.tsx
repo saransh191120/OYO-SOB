@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useInView } from "./ScrollToTop";
 import { useToast } from "@/hooks/use-toast";
+import { jsPDF } from "jspdf";
 
 interface CalculatorFormData {
   roomRate: number;
@@ -133,25 +134,133 @@ const CalculatorSection = () => {
     }
   };
   
-  // Function to save user email
-  const saveEmail = () => {
-    if (!email || !email.includes('@')) {
+  // Function to generate and download PDF report of calculation
+  const generatePDF = () => {
+    if (!results.totalRevenue) {
       toast({
-        title: "Invalid Email",
-        description: "Please enter a valid email address to save your calculations.",
+        title: "No Calculation Available",
+        description: "Please calculate your revenue first before generating a PDF.",
         variant: "destructive"
       });
       return;
     }
     
-    localStorage.setItem('userEmail', email);
-    toast({
-      title: "Email Saved",
-      description: "Your email has been saved. Future calculations will be stored for you.",
-    });
-    
-    // Fetch any previous calculations
-    fetchSavedCalculations(email);
+    try {
+      // Create a new PDF document
+      const doc = new jsPDF();
+      const pageWidth = doc.internal.pageSize.getWidth();
+      
+      // Add OYO logo/header
+      doc.setFillColor(15, 23, 42); // Navy background
+      doc.rect(0, 0, pageWidth, 40, 'F');
+      
+      doc.setTextColor(212, 175, 55); // Gold text
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(22);
+      doc.text("OYO PREMIUM", pageWidth / 2, 20, { align: "center" });
+      
+      doc.setTextColor(255, 255, 255); // White text
+      doc.setFontSize(14);
+      doc.text("Revenue Calculator Results", pageWidth / 2, 30, { align: "center" });
+      
+      // Add calculation date
+      doc.setTextColor(100, 100, 100);
+      doc.setFontSize(10);
+      doc.setFont("helvetica", "italic");
+      const today = new Date().toLocaleDateString('en-IN', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      });
+      doc.text(`Generated on ${today}`, pageWidth - 15, 45, { align: "right" });
+      
+      // Add hotel brand information
+      const selectedBrand = brands.find(brand => brand.id === formData.selectedBrand);
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(16);
+      doc.setFont("helvetica", "bold");
+      doc.text("Selected Brand:", 15, 60);
+      
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(14);
+      doc.text(selectedBrand?.name || "OYO Brand", 15, 70);
+      
+      doc.setFontSize(12);
+      doc.setTextColor(80, 80, 80);
+      doc.text(`Revenue Share: ${selectedBrand?.revSharePercentage || 0}%`, 15, 80);
+      
+      // Add hotel details section
+      doc.setTextColor(15, 23, 42);
+      doc.setFontSize(16);
+      doc.setFont("helvetica", "bold");
+      doc.text("Hotel Information:", 15, 100);
+      
+      doc.setFontSize(12);
+      doc.setFont("helvetica", "normal");
+      doc.text(`Number of Rooms: ${formData.numberOfRooms}`, 20, 110);
+      doc.text(`Room Rate (₹): ${formData.roomRate}`, 20, 120);
+      doc.text(`Stay Duration: ${formData.stayDuration} days`, 20, 130);
+      doc.text(`Occupancy Rate: ${formData.occupancyRate}%`, 20, 140);
+      
+      // Add a separator line
+      doc.setDrawColor(200, 200, 200);
+      doc.line(15, 150, pageWidth - 15, 150);
+      
+      // Add results section
+      doc.setTextColor(15, 23, 42);
+      doc.setFontSize(16);
+      doc.setFont("helvetica", "bold");
+      doc.text("Revenue Analysis:", 15, 170);
+      
+      // Helper function to clean numbers from results
+      const cleanNumber = (text: string) => {
+        return text.replace(/[^\d.,]/g, '');
+      };
+      
+      doc.setFontSize(12);
+      doc.setFont("helvetica", "normal");
+      doc.text(`Total Sellable Rooms: ${results.totalSellableRooms}`, 20, 180);
+      doc.text(`Total Revenue: ₹${cleanNumber(results.totalRevenue)}`, 20, 190);
+      doc.text(`Occupancy Information: ${results.occupancyInfo}`, 20, 200);
+      
+      // Highlight revenue share in gold box
+      doc.setFillColor(250, 240, 210); // Light gold background
+      doc.roundedRect(15, 210, pageWidth - 30, 25, 3, 3, 'F');
+      
+      doc.setTextColor(15, 23, 42);
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "bold");
+      doc.text("Your Revenue Share:", 25, 225);
+      
+      doc.setTextColor(166, 127, 6); // Darker gold for emphasis
+      doc.setFontSize(16);
+      doc.text(`₹${cleanNumber(results.revShare)}`, pageWidth - 25, 225, { align: "right" });
+      
+      // Add footer
+      doc.setFillColor(15, 23, 42); // Navy background
+      doc.rect(0, doc.internal.pageSize.getHeight() - 20, pageWidth, 20, 'F');
+      
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(10);
+      doc.setFont("helvetica", "normal");
+      doc.text("OYO Self-Operated Business (SOB) - Mumbai", pageWidth / 2, doc.internal.pageSize.getHeight() - 10, { align: "center" });
+      
+      // Save the PDF
+      doc.save("OYO_Premium_Calculator_Results.pdf");
+      
+      toast({
+        title: "PDF Generated Successfully",
+        description: "Your calculation report has been downloaded.",
+        variant: "default"
+      });
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+      toast({
+        title: "PDF Generation Failed",
+        description: "There was an error creating your PDF. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
 
   // Update current brand whenever the selected brand changes
@@ -528,94 +637,23 @@ const CalculatorSection = () => {
               </button>
             </div>
             
-            {/* Email Save Section */}
+            {/* PDF Generation Section */}
             <div className="mt-8 pt-6 border-t border-gray-700">
               <h4 className="text-xl font-semibold text-white mb-4 font-playfair text-center">
-                Save Your Calculations
+                Save Your Calculation
               </h4>
               <p className="text-gray-300 text-sm mb-4 text-center font-montserrat">
-                Enter your email to save your calculation history and access them later.
+                Download a detailed PDF report of your revenue calculation for future reference.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-3 mb-4">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="flex-grow p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-gray-600 focus:ring-[#d4af37] focus:border-[#d4af37] font-montserrat"
-                  placeholder="your@email.com"
-                />
+              <div className="flex justify-center">
                 <button
-                  onClick={saveEmail}
-                  className="px-6 py-3 bg-[#d4af37] text-[#0f172a] font-bold rounded-lg transition-all hover:bg-opacity-90 font-montserrat whitespace-nowrap"
+                  onClick={() => generatePDF()}
+                  className="px-8 py-4 bg-[#d4af37] text-[#0f172a] font-bold rounded-lg transition-all hover:bg-opacity-90 font-montserrat flex items-center"
                 >
-                  <i className="fas fa-save mr-2"></i>Save Email
+                  <i className="fas fa-file-pdf mr-2 text-lg"></i>Download PDF Report
                 </button>
               </div>
-              
-              {/* Calculation History */}
-              {savedCalculations.length > 0 && (
-                <div>
-                  <button
-                    onClick={() => setShowHistory(!showHistory)}
-                    className="w-full px-4 py-2 bg-[#1a2442] text-white rounded-lg mb-2 font-montserrat flex items-center justify-center"
-                  >
-                    <i className={`fas fa-chevron-${showHistory ? 'up' : 'down'} mr-2`}></i>
-                    {showHistory ? 'Hide' : 'Show'} Calculation History ({savedCalculations.length})
-                  </button>
-                  
-                  {showHistory && (
-                    <div className="mt-4 max-h-64 overflow-y-auto">
-                      {savedCalculations.map((calc) => {
-                        // Find the brand name
-                        const brand = brands.find(b => b.id === calc.brandId);
-                        
-                        return (
-                          <div key={calc.id} className="p-3 bg-[#0f172a] rounded-lg mb-3 border border-gray-700">
-                            <div className="flex justify-between items-center mb-2">
-                              <span className="text-[#d4af37] font-semibold font-montserrat">{brand?.name || calc.brandId}</span>
-                              <span className="text-xs text-gray-400 font-montserrat">
-                                {new Date(calc.createdAt).toLocaleDateString()}
-                              </span>
-                            </div>
-                            <div className="grid grid-cols-2 gap-2 text-sm text-gray-300 font-montserrat">
-                              <div>Rooms: {calc.numberOfRooms}</div>
-                              <div>Rate: ₹{calc.roomRate}</div>
-                              <div>Duration: {calc.stayDuration} days</div>
-                              <div>Occupancy: {calc.occupancyRate}%</div>
-                            </div>
-                            <div className="mt-2 text-right">
-                              <span className="text-white font-semibold font-montserrat">Revenue Share: </span>
-                              <span className="text-[#d4af37] font-bold font-montserrat">
-                                ₹{new Intl.NumberFormat("en-IN").format(calc.revShare)}
-                              </span>
-                            </div>
-                            <button
-                              onClick={() => {
-                                // Load this calculation
-                                setFormData({
-                                  selectedBrand: calc.brandId,
-                                  roomRate: calc.roomRate,
-                                  stayDuration: calc.stayDuration,
-                                  numberOfRooms: calc.numberOfRooms,
-                                  occupancyRate: calc.occupancyRate
-                                });
-                                // Hide history after loading
-                                setShowHistory(false);
-                                // Calculate with these values
-                                setTimeout(() => calculateRevenue(), 100);
-                              }}
-                              className="mt-2 w-full px-2 py-1 text-xs bg-[#1a2442] hover:bg-[#2a3454] text-white rounded transition-colors font-montserrat"
-                            >
-                              <i className="fas fa-sync-alt mr-1"></i> Load This Calculation
-                            </button>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              )}
             </div>
           </div>
         </div>
