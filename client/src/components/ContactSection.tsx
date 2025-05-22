@@ -269,7 +269,7 @@ const ContactSection = () => {
               />
             </div>
             <div className="glass-effect rounded-xl p-4 sm:p-6 md:p-8 shadow-2xl">
-              <h3 className="text-2xl font-playfair font-bold text-white mb-6">
+              <h3 className="text-xl sm:text-2xl font-playfair font-bold text-white mb-4 md:mb-6">
                 Mumbai Partnership Office
               </h3>
               <div className="space-y-4 font-montserrat">
@@ -314,34 +314,34 @@ const ContactSection = () => {
                   </ul>
                 </div>
                 
-                <div className="flex items-center mt-6 space-x-4">
+                <div className="flex justify-center md:justify-start items-center mt-6 gap-3 sm:gap-4">
                   <a
                     href="#"
-                    className="w-10 h-10 rounded-full bg-[#d4af37] flex items-center justify-center text-[#0f172a] transition-all hover:bg-opacity-90"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#d4af37] flex items-center justify-center text-[#0f172a] transition-all hover:bg-opacity-90"
                     aria-label="Facebook"
                   >
-                    <i className="fab fa-facebook-f"></i>
+                    <i className="fab fa-facebook-f text-sm sm:text-base"></i>
                   </a>
                   <a
                     href="#"
-                    className="w-10 h-10 rounded-full bg-[#d4af37] flex items-center justify-center text-[#0f172a] transition-all hover:bg-opacity-90"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#d4af37] flex items-center justify-center text-[#0f172a] transition-all hover:bg-opacity-90"
                     aria-label="Twitter"
                   >
-                    <i className="fab fa-twitter"></i>
+                    <i className="fab fa-twitter text-sm sm:text-base"></i>
                   </a>
                   <a
                     href="#"
-                    className="w-10 h-10 rounded-full bg-[#d4af37] flex items-center justify-center text-[#0f172a] transition-all hover:bg-opacity-90"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#d4af37] flex items-center justify-center text-[#0f172a] transition-all hover:bg-opacity-90"
                     aria-label="Instagram"
                   >
-                    <i className="fab fa-instagram"></i>
+                    <i className="fab fa-instagram text-sm sm:text-base"></i>
                   </a>
                   <a
                     href="#"
-                    className="w-10 h-10 rounded-full bg-[#d4af37] flex items-center justify-center text-[#0f172a] transition-all hover:bg-opacity-90"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#d4af37] flex items-center justify-center text-[#0f172a] transition-all hover:bg-opacity-90"
                     aria-label="LinkedIn"
                   >
-                    <i className="fab fa-linkedin-in"></i>
+                    <i className="fab fa-linkedin-in text-sm sm:text-base"></i>
                   </a>
                 </div>
               </div>
