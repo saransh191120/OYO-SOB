@@ -255,33 +255,33 @@ const CalculatorSection = () => {
       doc.setFont("helvetica", "bold");
       doc.text("Total Sellable Rooms:", 15, 195);
       doc.setFont("helvetica", "normal");
-      doc.text(results.totalSellableRooms, 120, 195);
+      doc.text(results.totalSellableRooms, 15, 205);
       
       doc.setFont("helvetica", "bold");
-      doc.text("Total Revenue:", 15, 210);
+      doc.text("Total Revenue:", 15, 220);
       doc.setFont("helvetica", "normal");
-      doc.text(`₹ ${cleanNumber(results.totalRevenue)}`, 120, 210);
+      doc.text(`₹ ${cleanNumber(results.totalRevenue)}`, 15, 230);
       
       doc.setFont("helvetica", "bold");
-      doc.text("Occupancy Information:", 15, 225);
+      doc.text("Occupancy Information:", 15, 245);
       doc.setFont("helvetica", "normal");
-      doc.text(results.occupancyInfo, 120, 225);
+      doc.text(results.occupancyInfo, 15, 255);
       
       // Highlight revenue share in OYO branded box
       doc.setFillColor(255, 240, 240); // Light red background
-      doc.roundedRect(15, 235, pageWidth - 30, 30, 3, 3, 'F');
+      doc.roundedRect(15, 265, pageWidth - 30, 25, 3, 3, 'F');
       
       doc.setDrawColor(255, 51, 51); // OYO Red
       doc.setLineWidth(1);
-      doc.roundedRect(15, 235, pageWidth - 30, 30, 3, 3, 'S');
+      doc.roundedRect(15, 265, pageWidth - 30, 25, 3, 3, 'S');
       
       doc.setTextColor(255, 51, 51); // OYO Red
-      doc.setFontSize(16);
+      doc.setFontSize(14);
       doc.setFont("helvetica", "bold");
-      doc.text("Your Revenue Share:", 25, 253);
+      doc.text("Your Revenue Share:", 20, 278);
       
-      doc.setFontSize(16);
-      doc.text(`₹ ${cleanNumber(results.revShare)}`, pageWidth - 25, 253, { align: "right" });
+      doc.setFontSize(14);
+      doc.text(`₹ ${cleanNumber(results.revShare)}`, pageWidth - 20, 278, { align: "right" });
       
       // Add footer
       doc.setFillColor(255, 51, 51); // OYO Red
@@ -719,9 +719,9 @@ const CalculatorSection = () => {
                 
                 <div className="h-2 w-48 mx-auto mt-6 bg-gradient-to-r from-[#cc0000] via-[#ff0000] to-[#cc0000] rounded-full animate-pulse shadow-lg"></div>
                 
-                {/* Sparkle effects */}
-                <div className="absolute top-4 right-4 text-[#ffff00] text-2xl animate-pulse">✨</div>
-                <div className="absolute bottom-4 left-4 text-[#ffff00] text-xl animate-pulse delay-500">💎</div>
+                {/* Professional accent elements */}
+                <div className="absolute top-4 right-4 w-3 h-3 bg-[#ffff00] rounded-full animate-pulse"></div>
+                <div className="absolute bottom-4 left-4 w-2 h-2 bg-[#ffff00] rounded-full animate-pulse delay-500"></div>
               </div>
             </div>
 
@@ -733,7 +733,7 @@ const CalculatorSection = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#ff0000] to-[#cc0000] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
                 <span className="relative z-10 flex items-center justify-center">
-                  <i className="fas fa-calculator mr-2 animate-pulse"></i>Calculate Revenue
+                  <i className="fas fa-calculator mr-2"></i>Calculate Revenue
                 </span>
               </button>
               <button
@@ -743,7 +743,7 @@ const CalculatorSection = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#cc0000]/10 to-[#990000]/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-right"></div>
                 <span className="relative z-10 flex items-center justify-center">
-                  <i className="fas fa-redo mr-2 animate-pulse"></i>Reset Calculator
+                  <i className="fas fa-redo mr-2"></i>Reset Calculator
                 </span>
               </button>
             </div>
@@ -765,7 +765,7 @@ const CalculatorSection = () => {
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-[#ff0000] to-[#cc0000] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
                   <span className="relative z-10 flex items-center justify-center">
-                    <i className="fas fa-file-pdf mr-3 text-lg animate-pulse"></i>Download OYO PDF Report
+                    <i className="fas fa-file-pdf mr-3 text-lg"></i>Download OYO PDF Report
                   </span>
                 </button>
               </div>

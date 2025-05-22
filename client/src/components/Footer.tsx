@@ -1,11 +1,11 @@
 const Footer = () => {
   return (
-    <footer className="py-12 bg-[#1a0505] border-t border-[#cc0f35]/20 red-glow">
+    <footer className="py-12 bg-[#1a0505] border-t border-[#990000]/20 red-glow">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center justify-center md:justify-start mb-4">
-              <span className="text-[#e31041] font-playfair text-3xl font-bold mr-2 animate-pulse">OYO</span>
+              <span className="text-[#990000] font-playfair text-3xl font-bold mr-2 animate-pulse">OYO</span>
               <span className="text-white font-playfair text-2xl">Self-Operated</span>
             </div>
             <p className="text-gray-400 text-sm font-montserrat text-center md:text-left">
@@ -39,15 +39,15 @@ const Footer = () => {
             <h4 className="text-white font-playfair text-lg mb-4 text-center md:text-left">Contact</h4>
             <ul className="text-gray-400 text-sm space-y-2 font-montserrat text-center md:text-left">
               <li className="flex items-center justify-center md:justify-start">
-                <i className="fas fa-phone text-[#e31041] mr-2"></i>
+                <i className="fas fa-phone text-[#990000] mr-2"></i>
                 <span>+91 9373395733</span>
               </li>
               <li className="flex items-center justify-center md:justify-start">
-                <i className="fas fa-envelope text-[#e31041] mr-2"></i>
+                <i className="fas fa-envelope text-[#990000] mr-2"></i>
                 <span>saransh.chaurasia@oyorooms.com</span>
               </li>
               <li className="flex items-center justify-center md:justify-start">
-                <i className="fas fa-map-marker-alt text-[#e31041] mr-2"></i>
+                <i className="fas fa-map-marker-alt text-[#990000] mr-2"></i>
                 <span>Mumbai Partner Center, Andheri East</span>
               </li>
             </ul>
