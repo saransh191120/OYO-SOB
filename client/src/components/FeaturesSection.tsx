@@ -71,7 +71,7 @@ const FeaturesSection = () => {
       amenities: "Fine dining, spa, pools, concierge service, premium and luxurious accommodations",
       icon: "fas fa-crown",
       image:
-        "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
+        "https://assets.oyorooms.com/uploads/2019/02/Sunday-Hotels-exterior-view.jpg",
       imageAlt: "Luxury OYO Sunday Hotel",
       delay: "delay-200",
     },
@@ -84,7 +84,7 @@ const FeaturesSection = () => {
       amenities: "Inviting pools, rejuvenating spas, unique dining, and stylish spaces to unwind",
       icon: "fas fa-umbrella-beach",
       image:
-        "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
+        "https://assets.oyorooms.com/uploads/2020/01/OYO-Palette-Resort-Palghar.jpg",
       imageAlt: "OYO Palette Resort",
       delay: "delay-400",
     },
@@ -97,7 +97,7 @@ const FeaturesSection = () => {
       amenities: "Restaurant, Wi-Fi, AC, modern decor, with pools and gyms at select locations",
       icon: "fas fa-glass-cheers",
       image:
-        "https://images.unsplash.com/photo-1551516594-56cb78394645?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
+        "https://assets.oyorooms.com/uploads/2019/08/OYO-Clubhouse-Mumbai.jpg",
       imageAlt: "OYO Clubhouse Hotel",
       delay: "delay-600",
     },
@@ -110,7 +110,7 @@ const FeaturesSection = () => {
       amenities: "In-room Netflix, high-speed Wi-Fi, signature cafes, and communal workspaces",
       icon: "fas fa-home",
       image:
-        "https://images.unsplash.com/photo-1590073242678-70ee3fc28f17?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
+        "https://assets.oyorooms.com/uploads/2018/12/OYO-Townhouse-Mumbai-Khar.jpg",
       imageAlt: "OYO Townhouse",
       delay: "delay-200",
     },
@@ -123,7 +123,7 @@ const FeaturesSection = () => {
       amenities: "Premium finishes, gym, pools, enhanced in-room comforts, restaurants",
       icon: "fas fa-tree",
       image:
-        "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
+        "https://assets.oyorooms.com/uploads/2019/05/OYO-Townhouse-Oak-Vashi.jpg",
       imageAlt: "OYO Townhouse Oak",
       delay: "delay-400",
     },
@@ -136,7 +136,7 @@ const FeaturesSection = () => {
       amenities: "AC rooms, free Wi-Fi, TV, clean linen, breakfast, 24/7 check-in available",
       icon: "fas fa-briefcase",
       image:
-        "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
+        "https://assets.oyorooms.com/uploads/2018/11/OYO-Collection-O-Mumbai-Business.jpg",
       imageAlt: "OYO Collection O",
       delay: "delay-600",
     },
