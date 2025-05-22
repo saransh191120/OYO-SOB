@@ -42,8 +42,8 @@ const Navigation = ({ activeSection }: NavigationProps) => {
     <nav id="navbar" className={navbarClass}>
       <div className="container mx-auto px-4 py-3 sm:py-4 flex justify-between items-center">
         <div className="flex items-center">
-          <span className="text-[#e31041] font-playfair text-2xl sm:text-3xl font-bold mr-1 sm:mr-2 animate-pulse">OYO</span>
-          <span className="text-white font-playfair text-xl sm:text-2xl">Premium</span>
+          <span className="text-[#8B0000] font-playfair text-2xl sm:text-3xl font-bold mr-1 sm:mr-2 animate-pulse drop-shadow-[0_0_10px_rgba(139,0,0,0.8)] glow-text">OYO</span>
+          <span className="text-white font-playfair text-xl sm:text-2xl drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">Premium</span>
         </div>
         <div className="hidden md:flex space-x-4 lg:space-x-8 font-montserrat text-sm lg:text-base">
           <a

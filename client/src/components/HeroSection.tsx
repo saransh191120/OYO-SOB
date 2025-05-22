@@ -49,7 +49,7 @@ const HeroSection = () => {
               <span className="text-3xl md:text-5xl font-playfair font-semibold text-white ml-2 text-shadow-lg">Self-Operated Brands</span>
             </div>
           </div>
-          <h1 className="text-5xl md:text-7xl font-playfair font-bold mb-6 text-white leading-tight animate-slide-left delay-200 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]">
+          <h1 className="text-5xl md:text-7xl font-playfair font-bold mb-6 text-white leading-tight animate-slide-left delay-200 drop-shadow-[0_4px_8px_rgba(0,0,0,1)] text-shadow-strong glow-text-white">
             Mumbai's Premium Hotel Collection
           </h1>
           <p className="text-xl md:text-2xl font-montserrat text-white mb-10 animate-slide-right delay-400 bg-[#0a0000]/30 p-4 rounded-lg backdrop-blur-sm inline-block">
@@ -68,12 +68,12 @@ const HeroSection = () => {
             </button>
             <button
               onClick={scrollToContact}
-              className="px-10 py-5 border-3 border-[#cc0000] text-white font-montserrat font-bold rounded-full transition-all hover:bg-gradient-to-r hover:from-[#cc0000]/20 hover:to-[#990000]/20 hover:shadow-2xl hover:shadow-[#cc0000]/40 transform hover:-translate-y-2 hover:scale-105 relative overflow-hidden group"
+              className="px-12 py-6 bg-gradient-to-r from-[#8B0000] via-[#DC143C] to-[#8B0000] text-white font-montserrat font-black text-lg rounded-full transition-all hover:shadow-2xl hover:shadow-[#DC143C]/80 transform hover:-translate-y-3 hover:scale-110 relative overflow-hidden group animate-pulse border-2 border-[#FF6B6B] glow-border"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#cc0000]/10 to-[#990000]/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-right"></div>
-              <span className="relative z-10 flex items-center justify-center">
-                <i className="fas fa-handshake mr-3 animate-pulse"></i>
-                Partner With Us
+              <div className="absolute inset-0 bg-gradient-to-r from-[#FF1744] to-[#FF6B6B] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center animate-shimmer"></div>
+              <span className="relative z-10 flex items-center justify-center drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
+                <i className="fas fa-handshake mr-3 animate-bounce text-xl"></i>
+                <span className="tracking-wide animate-blood-glow">🚀 PARTNER WITH US NOW! 🚀</span>
               </span>
             </button>
           </div>

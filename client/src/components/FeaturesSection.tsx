@@ -43,7 +43,7 @@ const BrandCard = ({
         <h3 className="text-xl sm:text-2xl font-playfair font-bold text-white mb-1 sm:mb-2 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
           {title}
         </h3>
-        <p className="text-[#cc0000] font-montserrat text-xs sm:text-sm mb-2 sm:mb-3 italic font-semibold animate-blood-glow">{tagline}</p>
+        <p className="text-white font-montserrat text-xs sm:text-sm mb-2 sm:mb-3 italic font-semibold drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] glow-text-white animate-pulse">{tagline}</p>
         <p className="text-white font-montserrat text-sm mb-3 sm:mb-4">{description}</p>
         
         <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-700">
@@ -71,7 +71,7 @@ const FeaturesSection = () => {
       amenities: "Fine dining, spa, pools, concierge service, premium and luxurious accommodations",
       icon: "fas fa-crown",
       image:
-        "https://assets.oyorooms.com/uploads/2019/02/Sunday-Hotels-exterior-view.jpg",
+        "https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80",
       imageAlt: "Luxury OYO Sunday Hotel",
       delay: "delay-200",
     },
@@ -84,7 +84,7 @@ const FeaturesSection = () => {
       amenities: "Inviting pools, rejuvenating spas, unique dining, and stylish spaces to unwind",
       icon: "fas fa-umbrella-beach",
       image:
-        "https://assets.oyorooms.com/uploads/2020/01/OYO-Palette-Resort-Palghar.jpg",
+        "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80",
       imageAlt: "OYO Palette Resort",
       delay: "delay-400",
     },
