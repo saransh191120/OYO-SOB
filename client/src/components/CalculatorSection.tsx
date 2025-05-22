@@ -898,46 +898,6 @@ const CalculatorSection = () => {
               </div>
             </div>
 
-            {/* ANNUAL REVENUE PROJECTIONS BOX */}
-            <div className={`rounded-xl border-4 border-[#cc0000] bg-gradient-to-br from-[#990000]/30 via-[#660000]/40 to-[#cc0000]/30 backdrop-blur-lg p-8 mb-8 text-center relative overflow-hidden group shadow-2xl shadow-[#cc0000]/50 ${!isLoading ? "calculator-reveal" : "opacity-0"}`} style={{animationDelay: '650ms'}}>
-              {/* Animated background glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#cc0000]/20 via-[#ff0000]/30 to-[#cc0000]/20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 animate-pulse"></div>
-              
-              {/* Pulsing border effect */}
-              <div className="absolute inset-0 rounded-xl border-2 border-[#cc0000] animate-pulse"></div>
-              
-              {/* Content */}
-              <div className="relative z-10">
-                <div className="inline-block bg-gradient-to-r from-[#cc0000] to-[#ff0000] px-4 py-2 rounded-full mb-4 shadow-lg">
-                  <span className="text-white font-bold text-lg font-montserrat animate-pulse">📊 ANNUAL PROJECTIONS</span>
-                </div>
-                
-                <h4 className="text-2xl md:text-3xl font-bold text-white mb-4 font-playfair drop-shadow-[0_3px_3px_rgba(0,0,0,0.8)]">
-                  Yearly Revenue Potential
-                </h4>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-[#cc0000]/50 shadow-inner">
-                    <h5 className="text-lg font-bold text-white mb-2 font-montserrat">Annual Revenue</h5>
-                    <span className="text-2xl md:text-4xl font-bold text-white font-montserrat drop-shadow-[0_2px_2px_rgba(0,0,0,0.9)] animate-pulse-red">
-                      {results.annualTotalRevenue}
-                    </span>
-                  </div>
-                  
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-[#cc0000]/50 shadow-inner">
-                    <h5 className="text-lg font-bold text-white mb-2 font-montserrat">Annual Rev. Share</h5>
-                    <span className="text-2xl md:text-4xl font-bold text-white font-montserrat drop-shadow-[0_2px_2px_rgba(0,0,0,0.9)] animate-pulse-red">
-                      {results.annualRevShare}
-                    </span>
-                  </div>
-                </div>
-                
-                <p className="text-sm md:text-md text-gray-300 font-montserrat mt-4">
-                  Projected annual figures based on consistent occupancy rates
-                </p>
-              </div>
-            </div>
-            
             {/* SUPER VISIBLE REVENUE SHARE BOX */}
             <div className={`rounded-xl border-4 border-[#cc0000] bg-gradient-to-br from-[#990000]/30 via-[#660000]/40 to-[#cc0000]/30 backdrop-blur-lg p-8 mb-8 text-center relative overflow-hidden group shadow-2xl shadow-[#cc0000]/50 ${!isLoading ? "calculator-reveal" : "opacity-0"}`} style={{animationDelay: '750ms'}}>
               {/* Animated background glow */}
@@ -998,6 +958,46 @@ const CalculatorSection = () => {
                   <i className="fas fa-redo mr-2"></i>Reset Calculator
                 </span>
               </button>
+            </div>
+            
+            {/* ANNUAL REVENUE PROJECTIONS BOX */}
+            <div className={`rounded-xl border-4 border-[#cc0000] bg-gradient-to-br from-[#990000]/30 via-[#660000]/40 to-[#cc0000]/30 backdrop-blur-lg p-8 mb-8 text-center relative overflow-hidden group shadow-2xl shadow-[#cc0000]/50 ${!isLoading ? "calculator-reveal" : "opacity-0"}`} style={{animationDelay: '850ms'}}>
+              {/* Animated background glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#cc0000]/20 via-[#ff0000]/30 to-[#cc0000]/20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 animate-pulse"></div>
+              
+              {/* Pulsing border effect */}
+              <div className="absolute inset-0 rounded-xl border-2 border-[#cc0000] animate-pulse"></div>
+              
+              {/* Content */}
+              <div className="relative z-10">
+                <div className="inline-block bg-gradient-to-r from-[#cc0000] to-[#ff0000] px-4 py-2 rounded-full mb-4 shadow-lg">
+                  <span className="text-white font-bold text-lg font-montserrat animate-pulse">📊 ANNUAL PROJECTIONS</span>
+                </div>
+                
+                <h4 className="text-2xl md:text-3xl font-bold text-white mb-4 font-playfair drop-shadow-[0_3px_3px_rgba(0,0,0,0.8)]">
+                  Yearly Revenue Potential
+                </h4>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-[#cc0000]/50 shadow-inner">
+                    <h5 className="text-lg font-bold text-white mb-2 font-montserrat">Annual Revenue</h5>
+                    <span className="text-2xl md:text-4xl font-bold text-white font-montserrat drop-shadow-[0_2px_2px_rgba(0,0,0,0.9)] animate-pulse-red">
+                      {results.annualTotalRevenue}
+                    </span>
+                  </div>
+                  
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-[#cc0000]/50 shadow-inner">
+                    <h5 className="text-lg font-bold text-white mb-2 font-montserrat">Annual Rev. Share</h5>
+                    <span className="text-2xl md:text-4xl font-bold text-white font-montserrat drop-shadow-[0_2px_2px_rgba(0,0,0,0.9)] animate-pulse-red">
+                      {results.annualRevShare}
+                    </span>
+                  </div>
+                </div>
+                
+                <p className="text-sm md:text-md text-gray-300 font-montserrat mt-4">
+                  Projected annual figures based on consistent occupancy rates
+                </p>
+              </div>
             </div>
             
             {/* PDF Generation Section */}
