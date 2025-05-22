@@ -620,10 +620,10 @@ const CalculatorSection = () => {
     const totalRevenueMade = occupiedRoomNights * roomRate;
     const initialRevShare = totalRevenueMade * (currentBrand.revSharePercentage / 100);
     
-    // Annual calculations (assuming a full year of operation)
+    // Annual calculations - simply multiply monthly revenue by 12
     const monthsInYear = 12;
-    const annualTotalRevenue = totalRevenueMade * (365 / stayDuration);
-    const annualRevShare = initialRevShare * (365 / stayDuration);
+    const annualTotalRevenue = totalRevenueMade * monthsInYear;
+    const annualRevShare = initialRevShare * monthsInYear;
 
     // Display results
     setResults({
