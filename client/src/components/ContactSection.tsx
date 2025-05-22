@@ -316,37 +316,7 @@ const ContactSection = () => {
                     </li>
                   </ul>
                 </div>
-                
-                <div className="flex justify-center md:justify-start items-center mt-6 gap-3 sm:gap-4">
-                  <a
-                    href="#"
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-[#cc0000] to-[#990000] flex items-center justify-center text-white transition-all hover:scale-110 hover:shadow-lg hover:shadow-[#cc0000]/50 transform hover:-translate-y-1"
-                    aria-label="Facebook"
-                  >
-                    <i className="fab fa-facebook-f text-sm sm:text-base"></i>
-                  </a>
-                  <a
-                    href="#"
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-[#cc0000] to-[#990000] flex items-center justify-center text-white transition-all hover:scale-110 hover:shadow-lg hover:shadow-[#cc0000]/50 transform hover:-translate-y-1"
-                    aria-label="Twitter"
-                  >
-                    <i className="fab fa-twitter text-sm sm:text-base"></i>
-                  </a>
-                  <a
-                    href="#"
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-[#cc0000] to-[#990000] flex items-center justify-center text-white transition-all hover:scale-110 hover:shadow-lg hover:shadow-[#cc0000]/50 transform hover:-translate-y-1"
-                    aria-label="Instagram"
-                  >
-                    <i className="fab fa-instagram text-sm sm:text-base"></i>
-                  </a>
-                  <a
-                    href="#"
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-[#cc0000] to-[#990000] flex items-center justify-center text-white transition-all hover:scale-110 hover:shadow-lg hover:shadow-[#cc0000]/50 transform hover:-translate-y-1"
-                    aria-label="LinkedIn"
-                  >
-                    <i className="fab fa-linkedin-in text-sm sm:text-base"></i>
-                  </a>
-                </div>
+
               </div>
             </div>
           </div>
