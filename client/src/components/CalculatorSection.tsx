@@ -665,14 +665,14 @@ const CalculatorSection = () => {
               <button
                 id="calculateBtn"
                 onClick={calculateRevenue}
-                className="px-6 py-3 bg-[#d4af37] text-[#0f172a] font-bold rounded-full transition-all hover:bg-opacity-90 font-montserrat"
+                className="px-6 py-3 bg-[#FF3333] text-white font-bold rounded-full transition-all hover:bg-opacity-90 font-montserrat"
               >
                 <i className="fas fa-calculator mr-2"></i>Calculate
               </button>
               <button
                 id="resetBtn"
                 onClick={resetCalculator}
-                className="px-6 py-3 border border-white text-white font-bold rounded-full transition-all hover:bg-white hover:text-[#0f172a] font-montserrat"
+                className="px-6 py-3 border border-white text-white font-bold rounded-full transition-all hover:bg-white hover:text-[#FF3333] font-montserrat"
               >
                 <i className="fas fa-redo mr-2"></i>Reset
               </button>
@@ -690,9 +690,9 @@ const CalculatorSection = () => {
               <div className="flex justify-center mt-2">
                 <button
                   onClick={() => generatePDF()}
-                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[#d4af37] text-[#0f172a] font-bold rounded-lg transition-all hover:bg-opacity-90 font-montserrat flex items-center justify-center"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[#FF3333] text-white font-bold rounded-lg transition-all hover:bg-opacity-90 font-montserrat flex items-center justify-center"
                 >
-                  <i className="fas fa-file-pdf mr-2 text-lg"></i>Download PDF Report
+                  <i className="fas fa-file-pdf mr-2 text-lg"></i>Download OYO PDF Report
                 </button>
               </div>
             </div>
