@@ -117,7 +117,7 @@ const FeaturesSection = () => {
         "Restaurant, Wi-Fi, AC, modern decor, with pools and gyms at select locations",
       icon: "fas fa-glass-cheers",
       image:
-        "https://media.easemytrip.com/media/Hotel/TEMP1/RoomImage/RoomImagesZ11jE.jpg",
+        "/src/assets/clubhouse.jpeg",
       imageAlt: "OYO Clubhouse Hotel",
       delay: "delay-600",
     },

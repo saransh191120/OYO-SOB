@@ -360,9 +360,9 @@ const CalculatorSection = () => {
       y += lineSpacing * 3;
       
       // Calculate the actual values directly to ensure accuracy
-      const totalSellableRoomNights = formData.numberOfRooms * formData.stayDuration;
-      const occupiedRoomNights = totalSellableRoomNights * (formData.occupancyRate / 100);
-      const totalRevenue = occupiedRoomNights * formData.roomRate;
+      const totalSellableRoomNights = Number(formData.numberOfRooms || 0) * Number(formData.stayDuration || 0);
+      const occupiedRoomNights = totalSellableRoomNights * (Number(formData.occupancyRate || 0) / 100);
+      const totalRevenue = occupiedRoomNights * Number(formData.roomRate || 0);
       const revShare = totalRevenue * (selectedBrand?.revSharePercentage || 0) / 100;
       
       // Row 1 - Total Sellable Rooms
