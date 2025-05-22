@@ -93,13 +93,13 @@ const ContactSection = () => {
     >
       <div className="container mx-auto px-4">
         <div className={`text-center max-w-2xl mx-auto px-4 mb-12 md:mb-16 ${animationClass}`}>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold mb-4 md:mb-6 text-[#d4af37]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold mb-4 md:mb-6 text-[#cc0000] animate-blood-glow">
             Partner With OYO
           </h2>
           <p className="text-base md:text-lg text-gray-300 font-montserrat">
             Interested in joining OYO's self-operated hotel brands in Mumbai? Connect with our partnership team today.
           </p>
-          <div className="h-1 w-32 md:w-40 gold-gradient mx-auto mt-6 md:mt-8 rounded-full"></div>
+          <div className="h-1 w-32 md:w-40 bg-gradient-to-r from-[#660000] via-[#cc0000] to-[#660000] mx-auto mt-6 md:mt-8 rounded-full animate-pulse"></div>
         </div>
 
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
@@ -245,15 +245,18 @@ const ContactSection = () => {
                   onChange={handleChange}
                   rows={4}
                   required
-                  className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-gray-600 focus:ring-[#d4af37] focus:border-[#d4af37] font-montserrat"
+                  className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#cc0000] focus:border-[#cc0000] font-montserrat transition-all hover:border-[#990000]/50"
                   placeholder="Tell us about your property and partnership goals..."
                 ></textarea>
               </div>
               <button
                 type="submit"
-                className="w-full px-6 py-3 bg-[#d4af37] text-[#0f172a] font-bold rounded-full transition-all hover:bg-opacity-90 font-montserrat"
+                className="w-full px-6 py-4 bg-gradient-to-r from-[#cc0000] to-[#990000] text-white font-bold rounded-full transition-all hover:shadow-2xl hover:shadow-[#cc0000]/50 transform hover:-translate-y-2 hover:scale-105 font-montserrat relative overflow-hidden group"
               >
-                <i className="fas fa-paper-plane mr-2"></i>Submit Partnership Inquiry
+                <div className="absolute inset-0 bg-gradient-to-r from-[#ff0000] to-[#cc0000] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                <span className="relative z-10 flex items-center justify-center">
+                  <i className="fas fa-paper-plane mr-2 animate-pulse"></i>Submit Partnership Inquiry
+                </span>
               </button>
             </form>
           </div>
@@ -274,7 +277,7 @@ const ContactSection = () => {
               </h3>
               <div className="space-y-4 font-montserrat">
                 <div className="flex items-start">
-                  <i className="fas fa-map-marker-alt text-[#d4af37] mt-1 mr-4"></i>
+                  <i className="fas fa-map-marker-alt text-[#cc0000] mt-1 mr-4"></i>
                   <p className="text-gray-300">
                     OYO Mumbai Partner Center
                     <br />
@@ -317,28 +320,28 @@ const ContactSection = () => {
                 <div className="flex justify-center md:justify-start items-center mt-6 gap-3 sm:gap-4">
                   <a
                     href="#"
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#d4af37] flex items-center justify-center text-[#0f172a] transition-all hover:bg-opacity-90"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-[#cc0000] to-[#990000] flex items-center justify-center text-white transition-all hover:scale-110 hover:shadow-lg hover:shadow-[#cc0000]/50 transform hover:-translate-y-1"
                     aria-label="Facebook"
                   >
                     <i className="fab fa-facebook-f text-sm sm:text-base"></i>
                   </a>
                   <a
                     href="#"
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#d4af37] flex items-center justify-center text-[#0f172a] transition-all hover:bg-opacity-90"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-[#cc0000] to-[#990000] flex items-center justify-center text-white transition-all hover:scale-110 hover:shadow-lg hover:shadow-[#cc0000]/50 transform hover:-translate-y-1"
                     aria-label="Twitter"
                   >
                     <i className="fab fa-twitter text-sm sm:text-base"></i>
                   </a>
                   <a
                     href="#"
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#d4af37] flex items-center justify-center text-[#0f172a] transition-all hover:bg-opacity-90"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-[#cc0000] to-[#990000] flex items-center justify-center text-white transition-all hover:scale-110 hover:shadow-lg hover:shadow-[#cc0000]/50 transform hover:-translate-y-1"
                     aria-label="Instagram"
                   >
                     <i className="fab fa-instagram text-sm sm:text-base"></i>
                   </a>
                   <a
                     href="#"
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#d4af37] flex items-center justify-center text-[#0f172a] transition-all hover:bg-opacity-90"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-[#cc0000] to-[#990000] flex items-center justify-center text-white transition-all hover:scale-110 hover:shadow-lg hover:shadow-[#cc0000]/50 transform hover:-translate-y-1"
                     aria-label="LinkedIn"
                   >
                     <i className="fab fa-linkedin-in text-sm sm:text-base"></i>

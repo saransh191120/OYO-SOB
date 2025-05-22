@@ -686,34 +686,65 @@ const CalculatorSection = () => {
               </div>
             </div>
 
-            <div className={`rounded-lg glass-effect p-6 mb-8 text-center relative overflow-hidden group ${!isLoading ? "calculator-reveal" : "opacity-0"}`} style={{animationDelay: '700ms'}}>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#660000]/10 via-[#990000]/15 to-[#660000]/10 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-              <h4 className="text-xl font-semibold text-white mb-3 font-playfair relative z-10 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
-                Your Revenue Share <span className="text-[#cc0000] animate-blood-glow">({currentBrand.revSharePercentage}%)</span>
-              </h4>
-              <p
-                id="revShare"
-                className="text-3xl md:text-5xl font-bold text-[#cc0000] font-montserrat relative z-10 animate-blood-glow"
-              >
-                {results.revShare}
-              </p>
-              <div className="h-1 w-32 mx-auto mt-4 bg-gradient-to-r from-[#660000] via-[#990000] to-[#660000] rounded-full"></div>
+            {/* SUPER VISIBLE REVENUE SHARE BOX */}
+            <div className={`rounded-xl border-4 border-[#cc0000] bg-gradient-to-br from-[#990000]/30 via-[#660000]/40 to-[#cc0000]/30 backdrop-blur-lg p-8 mb-8 text-center relative overflow-hidden group shadow-2xl shadow-[#cc0000]/50 ${!isLoading ? "calculator-reveal" : "opacity-0"}`} style={{animationDelay: '700ms'}}>
+              {/* Animated background glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#cc0000]/20 via-[#ff0000]/30 to-[#cc0000]/20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 animate-pulse"></div>
+              
+              {/* Pulsing border effect */}
+              <div className="absolute inset-0 rounded-xl border-2 border-[#cc0000] animate-pulse"></div>
+              
+              {/* Content */}
+              <div className="relative z-10">
+                <div className="inline-block bg-gradient-to-r from-[#cc0000] to-[#ff0000] px-4 py-2 rounded-full mb-4 shadow-lg">
+                  <span className="text-white font-bold text-lg font-montserrat animate-pulse">💰 REVENUE SHARE</span>
+                </div>
+                
+                <h4 className="text-2xl md:text-3xl font-bold text-white mb-4 font-playfair drop-shadow-[0_3px_3px_rgba(0,0,0,0.8)]">
+                  Your Revenue Share
+                </h4>
+                
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 mb-4 border border-[#cc0000]/50">
+                  <span className="text-[#cc0000] text-xl font-bold animate-blood-glow">({currentBrand.revSharePercentage}%)</span>
+                </div>
+                
+                <div className="bg-gradient-to-r from-[#cc0000] to-[#ff0000] rounded-xl p-6 shadow-2xl border-2 border-white/20">
+                  <p
+                    id="revShare"
+                    className="text-4xl md:text-6xl lg:text-7xl font-black text-white font-montserrat drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] animate-pulse"
+                  >
+                    {results.revShare}
+                  </p>
+                </div>
+                
+                <div className="h-2 w-48 mx-auto mt-6 bg-gradient-to-r from-[#cc0000] via-[#ff0000] to-[#cc0000] rounded-full animate-pulse shadow-lg"></div>
+                
+                {/* Sparkle effects */}
+                <div className="absolute top-4 right-4 text-[#ffff00] text-2xl animate-pulse">✨</div>
+                <div className="absolute bottom-4 left-4 text-[#ffff00] text-xl animate-pulse delay-500">💎</div>
+              </div>
             </div>
 
             <div className={`flex flex-col sm:flex-row gap-4 justify-center mb-6 ${!isLoading ? "calculator-reveal" : "opacity-0"}`} style={{animationDelay: '800ms'}}>
               <button
                 id="calculateBtn"
                 onClick={calculateRevenue}
-                className="px-6 py-3 bg-gradient-to-r from-[#660000] to-[#990000] text-white font-bold rounded-md transition-all hover:shadow-lg hover:shadow-[#990000]/50 transform hover:-translate-y-1 font-montserrat red-glow"
+                className="px-8 py-4 bg-gradient-to-r from-[#cc0000] to-[#990000] text-white font-bold rounded-full transition-all hover:shadow-2xl hover:shadow-[#cc0000]/60 transform hover:-translate-y-2 hover:scale-105 font-montserrat relative overflow-hidden group"
               >
-                <i className="fas fa-calculator mr-2"></i>Calculate
+                <div className="absolute inset-0 bg-gradient-to-r from-[#ff0000] to-[#cc0000] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                <span className="relative z-10 flex items-center justify-center">
+                  <i className="fas fa-calculator mr-2 animate-pulse"></i>Calculate Revenue
+                </span>
               </button>
               <button
                 id="resetBtn"
                 onClick={resetCalculator}
-                className="px-6 py-3 border border-[#990000] text-white font-bold rounded-md transition-all hover:bg-[#990000]/20 hover:border-[#990000] hover:shadow-lg transform hover:-translate-y-1 font-montserrat"
+                className="px-8 py-4 border-2 border-[#cc0000] text-white font-bold rounded-full transition-all hover:bg-gradient-to-r hover:from-[#cc0000]/20 hover:to-[#990000]/20 hover:shadow-2xl hover:shadow-[#cc0000]/40 transform hover:-translate-y-2 hover:scale-105 font-montserrat relative overflow-hidden group"
               >
-                <i className="fas fa-redo mr-2"></i>Reset
+                <div className="absolute inset-0 bg-gradient-to-r from-[#cc0000]/10 to-[#990000]/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-right"></div>
+                <span className="relative z-10 flex items-center justify-center">
+                  <i className="fas fa-redo mr-2 animate-pulse"></i>Reset Calculator
+                </span>
               </button>
             </div>
             

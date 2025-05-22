@@ -58,15 +58,23 @@ const HeroSection = () => {
           <div className="flex flex-col md:flex-row justify-center gap-4 animate-fade-in delay-600">
             <button
               onClick={scrollToCalculator}
-              className="px-8 py-4 bg-gradient-to-r from-[#660000] to-[#990000] text-white font-montserrat font-semibold rounded-full transition-all hover:shadow-lg hover:shadow-[#990000]/50 transform hover:-translate-y-1 red-glow"
+              className="px-10 py-5 bg-gradient-to-r from-[#cc0000] to-[#990000] text-white font-montserrat font-bold rounded-full transition-all hover:shadow-2xl hover:shadow-[#cc0000]/60 transform hover:-translate-y-2 hover:scale-105 relative overflow-hidden group"
             >
-              <span className="animate-blood-glow">Explore Revenue Potential</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#ff0000] to-[#cc0000] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+              <span className="relative z-10 flex items-center justify-center">
+                <i className="fas fa-calculator mr-3 animate-pulse"></i>
+                <span className="animate-blood-glow">Explore Revenue Potential</span>
+              </span>
             </button>
             <button
               onClick={scrollToContact}
-              className="px-8 py-4 border-2 border-[#990000] text-white font-montserrat font-semibold rounded-full transition-all hover:bg-[#990000]/20 hover:shadow-lg transform hover:-translate-y-1"
+              className="px-10 py-5 border-3 border-[#cc0000] text-white font-montserrat font-bold rounded-full transition-all hover:bg-gradient-to-r hover:from-[#cc0000]/20 hover:to-[#990000]/20 hover:shadow-2xl hover:shadow-[#cc0000]/40 transform hover:-translate-y-2 hover:scale-105 relative overflow-hidden group"
             >
-              Partner With Us
+              <div className="absolute inset-0 bg-gradient-to-r from-[#cc0000]/10 to-[#990000]/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-right"></div>
+              <span className="relative z-10 flex items-center justify-center">
+                <i className="fas fa-handshake mr-3 animate-pulse"></i>
+                Partner With Us
+              </span>
             </button>
           </div>
         </div>
