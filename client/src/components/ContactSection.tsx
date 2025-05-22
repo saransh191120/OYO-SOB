@@ -266,7 +266,7 @@ const ContactSection = () => {
             {/* Hotel Exterior Image */}
             <div className="rounded-xl overflow-hidden mb-4 md:mb-8">
               <img
-                src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80"
+                src="/src/assets/ChatGPT Image May 23, 2025, 04_54_49 AM.png"
                 alt="OYO Mumbai Hotel Exterior"
                 className="w-full h-48 sm:h-56 md:h-64 object-cover"
               />
