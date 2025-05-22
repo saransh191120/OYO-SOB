@@ -79,19 +79,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-10 left-0 right-0 text-center">
-        <a
-          href="#calculator"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToCalculator();
-          }}
-          className="text-[#cc0000] animate-bounce inline-block hover:text-white transition-colors"
-          aria-label="Scroll to calculator"
-        >
-          <i className="fas fa-chevron-down text-2xl animate-blood-glow"></i>
-        </a>
-      </div>
     </section>
   );
 };
