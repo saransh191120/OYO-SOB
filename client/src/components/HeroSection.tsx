@@ -73,7 +73,7 @@ const HeroSection = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-[#FF1744] to-[#FF6B6B] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center animate-shimmer"></div>
               <span className="relative z-10 flex items-center justify-center drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
                 <i className="fas fa-handshake mr-3 animate-bounce text-xl"></i>
-                <span className="tracking-wide animate-blood-glow">🚀 PARTNER WITH US NOW! 🚀</span>
+                <span className="tracking-wide animate-blood-glow">PARTNER WITH US NOW</span>
               </span>
             </button>
           </div>
