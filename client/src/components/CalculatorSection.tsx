@@ -677,33 +677,33 @@ const CalculatorSection = () => {
               <button
                 id="calculateBtn"
                 onClick={calculateRevenue}
-                className="px-6 py-3 bg-gradient-to-r from-[#cc0f35] to-[#e31041] text-white font-bold rounded-full transition-all hover:shadow-lg hover:shadow-[#e31041]/50 transform hover:-translate-y-1 font-montserrat red-glow"
+                className="px-6 py-3 bg-gradient-to-r from-[#660000] to-[#990000] text-white font-bold rounded-md transition-all hover:shadow-lg hover:shadow-[#990000]/50 transform hover:-translate-y-1 font-montserrat red-glow"
               >
                 <i className="fas fa-calculator mr-2"></i>Calculate
               </button>
               <button
                 id="resetBtn"
                 onClick={resetCalculator}
-                className="px-6 py-3 border border-[#e31041] text-white font-bold rounded-full transition-all hover:bg-[#e31041]/20 hover:border-[#e31041] hover:shadow-lg transform hover:-translate-y-1 font-montserrat"
+                className="px-6 py-3 border border-[#990000] text-white font-bold rounded-md transition-all hover:bg-[#990000]/20 hover:border-[#990000] hover:shadow-lg transform hover:-translate-y-1 font-montserrat"
               >
                 <i className="fas fa-redo mr-2"></i>Reset
               </button>
             </div>
             
             {/* PDF Generation Section */}
-            <div className="mt-8 pt-6 border-t border-[#cc0f35]/30">
+            <div className="mt-8 pt-6 border-t border-[#990000]/30">
               <h4 className="text-xl font-semibold text-white mb-4 font-playfair text-center relative inline-block">
-                <span className="relative z-10">Save Your Calculation</span>
-                <span className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-[#cc0f35]/20 via-[#e31041]/40 to-[#cc0f35]/20"></span>
+                <span className="relative z-10 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">Save Your Calculation</span>
+                <span className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-[#660000]/30 via-[#990000]/50 to-[#660000]/30"></span>
               </h4>
-              <p className="text-gray-300 text-sm mb-4 text-center font-montserrat">
+              <p className="text-white text-sm mb-4 text-center font-montserrat bg-[#0a0000]/40 py-2 px-4 rounded inline-block">
                 Download a detailed PDF report of your revenue calculation for future reference.
               </p>
               
-              <div className="flex justify-center mt-4">
+              <div className="flex justify-center mt-6">
                 <button
                   onClick={() => generatePDF()}
-                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#cc0f35] to-[#e31041] text-white font-bold rounded-lg transition-all hover:shadow-lg hover:shadow-[#e31041]/40 transform hover:-translate-y-1 font-montserrat flex items-center justify-center animate-pulse-red"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#660000] to-[#990000] text-white font-bold rounded-md transition-all hover:shadow-lg hover:shadow-[#990000]/40 transform hover:-translate-y-1 font-montserrat flex items-center justify-center"
                 >
                   <i className="fas fa-file-pdf mr-2 text-lg"></i>Download OYO PDF Report
                 </button>
