@@ -189,99 +189,143 @@ const CalculatorSection = () => {
       
       // Add hotel brand information
       const selectedBrand = brands.find(brand => brand.id === formData.selectedBrand);
-      doc.setTextColor(0, 0, 0);
-      doc.setFontSize(16);
-      doc.setFont("helvetica", "bold");
-      doc.text("Selected Brand:", 15, 65);
       
-      doc.setFont("helvetica", "normal");
+      // Create a consistent layout with proper spacing
+      const leftMargin = 15;
+      const rightValueX = 90; // Position for right-aligned values
+      const lineSpacing = 8; // Space between lines
+      
+      // Brand information section with proper spacing
+      doc.setTextColor(0, 0, 0);
       doc.setFontSize(14);
-      doc.text(selectedBrand?.name || "OYO Brand", 45, 65);
+      doc.setFont("helvetica", "bold");
+      doc.text(`Selected Brand: ${selectedBrand?.name || "OYO Brand"}`, leftMargin, 65);
       
       doc.setFontSize(12);
       doc.setTextColor(80, 80, 80);
       doc.text(`Revenue Share: ${selectedBrand?.revSharePercentage || 0}%`, pageWidth - 15, 65, { align: "right" });
       
-      // Add hotel details section
+      // Add hotel details section - with proper heading styling
       doc.setTextColor(255, 51, 51); // OYO Red
-      doc.setFontSize(16);
+      doc.setFontSize(14);
       doc.setFont("helvetica", "bold");
-      doc.text("Hotel Information", 15, 85);
+      doc.text("Hotel Information", leftMargin, 85);
       
       // Add a separator line
       doc.setDrawColor(255, 51, 51); // OYO Red
       doc.setLineWidth(0.5);
-      doc.line(15, 90, pageWidth - 15, 90);
+      doc.line(leftMargin, 90, pageWidth - 15, 90);
       
+      // Details section with consistent formatting
       doc.setTextColor(0, 0, 0);
-      doc.setFontSize(12);
-      doc.setFont("helvetica", "bold");
-      doc.text("Number of Rooms:", 15, 105);
-      doc.setFont("helvetica", "normal");
-      doc.text(`${formData.numberOfRooms}`, 100, 105);
+      doc.setFontSize(11);
+      
+      // Setting the base Y position for hotel details
+      let y = 105;
       
       doc.setFont("helvetica", "bold");
-      doc.text("Room Rate:", 15, 120);
+      doc.text("Number of Rooms:", leftMargin, y);
       doc.setFont("helvetica", "normal");
-      doc.text(`₹ ${formData.roomRate.toLocaleString('en-IN')}`, 100, 120);
+      doc.text(`${formData.numberOfRooms}`, rightValueX, y);
       
+      y += lineSpacing * 3;
       doc.setFont("helvetica", "bold");
-      doc.text("Stay Duration:", 15, 135);
+      doc.text("Room Rate:", leftMargin, y);
       doc.setFont("helvetica", "normal");
-      doc.text(`${formData.stayDuration} days`, 100, 135);
+      doc.text(`₹ ${formData.roomRate.toLocaleString('en-IN')}`, rightValueX, y);
       
+      y += lineSpacing * 3;
       doc.setFont("helvetica", "bold");
-      doc.text("Occupancy Rate:", 15, 150);
+      doc.text("Stay Duration:", leftMargin, y);
       doc.setFont("helvetica", "normal");
-      doc.text(`${formData.occupancyRate}%`, 100, 150);
+      doc.text(`${formData.stayDuration} days`, rightValueX, y);
       
-      // Add results section
+      y += lineSpacing * 3;
+      doc.setFont("helvetica", "bold");
+      doc.text("Occupancy Rate:", leftMargin, y);
+      doc.setFont("helvetica", "normal");
+      doc.text(`${formData.occupancyRate}%`, rightValueX, y);
+      
+      // Add results section - with proper section spacing
+      y += lineSpacing * 4;
       doc.setTextColor(255, 51, 51); // OYO Red
-      doc.setFontSize(16);
+      doc.setFontSize(14);
       doc.setFont("helvetica", "bold");
-      doc.text("Revenue Analysis", 15, 175);
+      doc.text("Revenue Analysis", leftMargin, y);
       
       // Add a separator line
+      y += 5;
       doc.setDrawColor(255, 51, 51); // OYO Red
-      doc.line(15, 180, pageWidth - 15, 180);
+      doc.line(leftMargin, y, pageWidth - 15, y);
       
-      // Helper function to clean numbers from results
-      const cleanNumber = (text: string) => {
-        return text.replace(/[^\d.,]/g, '');
+      // Format number function - to ensure proper formatting of currency values
+      const formatCurrencyForPDF = (amount: string | number): string => {
+        if (typeof amount === 'string') {
+          // Clean the string first
+          amount = amount.replace(/[^\d.,]/g, '');
+          amount = parseFloat(amount);
+        }
+        
+        // Format with thousand separators
+        return new Intl.NumberFormat('en-IN', {
+          maximumFractionDigits: 2,
+          minimumFractionDigits: 2
+        }).format(amount);
       };
       
+      // Results section with consistent spacing
+      y += lineSpacing * 2;
       doc.setTextColor(0, 0, 0);
-      doc.setFontSize(12);
-      doc.setFont("helvetica", "bold");
-      doc.text("Total Sellable Rooms:", 15, 195);
-      doc.setFont("helvetica", "normal");
-      doc.text(results.totalSellableRooms, 15, 205);
+      doc.setFontSize(11);
       
+      // Total sellable rooms
       doc.setFont("helvetica", "bold");
-      doc.text("Total Revenue:", 15, 220);
+      doc.text("Total Sellable Rooms:", leftMargin, y);
       doc.setFont("helvetica", "normal");
-      doc.text(`₹ ${cleanNumber(results.totalRevenue)}`, 15, 230);
+      // Extract just the number part
+      const roomsNumber = results.totalSellableRooms.replace(/[^\d]/g, '');
+      doc.text(`${roomsNumber} rooms`, rightValueX, y);
       
+      // Total revenue with proper formatting
+      y += lineSpacing * 3;
       doc.setFont("helvetica", "bold");
-      doc.text("Occupancy Information:", 15, 245);
+      doc.text("Total Revenue:", leftMargin, y);
       doc.setFont("helvetica", "normal");
-      doc.text(results.occupancyInfo, 15, 255);
       
+      // Calculate the actual revenue from formData to ensure correct formatting
+      const totalRevenue = (formData.numberOfRooms || 0) * 
+                          (formData.stayDuration || 0) * 
+                          (formData.roomRate || 0) * 
+                          (formData.occupancyRate || 0) / 100;
+      
+      doc.text(`₹ ${formatCurrencyForPDF(totalRevenue)}`, rightValueX, y);
+      
+      // Occupancy info
+      y += lineSpacing * 3;
+      doc.setFont("helvetica", "bold");
+      doc.text("Occupancy Information:", leftMargin, y);
+      doc.setFont("helvetica", "normal");
+      doc.text(`Based on ${formData.occupancyRate}% occupancy rate`, rightValueX, y);
+      
+      // Revenue share box - with proper positioning and sizing
+      y += lineSpacing * 4;
       // Highlight revenue share in OYO branded box
       doc.setFillColor(255, 240, 240); // Light red background
-      doc.roundedRect(15, 265, pageWidth - 30, 25, 3, 3, 'F');
+      doc.roundedRect(leftMargin, y, pageWidth - 30, 25, 3, 3, 'F');
       
       doc.setDrawColor(255, 51, 51); // OYO Red
       doc.setLineWidth(1);
-      doc.roundedRect(15, 265, pageWidth - 30, 25, 3, 3, 'S');
+      doc.roundedRect(leftMargin, y, pageWidth - 30, 25, 3, 3, 'S');
       
+      // Calculate revenue share directly to ensure accuracy
+      const revShare = totalRevenue * (selectedBrand?.revSharePercentage || 0) / 100;
+      
+      // Revenue share text with proper positioning
       doc.setTextColor(255, 51, 51); // OYO Red
-      doc.setFontSize(14);
+      doc.setFontSize(12);
       doc.setFont("helvetica", "bold");
-      doc.text("Your Revenue Share:", 20, 278);
-      
-      doc.setFontSize(14);
-      doc.text(`₹ ${cleanNumber(results.revShare)}`, pageWidth - 20, 278, { align: "right" });
+      doc.text("Your Revenue Share:", leftMargin + 5, y + 15);
+      doc.text(`₹ ${formatCurrencyForPDF(revShare)}`, pageWidth - 20, y + 15, { align: "right" });
       
       // Add footer
       doc.setFillColor(255, 51, 51); // OYO Red
@@ -533,30 +577,6 @@ const CalculatorSection = () => {
             </div>
 
             {/* Brand Selection */}
-            <div className="mb-8 relative z-10">
-              <label
-                htmlFor="selectedBrand"
-                className="flex items-center text-md font-semibold text-white mb-2 font-montserrat bg-[#0a0000]/60 p-2 rounded-md"
-              >
-                <i className="fas fa-building mr-2 text-[#cc0000]"></i>
-                Select Hotel Brand
-              </label>
-              <select
-                id="selectedBrand"
-                name="selectedBrand"
-                value={formData.selectedBrand}
-                onChange={handleInputChange}
-                onBlur={calculateRevenue}
-                className="w-full p-3 rounded-lg bg-[#0a0000] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#990000] focus:border-[#990000] font-montserrat"
-              >
-                {brands.map(brand => (
-                  <option key={brand.id} value={brand.id}>
-                    {brand.name} - {brand.revSharePercentage}% Revenue Share
-                  </option>
-                ))}
-              </select>
-            </div>
-
             {/* Calculator Form */}
             <form
               id="calculatorForm"
@@ -566,10 +586,35 @@ const CalculatorSection = () => {
                 calculateRevenue();
               }}
             >
+              {/* Brand Selection - moved into the form for consistent styling */}
+              <div className="group md:col-span-2 mb-4">
+                <label
+                  htmlFor="selectedBrand"
+                  className="flex items-center text-md font-semibold text-white mb-2 font-montserrat bg-[#0a0000]/60 p-2 rounded-md"
+                >
+                  <i className="fas fa-building mr-2 text-[#cc0000]"></i>
+                  Select Hotel Brand
+                </label>
+                <select
+                  id="selectedBrand"
+                  name="selectedBrand"
+                  value={formData.selectedBrand}
+                  onChange={handleInputChange}
+                  onBlur={calculateRevenue}
+                  className="w-full p-3 rounded-lg bg-[#0a0000] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#990000] focus:border-[#990000] font-montserrat"
+                >
+                  {brands.map(brand => (
+                    <option key={brand.id} value={brand.id}>
+                      {brand.name} - {brand.revSharePercentage}% Revenue Share
+                    </option>
+                  ))}
+                </select>
+              </div>
+              
               <div className="group">
                 <label
                   htmlFor="roomRate"
-                  className="flex items-center text-md font-semibold text-white mb-1 font-montserrat group-hover:text-[#cc0000] transition-colors bg-[#0a0000]/60 p-2 rounded-md"
+                  className="flex items-center text-md font-semibold text-white mb-2 font-montserrat group-hover:text-[#cc0000] transition-colors bg-[#0a0000]/60 p-2 rounded-md"
                 >
                   <i className="fas fa-hotel mr-2 text-[#cc0000]"></i>
                   Room Rate (₹)
@@ -581,7 +626,7 @@ const CalculatorSection = () => {
                   value={formData.roomRate}
                   onChange={handleInputChange}
                   onBlur={calculateRevenue}
-                  className="w-full p-3 rounded-lg bg-[#0a0000] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#990000] focus:border-[#990000] font-montserrat transition-all hover:border-[#990000]/50"
+                  className="w-full p-3 h-12 rounded-lg bg-[#0a0000] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#990000] focus:border-[#990000] font-montserrat transition-all hover:border-[#990000]/50"
                   placeholder={`e.g., ${currentBrand.defaultRate}`}
                 />
               </div>
@@ -589,7 +634,7 @@ const CalculatorSection = () => {
               <div className="group">
                 <label
                   htmlFor="stayDuration"
-                  className="flex items-center text-md font-semibold text-white mb-1 font-montserrat group-hover:text-[#cc0000] transition-colors bg-[#0a0000]/60 p-2 rounded-md"
+                  className="flex items-center text-md font-semibold text-white mb-2 font-montserrat group-hover:text-[#cc0000] transition-colors bg-[#0a0000]/60 p-2 rounded-md"
                 >
                   <i className="fas fa-calendar-alt mr-2 text-[#cc0000]"></i>
                   Stay Duration (Days)
@@ -601,7 +646,7 @@ const CalculatorSection = () => {
                   value={formData.stayDuration}
                   onChange={handleInputChange}
                   onBlur={calculateRevenue}
-                  className="w-full p-3 rounded-lg bg-[#0a0000] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#990000] focus:border-[#990000] font-montserrat transition-all hover:border-[#990000]/50"
+                  className="w-full p-3 h-12 rounded-lg bg-[#0a0000] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#990000] focus:border-[#990000] font-montserrat transition-all hover:border-[#990000]/50"
                   placeholder="e.g., 30"
                 />
               </div>
@@ -609,7 +654,7 @@ const CalculatorSection = () => {
               <div className="group">
                 <label
                   htmlFor="numberOfRooms"
-                  className="flex items-center text-md font-semibold text-white mb-1 font-montserrat group-hover:text-[#cc0000] transition-colors bg-[#0a0000]/60 p-2 rounded-md"
+                  className="flex items-center text-md font-semibold text-white mb-2 font-montserrat group-hover:text-[#cc0000] transition-colors bg-[#0a0000]/60 p-2 rounded-md"
                 >
                   <i className="fas fa-door-open mr-2 text-[#cc0000]"></i>
                   Number of Rooms
@@ -621,7 +666,7 @@ const CalculatorSection = () => {
                   value={formData.numberOfRooms}
                   onChange={handleInputChange}
                   onBlur={calculateRevenue}
-                  className="w-full p-3 rounded-lg bg-[#0a0000] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#990000] focus:border-[#990000] font-montserrat transition-all hover:border-[#990000]/50"
+                  className="w-full p-3 h-12 rounded-lg bg-[#0a0000] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#990000] focus:border-[#990000] font-montserrat transition-all hover:border-[#990000]/50"
                   placeholder="e.g., 15"
                 />
               </div>
@@ -629,7 +674,7 @@ const CalculatorSection = () => {
               <div className="group">
                 <label
                   htmlFor="occupancyRate"
-                  className="flex items-center text-md font-semibold text-white mb-1 font-montserrat group-hover:text-[#cc0000] transition-colors bg-[#0a0000]/60 p-2 rounded-md"
+                  className="flex items-center text-md font-semibold text-white mb-2 font-montserrat group-hover:text-[#cc0000] transition-colors bg-[#0a0000]/60 p-2 rounded-md"
                 >
                   <i className="fas fa-percent mr-2 text-[#cc0000]"></i>
                   Occupancy Rate (%)
@@ -641,7 +686,7 @@ const CalculatorSection = () => {
                   value={formData.occupancyRate}
                   onChange={handleInputChange}
                   onBlur={calculateRevenue}
-                  className="w-full p-3 rounded-lg bg-[#0a0000] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#990000] focus:border-[#990000] font-montserrat transition-all hover:border-[#990000]/50"
+                  className="w-full p-3 h-12 rounded-lg bg-[#0a0000] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#990000] focus:border-[#990000] font-montserrat transition-all hover:border-[#990000]/50"
                   placeholder="e.g., 70"
                 />
               </div>
@@ -729,20 +774,20 @@ const CalculatorSection = () => {
               <button
                 id="calculateBtn"
                 onClick={calculateRevenue}
-                className="px-8 py-4 bg-gradient-to-r from-[#cc0000] to-[#990000] text-white font-bold rounded-full transition-all hover:shadow-2xl hover:shadow-[#cc0000]/60 transform hover:-translate-y-2 hover:scale-105 font-montserrat relative overflow-hidden group"
+                className="px-8 py-4 h-14 bg-gradient-to-r from-[#cc0000] to-[#990000] text-white font-bold rounded-full transition-all hover:shadow-2xl hover:shadow-[#cc0000]/60 transform hover:-translate-y-1 hover:scale-105 font-montserrat relative overflow-hidden group flex-1"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#ff0000] to-[#cc0000] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                <span className="relative z-10 flex items-center justify-center">
+                <span className="relative z-10 flex items-center justify-center w-full">
                   <i className="fas fa-calculator mr-2"></i>Calculate Revenue
                 </span>
               </button>
               <button
                 id="resetBtn"
                 onClick={resetCalculator}
-                className="px-8 py-4 border-2 border-[#cc0000] text-white font-bold rounded-full transition-all hover:bg-gradient-to-r hover:from-[#cc0000]/20 hover:to-[#990000]/20 hover:shadow-2xl hover:shadow-[#cc0000]/40 transform hover:-translate-y-2 hover:scale-105 font-montserrat relative overflow-hidden group"
+                className="px-8 py-4 h-14 border-2 border-[#cc0000] text-white font-bold rounded-full transition-all hover:bg-gradient-to-r hover:from-[#cc0000]/20 hover:to-[#990000]/20 hover:shadow-2xl hover:shadow-[#cc0000]/40 transform hover:-translate-y-1 hover:scale-105 font-montserrat relative overflow-hidden group flex-1"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#cc0000]/10 to-[#990000]/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-right"></div>
-                <span className="relative z-10 flex items-center justify-center">
+                <span className="relative z-10 flex items-center justify-center w-full">
                   <i className="fas fa-redo mr-2"></i>Reset Calculator
                 </span>
               </button>
