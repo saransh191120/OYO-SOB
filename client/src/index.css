@@ -7,12 +7,12 @@
   --background: 0 0% 100%;
   --foreground: 20 14.3% 4.1%;
   
-  /* Custom colors - OYO Red Theme */
-  --oyo-red: 358 83% 40%; /* #cc0f35 - OYO's primary red */
-  --oyo-red-light: 358 83% 50%; /* #e31041 - lighter red */
-  --oyo-red-dark: 358 83% 30%; /* #a00c2a - darker red */
-  --oyo-crimson: 345 83% 35%; /* #b01036 - rich crimson */
-  --oyo-maroon: 345 83% 25%; /* #80102a - deep maroon */
+  /* Custom colors - OYO Dark Blood Red Theme */
+  --oyo-red: 0 80% 30%; /* #990000 - OYO's primary deep blood red */
+  --oyo-red-light: 0 80% 40%; /* #cc0000 - blood red */
+  --oyo-red-dark: 0 80% 20%; /* #660000 - darker blood red */
+  --oyo-crimson: 350 80% 25%; /* #800020 - rich dark crimson */
+  --oyo-maroon: 350 80% 15%; /* #4d0013 - very deep maroon */
   --charcoal: 0 0% 20%; /* #333333 */
   
   /* UI elements */
@@ -24,38 +24,38 @@
   --card-foreground: 20 14.3% 4.1%;
   --border: 20 5.9% 90%;
   --input: 20 5.9% 90%;
-  --primary: 358 83% 40%; /* OYO red as primary */
+  --primary: 0 80% 30%; /* Deep blood red as primary */
   --primary-foreground: 0 0% 100%;
   --secondary: 0 0% 10%; /* Nearly black */
   --secondary-foreground: 0 0% 98%;
-  --accent: 358 83% 40%; /* OYO red as accent */
+  --accent: 0 80% 30%; /* Deep blood red as accent */
   --accent-foreground: 0 0% 100%; /* white text on red */
-  --destructive: 345 83% 35%; /* crimson */
+  --destructive: 350 80% 25%; /* dark crimson */
   --destructive-foreground: 0 0% 100%;
-  --ring: 358 83% 40%; /* red ring */
+  --ring: 0 80% 30%; /* blood red ring */
   --radius: 0.5rem;
 }
 
 .dark {
-  --background: 358 83% 10%; /* Dark red background */
+  --background: 0 80% 8%; /* Very dark blood red background */
   --foreground: 0 0% 98%;
-  --muted: 358 40% 15%;
-  --muted-foreground: 358 30% 70%;
-  --popover: 358 83% 15%; /* Dark red */
+  --muted: 0 40% 12%;
+  --muted-foreground: 0 30% 70%;
+  --popover: 0 80% 10%; /* Dark blood red */
   --popover-foreground: 0 0% 98%;
-  --card: 358 83% 15%; /* Dark red */
+  --card: 0 80% 10%; /* Dark blood red */
   --card-foreground: 0 0% 98%;
-  --border: 358 40% 20%;
-  --input: 358 40% 20%;
-  --primary: 358 83% 50%; /* Brighter OYO red */
+  --border: 0 40% 15%;
+  --input: 0 40% 15%;
+  --primary: 0 80% 40%; /* Blood red */
   --primary-foreground: 0 0% 100%;
-  --secondary: 358 30% 20%;
+  --secondary: 0 30% 15%;
   --secondary-foreground: 0 0% 98%;
-  --accent: 358 83% 50%; /* Brighter OYO red */
+  --accent: 0 80% 40%; /* Blood red */
   --accent-foreground: 0 0% 100%;
-  --destructive: 345 83% 35%; /* Crimson */
+  --destructive: 350 80% 25%; /* Dark crimson */
   --destructive-foreground: 0 0% 98%;
-  --ring: 358 83% 50%; /* Brighter OYO red */
+  --ring: 0 80% 40%; /* Blood red */
 }
 
 html {
@@ -64,7 +64,7 @@ html {
 
 body {
   font-family: 'Montserrat', sans-serif;
-  @apply bg-[#1a0505] text-white antialiased;
+  @apply bg-[#0a0000] text-white antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -73,14 +73,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Luxury Glass Effect */
 .glass-effect {
-  @apply bg-[#cc0f35]/10 backdrop-blur-md border border-[#e31041]/30;
-  box-shadow: 0 8px 32px rgba(204, 15, 53, 0.2);
+  @apply bg-[#990000]/10 backdrop-blur-md border border-[#990000]/30;
+  box-shadow: 0 8px 32px rgba(153, 0, 0, 0.2);
   transition: all 0.5s ease;
 }
 
 .glass-effect:hover {
-  @apply bg-[#cc0f35]/15;
-  box-shadow: 0 8px 32px rgba(204, 15, 53, 0.3);
+  @apply bg-[#990000]/15;
+  box-shadow: 0 8px 32px rgba(153, 0, 0, 0.3);
 }
 
 /* Parallax Effect */
@@ -91,24 +91,24 @@ h1, h2, h3, h4, h5, h6 {
   background-size: cover;
 }
 
-/* OYO Red Luxury Gradient */
+/* OYO Blood Red Luxury Gradient */
 .gold-gradient {
-  background: linear-gradient(135deg, #a00c2a 0%, #cc0f35 50%, #e31041 100%);
+  background: linear-gradient(135deg, #660000 0%, #990000 50%, #cc0000 100%);
 }
 
-/* Red Glow Effect */
+/* Blood Red Glow Effect */
 .red-glow {
-  box-shadow: 0 0 15px rgba(204, 15, 53, 0.5), 0 0 30px rgba(204, 15, 53, 0.3);
+  box-shadow: 0 0 15px rgba(153, 0, 0, 0.5), 0 0 30px rgba(153, 0, 0, 0.3);
   transition: box-shadow 0.3s ease;
 }
 
 .red-glow:hover {
-  box-shadow: 0 0 20px rgba(204, 15, 53, 0.7), 0 0 40px rgba(204, 15, 53, 0.5);
+  box-shadow: 0 0 20px rgba(153, 0, 0, 0.7), 0 0 40px rgba(153, 0, 0, 0.5);
 }
 
 /* Active Navigation */
 .nav-item.active {
-  @apply text-[#e31041] border-b-2 border-[#e31041];
+  @apply text-[#cc0000] border-b-2 border-[#cc0000];
 }
 
 /* Enhanced Animations */
@@ -133,14 +133,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes redPulse {
-  0% { box-shadow: 0 0 0 0 rgba(204, 15, 53, 0.7); }
-  70% { box-shadow: 0 0 0 15px rgba(204, 15, 53, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(204, 15, 53, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(153, 0, 0, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(153, 0, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(153, 0, 0, 0); }
 }
 
 @keyframes shimmer {
   0% { background-position: -100% 0; }
   100% { background-position: 200% 0; }
+}
+
+@keyframes bloodGlow {
+  0% { text-shadow: 0 0 10px rgba(204, 0, 0, 0.7), 0 0 20px rgba(204, 0, 0, 0.5); }
+  50% { text-shadow: 0 0 15px rgba(204, 0, 0, 0.9), 0 0 30px rgba(204, 0, 0, 0.7); }
+  100% { text-shadow: 0 0 10px rgba(204, 0, 0, 0.7), 0 0 20px rgba(204, 0, 0, 0.5); }
 }
 
 .animate-fade-in {
@@ -168,9 +174,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(227, 16, 65, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(153, 0, 0, 0.2), transparent);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
+}
+
+.animate-blood-glow {
+  animation: bloodGlow 3s infinite;
 }
 
 .delay-200 { animation-delay: 0.2s; }
@@ -184,13 +194,13 @@ h1, h2, h3, h4, h5, h6 {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  @apply bg-[#1a0505];
+  @apply bg-[#0a0000];
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-[#cc0f35] rounded;
+  @apply bg-[#990000] rounded;
 }
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-[#e31041];
+  @apply bg-[#cc0000];
 }
 
 @layer base {
