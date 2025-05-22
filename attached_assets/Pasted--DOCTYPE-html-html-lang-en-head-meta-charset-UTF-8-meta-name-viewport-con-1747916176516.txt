@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OYO SOB Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c; /* Equivalent to Tailwind's gray-900, but a bit bluer like the image */
+        }
+        .calculator-card {
+            background-color: #2d3748; /* gray-800 */
+        }
+        .input-bg {
+            background-color: #1f2937; /* gray-800, slightly different for inputs */
+            border-color: #4a5568; /* gray-600 */
+        }
+        .output-box {
+            background-color: #2d3748; /* gray-800 */
+            border: 1px solid #4a5568; /* gray-600 */
+        }
+        .btn-red {
+            background-color: #e53e3e; /* red-600 */
+        }
+        .btn-red:hover {
+            background-color: #c53030; /* red-700 */
+        }
+        .btn-light {
+            background-color: #edf2f7; /* gray-200 */
+            color: #1a202c; /* gray-900 */
+        }
+        .btn-light:hover {
+            background-color: #e2e8f0; /* gray-300 */
+        }
+        .oyo-brand {
+            color: #e53e3e; /* red-600 */
+        }
+        /* Custom scrollbar for better aesthetics if content overflows */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2d3748; /* gray-800 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a5568; /* gray-600 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #718096; /* gray-500 */
+        }
+    </style>
+    <script>
+        // Helper function to format numbers as Indian currency
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-IN', {
+                style: 'currency',
+                currency: 'INR',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(amount).replace('₹', '₹ '); // Add space after ₹
+        }
+
+        // Helper function to format numbers with commas (for room counts)
+        function formatNumber(num) {
+            return new Intl.NumberFormat('en-IN').format(num);
+        }
+
+        function calculateRevenue() {
+            // Get input values
+            const luxuryRoomRate = parseFloat(document.getElementById('luxuryRoomRate').value) || 0;
+            const stayDuration = parseInt(document.getElementById('stayDuration').value) || 0;
+            const numberOfRooms = parseInt(document.getElementById('numberOfRooms').value) || 0;
+            const occupancyRate = parseFloat(document.getElementById('occupancyRate').value) || 0;
+
+            // Basic validation
+            if (luxuryRoomRate <= 0 || stayDuration <= 0 || numberOfRooms <= 0 || occupancyRate <= 0 || occupancyRate > 100) {
+                document.getElementById('totalSellableRooms').textContent = '0 rooms';
+                document.getElementById('totalRevenue').textContent = formatCurrency(0);
+                document.getElementById('occupancyInfo').textContent = 'Based on 0% occupancy rate';
+                document.getElementById('revShare').textContent = formatCurrency(0);
+                
+                // Show a message if inputs are invalid
+                const messageBox = document.getElementById('messageBox');
+                messageBox.textContent = 'Please enter valid positive values for all fields. Occupancy rate must be between 1 and 100.';
+                messageBox.classList.remove('hidden');
+                setTimeout(() => messageBox.classList.add('hidden'), 5000);
+                return;
+            }
+
+            // Calculations
+            const totalSellableRoomNights = numberOfRooms * stayDuration;
+            const occupiedRoomNights = totalSellableRoomNights * (occupancyRate / 100);
+            const totalRevenueMade = occupiedRoomNights * luxuryRoomRate;
+            const initialRevShare = totalRevenueMade * 0.40; // Assuming 40% RevShare
+
+            // Display results
+            document.getElementById('totalSellableRooms').textContent = `${formatNumber(Math.round(totalSellableRoomNights))} rooms`;
+            document.getElementById('totalRevenue').textContent = formatCurrency(totalRevenueMade);
+            document.getElementById('occupancyInfo').textContent = `Based on ${occupancyRate}% occupancy rate`;
+            document.getElementById('revShare').textContent = formatCurrency(initialRevShare);
+            
+            const messageBox = document.getElementById('messageBox');
+            messageBox.classList.add('hidden'); // Hide message box if calculation is successful
+        }
+
+        function resetCalculator() {
+            document.getElementById('calculatorForm').reset();
+            document.getElementById('totalSellableRooms').textContent = '0 rooms';
+            document.getElementById('totalRevenue').textContent = formatCurrency(0);
+            document.getElementById('occupancyInfo').textContent = 'Based on 0% occupancy rate';
+            document.getElementById('revShare').textContent = formatCurrency(0);
+            
+            const messageBox = document.getElementById('messageBox');
+            messageBox.classList.add('hidden');
+        }
+
+        // Attach event listeners after DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set default values as per the image
+            document.getElementById('luxuryRoomRate').value = 2000;
+            document.getElementById('stayDuration').value = 30;
+            document.getElementById('numberOfRooms').value = 15;
+            document.getElementById('occupancyRate').value = 70;
+
+            // Initial calculation on load
+            calculateRevenue();
+
+            // Add event listeners to buttons
+            const calculateBtn = document.getElementById('calculateBtn');
+            if(calculateBtn) calculateBtn.addEventListener('click', calculateRevenue);
+            
+            const resetBtn = document.getElementById('resetBtn');
+            if(resetBtn) resetBtn.addEventListener('click', resetCalculator);
+
+            // Optional: Recalculate on input change
+            const inputs = document.querySelectorAll('#calculatorForm input');
+            inputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    // Debounce or throttle this if performance becomes an issue for very rapid input
+                    // For now, direct calculation is fine.
+                    calculateRevenue();
+                });
+            });
+        });
+    </script>
+</head>
+<body class="text-white min-h-screen flex flex-col items-center justify-center p-4 bg-cover bg-center" style="background-image: url('https://placehold.co/1920x1080/1a202c/303a4c?text=Hotel+Background&font=Inter');">
+
+    <div id="messageBox" class="fixed top-5 right-5 bg-red-500 text-white p-3 rounded-lg shadow-lg hidden transition-opacity duration-300 max-w-sm z-50">
+        Error message here.
+    </div>
+
+    <div class="w-full max-w-4xl mx-auto">
+        <header class="text-center mb-8">
+            <div class="flex items-center justify-center mb-2">
+                <span class="text-3xl font-bold oyo-brand mr-2">OYO</span>
+                <span class="text-3xl font-semibold text-gray-300">Premium</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">SOB Calculator</h1>
+            <p class="text-lg text-gray-400">Discover your premium hotel revenue potential with OYO's exclusive revenue model.</p>
+            <div class="text-2xl oyo-brand my-4 animate-pulse">◆</div>
+        </header>
+
+        <div class="calculator-card rounded-xl shadow-2xl p-6 md:p-10">
+            <div class="text-center mb-8">
+                <div class="inline-block bg-red-600 text-white px-6 py-2 rounded-md text-2xl font-bold mb-1">OYO</div>
+                <h2 class="text-2xl md:text-3xl font-bold text-white">OYO SOB Calculator</h2>
+                <p class="text-md text-gray-400">Luxury Stays, Premium Revenue</p>
+            </div>
+
+            <form id="calculatorForm" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div>
+                    <label for="luxuryRoomRate" class="flex items-center text-sm font-medium text-gray-300 mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building mr-2 text-red-400" viewBox="0 0 16 16">
+                            <path d="M4 2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zM4 5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM7 5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zM4 8.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z"/>
+                            <path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1zm11 0H3v14h3v-2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V15h3z"/>
+                        </svg>
+                        Luxury Room Rate (₹)
+                    </label>
+                    <input type="number" id="luxuryRoomRate" name="luxuryRoomRate" class="w-full p-3 rounded-lg input-bg text-white border focus:ring-red-500 focus:border-red-500" placeholder="e.g., 2000">
+                </div>
+
+                <div>
+                    <label for="stayDuration" class="flex items-center text-sm font-medium text-gray-300 mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar3 mr-2 text-red-400" viewBox="0 0 16 16">
+                            <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                            <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                        </svg>
+                        Stay Duration (Days)
+                    </label>
+                    <input type="number" id="stayDuration" name="stayDuration" class="w-full p-3 rounded-lg input-bg text-white border focus:ring-red-500 focus:border-red-500" placeholder="e.g., 30">
+                </div>
+
+                <div>
+                    <label for="numberOfRooms" class="flex items-center text-sm font-medium text-gray-300 mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open mr-2 text-red-400" viewBox="0 0 16 16">
+                            <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"/>
+                            <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117M11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.5V15h6V1.077z"/>
+                        </svg>
+                        Number of Rooms
+                    </label>
+                    <input type="number" id="numberOfRooms" name="numberOfRooms" class="w-full p-3 rounded-lg input-bg text-white border focus:ring-red-500 focus:border-red-500" placeholder="e.g., 15">
+                </div>
+
+                <div>
+                    <label for="occupancyRate" class="flex items-center text-sm font-medium text-gray-300 mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-percent mr-2 text-red-400" viewBox="0 0 16 16">
+                            <path d="M13.442 2.558a.625.625 0 0 1 0 .884l-10 10a.625.625 0 1 1-.884-.884l10-10a.625.625 0 0 1 .884 0M4.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5m7 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                        </svg>
+                        Occupancy Rate (%)
+                    </label>
+                    <input type="number" id="occupancyRate" name="occupancyRate" class="w-full p-3 rounded-lg input-bg text-white border focus:ring-red-500 focus:border-red-500" placeholder="e.g., 70" min="0" max="100">
+                </div>
+            </form>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div class="output-box p-4 rounded-lg text-center">
+                    <p class="text-sm text-gray-400 mb-1">Total Sellable Rooms per Month</p>
+                    <p id="totalSellableRooms" class="text-2xl font-bold text-white">450 rooms</p>
+                </div>
+                <div class="output-box p-4 rounded-lg text-center bg-gray-700"> <p class="text-sm text-gray-400 mb-1">Total Revenue Made in <span id="durationDisplay">30</span> Days</p>
+                    <p id="totalRevenue" class="text-2xl font-bold text-yellow-400">₹ 6,30,000.00</p>
+                    <p id="occupancyInfo" class="text-xs text-gray-500">Based on 70% occupancy rate</p>
+                </div>
+                <div class="output-box p-4 rounded-lg text-center bg-black/30"> <p class="text-sm text-gray-400 mb-1">Initial RevShare or Minimum Guarantee offer</p>
+                    <p id="revShare" class="text-2xl font-bold text-green-400">₹ 2,52,000.00</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button id="calculateBtn" type="button" class="btn-red text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition duration-150 ease-in-out flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calculator-fill mr-2" viewBox="0 0 16 16">
+                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm2 .5v2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0-.5.5m0 4v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M4.5 9a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM4 12.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M7.5 6a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM7 9.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m.5 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM10.5 6a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm.5 2.5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5z"/>
+                    </svg>
+                    Calculate Revenue
+                </button>
+                <button id="resetBtn" type="button" class="btn-light font-semibold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition duration-150 ease-in-out flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise mr-2" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466"/>
+                    </svg>
+                    Reset
+                </button>
+            </div>
+        </div>
+
+        <footer class="text-center mt-12 pb-6">
+            <p class="text-sm text-gray-500">Powered by OYO Hotels & Homes Pvt. Ltd.</p>
+            <p class="text-xs text-gray-600">&copy; <span id="currentYear"></span> OYO Hotels & Homes Pvt. Ltd. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Update current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        // Update duration display in revenue section
+        const stayDurationInput = document.getElementById('stayDuration');
+        const durationDisplay = document.getElementById('durationDisplay');
+        if(stayDurationInput && durationDisplay) {
+            durationDisplay.textContent = stayDurationInput.value || 30; // Initial value
+            stayDurationInput.addEventListener('input', () => {
+                durationDisplay.textContent = stayDurationInput.value || 0;
+            });
+        }
+    </script>
+</body>
+</html>
