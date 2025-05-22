@@ -96,7 +96,7 @@ const ContactSection = () => {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold mb-4 md:mb-6 text-[#cc0000] animate-blood-glow">
             Partner With OYO
           </h2>
-          <p className="text-base md:text-lg text-gray-300 font-montserrat">
+          <p className="text-base md:text-lg text-white font-montserrat">
             Interested in joining OYO's self-operated hotel brands in Mumbai? Connect with our partnership team today.
           </p>
           <div className="h-1 w-32 md:w-40 bg-gradient-to-r from-[#660000] via-[#cc0000] to-[#660000] mx-auto mt-6 md:mt-8 rounded-full animate-pulse"></div>
@@ -117,7 +117,7 @@ const ContactSection = () => {
               <div className="mb-6">
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-gray-300 mb-2 font-montserrat"
+                  className="block text-sm font-medium text-white mb-2 font-montserrat"
                 >
                   Full Name
                 </label>
@@ -128,14 +128,14 @@ const ContactSection = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-gray-600 focus:ring-[#d4af37] focus:border-[#d4af37] font-montserrat"
+                  className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#cc0000] focus:border-[#cc0000] font-montserrat transition-all hover:border-[#990000]/50"
                   placeholder="Your Name"
                 />
               </div>
               <div className="mb-6">
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-300 mb-2 font-montserrat"
+                  className="block text-sm font-medium text-white mb-2 font-montserrat"
                 >
                   Email Address
                 </label>
@@ -146,14 +146,14 @@ const ContactSection = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-gray-600 focus:ring-[#d4af37] focus:border-[#d4af37] font-montserrat"
+                  className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#cc0000] focus:border-[#cc0000] font-montserrat transition-all hover:border-[#990000]/50"
                   placeholder="your@email.com"
                 />
               </div>
               <div className="mb-6">
                 <label
                   htmlFor="hotelName"
-                  className="block text-sm font-medium text-gray-300 mb-2 font-montserrat"
+                  className="block text-sm font-medium text-white mb-2 font-montserrat"
                 >
                   Hotel/Property Name
                 </label>
@@ -164,7 +164,7 @@ const ContactSection = () => {
                   value={formData.hotelName}
                   onChange={handleChange}
                   required
-                  className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-gray-600 focus:ring-[#d4af37] focus:border-[#d4af37] font-montserrat"
+                  className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#cc0000] focus:border-[#cc0000] font-montserrat transition-all hover:border-[#990000]/50"
                   placeholder="Your Hotel Name"
                 />
               </div>
@@ -172,7 +172,7 @@ const ContactSection = () => {
                 <div>
                   <label
                     htmlFor="location"
-                    className="block text-sm font-medium text-gray-300 mb-2 font-montserrat"
+                    className="block text-sm font-medium text-white mb-2 font-montserrat"
                   >
                     Location in Mumbai
                   </label>
@@ -183,14 +183,14 @@ const ContactSection = () => {
                     value={formData.location}
                     onChange={handleChange}
                     required
-                    className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-gray-600 focus:ring-[#d4af37] focus:border-[#d4af37] font-montserrat"
+                    className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#cc0000] focus:border-[#cc0000] font-montserrat transition-all hover:border-[#990000]/50"
                     placeholder="e.g., Andheri, Worli"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="rooms"
-                    className="block text-sm font-medium text-gray-300 mb-2 font-montserrat"
+                    className="block text-sm font-medium text-white mb-2 font-montserrat"
                   >
                     Number of Rooms
                   </label>
@@ -201,7 +201,7 @@ const ContactSection = () => {
                     value={formData.rooms}
                     onChange={handleChange}
                     required
-                    className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-gray-600 focus:ring-[#d4af37] focus:border-[#d4af37] font-montserrat"
+                    className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#cc0000] focus:border-[#cc0000] font-montserrat transition-all hover:border-[#990000]/50"
                     placeholder="e.g., 20"
                   />
                 </div>
@@ -209,7 +209,7 @@ const ContactSection = () => {
               <div className="mb-6">
                 <label
                   htmlFor="brandPreference"
-                  className="block text-sm font-medium text-gray-300 mb-2 font-montserrat"
+                  className="block text-sm font-medium text-white mb-2 font-montserrat"
                 >
                   Preferred OYO Brand
                 </label>
@@ -219,7 +219,7 @@ const ContactSection = () => {
                   value={formData.brandPreference}
                   onChange={handleChange}
                   required
-                  className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-gray-600 focus:ring-[#d4af37] focus:border-[#d4af37] font-montserrat"
+                  className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#cc0000] focus:border-[#cc0000] font-montserrat transition-all hover:border-[#990000]/50"
                 >
                   <option value="">Select a Brand</option>
                   <option value="sunday">Sunday Hotels (5-star luxury)</option>
@@ -234,7 +234,7 @@ const ContactSection = () => {
               <div className="mb-6">
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-gray-300 mb-2 font-montserrat"
+                  className="block text-sm font-medium text-white mb-2 font-montserrat"
                 >
                   Message
                 </label>

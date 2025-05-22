@@ -48,10 +48,10 @@ const BrandCard = ({
         
         <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-700">
           <p className="text-white font-montserrat text-xs sm:text-sm mb-1 font-bold">Target Audience:</p>
-          <p className="text-gray-300 font-montserrat text-xs sm:text-sm mb-2 sm:mb-3">{targetAudience}</p>
+          <p className="text-white font-montserrat text-xs sm:text-sm mb-2 sm:mb-3">{targetAudience}</p>
           
           <p className="text-white font-montserrat text-xs sm:text-sm mb-1 font-bold">Key Amenities:</p>
-          <p className="text-gray-300 font-montserrat text-xs sm:text-sm">{amenities}</p>
+          <p className="text-white font-montserrat text-xs sm:text-sm">{amenities}</p>
         </div>
       </div>
     </div>
