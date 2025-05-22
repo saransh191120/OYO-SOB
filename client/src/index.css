@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Base colors */
+  --background: 0 0% 100%;
+  --foreground: 20 14.3% 4.1%;
+  
+  /* Custom colors */
+  --gold: 43 77% 52%; /* #d4af37 */
+  --gold-light: 48 79% 65%; /* #f2ce56 */
+  --navy: 222 33% 10%; /* #0f172a */
+  --navy-light: 222 33% 18%; /* #1a2442 */
+  --charcoal: 0 0% 20%; /* #333333 */
+  --burgundy: 345 100% 25%; /* #800020 */
+  
+  /* UI elements */
+  --muted: 60 4.8% 95.9%;
+  --muted-foreground: 25 5.3% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 14.3% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 14.3% 4.1%;
+  --border: 20 5.9% 90%;
+  --input: 20 5.9% 90%;
+  --primary: 43 77% 52%; /* same as gold */
+  --primary-foreground: 211 100% 99%;
+  --secondary: 222 33% 10%; /* same as navy */
+  --secondary-foreground: 0 0% 98%;
+  --accent: 43 77% 52%; /* same as gold */
+  --accent-foreground: 222 33% 10%; /* navy */
+  --destructive: 345 100% 25%; /* burgundy */
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 43 77% 52%; /* gold */
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 222 33% 10%; /* Navy */
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 222 33% 10%; /* Navy */
+  --popover-foreground: 0 0% 98%;
+  --card: 222 33% 10%; /* Navy */
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 43 77% 52%; /* Gold */
+  --primary-foreground: 222 33% 10%; /* Navy */
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 43 77% 52%; /* Gold */
+  --accent-foreground: 222 33% 10%; /* Navy */
+  --destructive: 345 100% 25%; /* Burgundy */
+  --destructive-foreground: 0 0% 98%;
+  --ring: 43 77% 52%; /* Gold */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  @apply bg-[#0f172a] text-white antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Glass Effect */
+.glass-effect {
+  @apply bg-white/10 backdrop-blur-md border border-white/20;
+}
+
+/* Parallax Effect */
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Gold Gradient */
+.gold-gradient {
+  background: linear-gradient(135deg, #d4af37 0%, #f2ce56 50%, #d4af37 100%);
+}
+
+/* Active Navigation */
+.nav-item.active {
+  @apply text-[#d4af37] border-b-2 border-[#d4af37];
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.delay-200 { animation-delay: 0.2s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-800 { animation-delay: 0.8s; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-[#0f172a];
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-[#d4af37] rounded;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-[#f2ce56];
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+}
