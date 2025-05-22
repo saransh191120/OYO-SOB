@@ -16,6 +16,8 @@ interface CalculatorResults {
   totalRevenue: string;
   occupancyInfo: string;
   revShare: string;
+  annualTotalRevenue?: string;
+  annualRevShare?: string;
 }
 
 interface BrandData {
@@ -110,6 +112,8 @@ const CalculatorSection = () => {
     totalRevenue: "₹ 0.00",
     occupancyInfo: "Based on 0% occupancy rate",
     revShare: "₹ 0.00",
+    annualTotalRevenue: "₹ 0.00",
+    annualRevShare: "₹ 0.00",
   });
 
   const [email, setEmail] = useState<string>("");
@@ -615,6 +619,11 @@ const CalculatorSection = () => {
     const occupiedRoomNights = totalSellableRoomNights * (occupancyRate / 100);
     const totalRevenueMade = occupiedRoomNights * roomRate;
     const initialRevShare = totalRevenueMade * (currentBrand.revSharePercentage / 100);
+    
+    // Annual calculations (assuming a full year of operation)
+    const monthsInYear = 12;
+    const annualTotalRevenue = totalRevenueMade * (365 / stayDuration);
+    const annualRevShare = initialRevShare * (365 / stayDuration);
 
     // Display results
     setResults({
@@ -624,6 +633,8 @@ const CalculatorSection = () => {
       totalRevenue: formatCurrency(totalRevenueMade),
       occupancyInfo: `Based on ${occupancyRate}% occupancy rate`,
       revShare: formatCurrency(initialRevShare),
+      annualTotalRevenue: formatCurrency(annualTotalRevenue),
+      annualRevShare: formatCurrency(annualRevShare),
     });
 
     // Clear any error messages
