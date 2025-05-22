@@ -574,17 +574,17 @@ const CalculatorSection = () => {
                   value={formData.stayDuration}
                   onChange={handleInputChange}
                   onBlur={calculateRevenue}
-                  className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-gray-600 focus:ring-[#d4af37] focus:border-[#d4af37] font-montserrat"
+                  className="w-full p-3 rounded-lg bg-[#1a0505] bg-opacity-70 text-white border border-[#cc0f35]/30 focus:ring-[#e31041] focus:border-[#e31041] font-montserrat transition-all hover:border-[#e31041]/50"
                   placeholder="e.g., 30"
                 />
               </div>
 
-              <div>
+              <div className="group">
                 <label
                   htmlFor="numberOfRooms"
-                  className="flex items-center text-sm font-medium text-gray-300 mb-1 font-montserrat"
+                  className="flex items-center text-sm font-medium text-gray-300 mb-1 font-montserrat group-hover:text-[#e31041] transition-colors"
                 >
-                  <i className="fas fa-door-open mr-2 text-[#d4af37]"></i>
+                  <i className="fas fa-door-open mr-2 text-[#e31041]"></i>
                   Number of Rooms
                 </label>
                 <input
@@ -594,17 +594,17 @@ const CalculatorSection = () => {
                   value={formData.numberOfRooms}
                   onChange={handleInputChange}
                   onBlur={calculateRevenue}
-                  className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-gray-600 focus:ring-[#d4af37] focus:border-[#d4af37] font-montserrat"
+                  className="w-full p-3 rounded-lg bg-[#1a0505] bg-opacity-70 text-white border border-[#cc0f35]/30 focus:ring-[#e31041] focus:border-[#e31041] font-montserrat transition-all hover:border-[#e31041]/50"
                   placeholder="e.g., 15"
                 />
               </div>
 
-              <div>
+              <div className="group">
                 <label
                   htmlFor="occupancyRate"
-                  className="flex items-center text-sm font-medium text-gray-300 mb-1 font-montserrat"
+                  className="flex items-center text-sm font-medium text-gray-300 mb-1 font-montserrat group-hover:text-[#e31041] transition-colors"
                 >
-                  <i className="fas fa-percent mr-2 text-[#d4af37]"></i>
+                  <i className="fas fa-percent mr-2 text-[#e31041]"></i>
                   Occupancy Rate (%)
                 </label>
                 <input
@@ -614,7 +614,7 @@ const CalculatorSection = () => {
                   value={formData.occupancyRate}
                   onChange={handleInputChange}
                   onBlur={calculateRevenue}
-                  className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-gray-600 focus:ring-[#d4af37] focus:border-[#d4af37] font-montserrat"
+                  className="w-full p-3 rounded-lg bg-[#1a0505] bg-opacity-70 text-white border border-[#cc0f35]/30 focus:ring-[#e31041] focus:border-[#e31041] font-montserrat transition-all hover:border-[#e31041]/50"
                   placeholder="e.g., 70"
                 />
               </div>
@@ -622,79 +622,88 @@ const CalculatorSection = () => {
 
             {/* Result Display */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div className="rounded-lg glass-effect p-4 text-center">
-                <h4 className="text-[#d4af37] font-montserrat text-sm mb-1">
-                  Total Sellable Room Nights
-                </h4>
-                <p
-                  id="totalSellableRooms"
-                  className="text-2xl font-semibold text-white font-montserrat"
-                >
-                  {results.totalSellableRooms}
-                </p>
+              <div className="rounded-lg glass-effect p-4 text-center transform transition-transform hover:scale-105">
+                <div className="relative">
+                  <h4 className="text-[#e31041] font-montserrat text-sm mb-1 uppercase tracking-wider">
+                    Total Sellable Room Nights
+                  </h4>
+                  <p
+                    id="totalSellableRooms"
+                    className="text-2xl font-semibold text-white font-montserrat animate-pulse-red"
+                  >
+                    {results.totalSellableRooms}
+                  </p>
+                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#e31041] to-transparent"></div>
+                </div>
               </div>
 
-              <div className="rounded-lg glass-effect p-4 text-center">
-                <h4 className="text-[#d4af37] font-montserrat text-sm mb-1">
-                  Total Revenue Generated
-                </h4>
-                <p
-                  id="totalRevenue"
-                  className="text-2xl font-semibold text-white font-montserrat"
-                >
-                  {results.totalRevenue}
-                </p>
-                <small
-                  id="occupancyInfo"
-                  className="text-gray-400 text-xs font-montserrat"
-                >
-                  {results.occupancyInfo}
-                </small>
+              <div className="rounded-lg glass-effect p-4 text-center transform transition-transform hover:scale-105">
+                <div className="relative">
+                  <h4 className="text-[#e31041] font-montserrat text-sm mb-1 uppercase tracking-wider">
+                    Total Revenue Generated
+                  </h4>
+                  <p
+                    id="totalRevenue"
+                    className="text-2xl font-semibold text-white font-montserrat animate-pulse-red"
+                  >
+                    {results.totalRevenue}
+                  </p>
+                  <small
+                    id="occupancyInfo"
+                    className="text-gray-400 text-xs font-montserrat"
+                  >
+                    {results.occupancyInfo}
+                  </small>
+                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#e31041] to-transparent"></div>
+                </div>
               </div>
             </div>
 
-            <div className="rounded-lg glass-effect p-6 mb-8 text-center">
-              <h4 className="text-xl font-semibold text-white mb-2 font-playfair">
-                Your Revenue Share ({currentBrand.revSharePercentage}%)
+            <div className="rounded-lg glass-effect p-6 mb-8 text-center relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#cc0f35]/5 via-[#e31041]/10 to-[#cc0f35]/5 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+              <h4 className="text-xl font-semibold text-white mb-3 font-playfair relative z-10">
+                Your Revenue Share <span className="text-[#e31041]">({currentBrand.revSharePercentage}%)</span>
               </h4>
               <p
                 id="revShare"
-                className="text-3xl md:text-4xl font-bold text-[#d4af37] font-montserrat"
+                className="text-3xl md:text-5xl font-bold text-[#e31041] font-montserrat relative z-10 animate-pulse-red"
               >
                 {results.revShare}
               </p>
+              <div className="h-1 w-32 mx-auto mt-4 bg-gradient-to-r from-[#cc0f35] via-[#e31041] to-[#cc0f35] rounded-full"></div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
               <button
                 id="calculateBtn"
                 onClick={calculateRevenue}
-                className="px-6 py-3 bg-[#FF3333] text-white font-bold rounded-full transition-all hover:bg-opacity-90 font-montserrat"
+                className="px-6 py-3 bg-gradient-to-r from-[#cc0f35] to-[#e31041] text-white font-bold rounded-full transition-all hover:shadow-lg hover:shadow-[#e31041]/50 transform hover:-translate-y-1 font-montserrat red-glow"
               >
                 <i className="fas fa-calculator mr-2"></i>Calculate
               </button>
               <button
                 id="resetBtn"
                 onClick={resetCalculator}
-                className="px-6 py-3 border border-white text-white font-bold rounded-full transition-all hover:bg-white hover:text-[#FF3333] font-montserrat"
+                className="px-6 py-3 border border-[#e31041] text-white font-bold rounded-full transition-all hover:bg-[#e31041]/20 hover:border-[#e31041] hover:shadow-lg transform hover:-translate-y-1 font-montserrat"
               >
                 <i className="fas fa-redo mr-2"></i>Reset
               </button>
             </div>
             
             {/* PDF Generation Section */}
-            <div className="mt-8 pt-6 border-t border-gray-700">
-              <h4 className="text-xl font-semibold text-white mb-4 font-playfair text-center">
-                Save Your Calculation
+            <div className="mt-8 pt-6 border-t border-[#cc0f35]/30">
+              <h4 className="text-xl font-semibold text-white mb-4 font-playfair text-center relative inline-block">
+                <span className="relative z-10">Save Your Calculation</span>
+                <span className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-[#cc0f35]/20 via-[#e31041]/40 to-[#cc0f35]/20"></span>
               </h4>
               <p className="text-gray-300 text-sm mb-4 text-center font-montserrat">
                 Download a detailed PDF report of your revenue calculation for future reference.
               </p>
               
-              <div className="flex justify-center mt-2">
+              <div className="flex justify-center mt-4">
                 <button
                   onClick={() => generatePDF()}
-                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[#FF3333] text-white font-bold rounded-lg transition-all hover:bg-opacity-90 font-montserrat flex items-center justify-center"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#cc0f35] to-[#e31041] text-white font-bold rounded-lg transition-all hover:shadow-lg hover:shadow-[#e31041]/40 transform hover:-translate-y-1 font-montserrat flex items-center justify-center animate-pulse-red"
                 >
                   <i className="fas fa-file-pdf mr-2 text-lg"></i>Download OYO PDF Report
                 </button>
