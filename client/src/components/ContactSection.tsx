@@ -278,7 +278,7 @@ const ContactSection = () => {
               <div className="space-y-4 font-montserrat">
                 <div className="flex items-start">
                   <i className="fas fa-map-marker-alt text-[#cc0000] mt-1 mr-4"></i>
-                  <p className="text-gray-300">
+                  <p className="text-white">
                     OYO Mumbai Partner Center
                     <br />
                     Andheri East, Mumbai
@@ -287,31 +287,31 @@ const ContactSection = () => {
                   </p>
                 </div>
                 <div className="flex items-center">
-                  <i className="fas fa-phone text-[#d4af37] mr-4"></i>
-                  <p className="text-gray-300">+91 9373395733</p>
+                  <i className="fas fa-phone text-[#cc0000] mr-4"></i>
+                  <p className="text-white">+91 9373395733</p>
                 </div>
                 <div className="flex items-center">
-                  <i className="fas fa-envelope text-[#d4af37] mr-4"></i>
-                  <p className="text-gray-300">saransh.chaurasia@oyorooms.com</p>
+                  <i className="fas fa-envelope text-[#cc0000] mr-4"></i>
+                  <p className="text-white">saransh.chaurasia@oyorooms.com</p>
                 </div>
                 
                 <div className="mt-6 pt-6 border-t border-gray-700">
                   <h4 className="text-lg font-playfair font-bold text-white mb-3">Why Partner With OYO?</h4>
-                  <ul className="space-y-2 text-gray-300 font-montserrat">
+                  <ul className="space-y-2 text-white font-montserrat">
                     <li className="flex items-start">
-                      <i className="fas fa-check-circle text-[#d4af37] mt-1 mr-3"></i>
+                      <i className="fas fa-check-circle text-[#cc0000] mt-1 mr-3"></i>
                       <span>Access to OYO's global booking platform</span>
                     </li>
                     <li className="flex items-start">
-                      <i className="fas fa-check-circle text-[#d4af37] mt-1 mr-3"></i>
+                      <i className="fas fa-check-circle text-[#cc0000] mt-1 mr-3"></i>
                       <span>Premium brand association and marketing</span>
                     </li>
                     <li className="flex items-start">
-                      <i className="fas fa-check-circle text-[#d4af37] mt-1 mr-3"></i>
+                      <i className="fas fa-check-circle text-[#cc0000] mt-1 mr-3"></i>
                       <span>Operational excellence and revenue optimization</span>
                     </li>
                     <li className="flex items-start">
-                      <i className="fas fa-check-circle text-[#d4af37] mt-1 mr-3"></i>
+                      <i className="fas fa-check-circle text-[#cc0000] mt-1 mr-3"></i>
                       <span>Dedicated support for Mumbai properties</span>
                     </li>
                   </ul>

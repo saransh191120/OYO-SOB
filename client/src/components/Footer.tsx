@@ -15,23 +15,23 @@ const Footer = () => {
           
           <div>
             <h4 className="text-white font-playfair text-lg mb-4 text-center md:text-left">Mumbai Brands</h4>
-            <ul className="text-gray-400 text-sm space-y-2 font-montserrat text-center md:text-left">
-              <li><a href="#features" className="hover:text-[#e31041] transition-colors">Sunday Hotels</a></li>
-              <li><a href="#features" className="hover:text-[#e31041] transition-colors">OYO Palette</a></li>
-              <li><a href="#features" className="hover:text-[#e31041] transition-colors">OYO Clubhouse</a></li>
-              <li><a href="#features" className="hover:text-[#e31041] transition-colors">OYO Townhouse</a></li>
-              <li><a href="#features" className="hover:text-[#e31041] transition-colors">OYO Townhouse Oak</a></li>
-              <li><a href="#features" className="hover:text-[#e31041] transition-colors">OYO Collection O</a></li>
+            <ul className="text-white text-sm space-y-2 font-montserrat text-center md:text-left">
+              <li><a href="#features" className="hover:text-[#cc0000] transition-colors">Sunday Hotels</a></li>
+              <li><a href="#features" className="hover:text-[#cc0000] transition-colors">OYO Palette</a></li>
+              <li><a href="#features" className="hover:text-[#cc0000] transition-colors">OYO Clubhouse</a></li>
+              <li><a href="#features" className="hover:text-[#cc0000] transition-colors">OYO Townhouse</a></li>
+              <li><a href="#features" className="hover:text-[#cc0000] transition-colors">OYO Townhouse Oak</a></li>
+              <li><a href="#features" className="hover:text-[#cc0000] transition-colors">OYO Collection O</a></li>
             </ul>
           </div>
           
           <div>
             <h4 className="text-white font-playfair text-lg mb-4 text-center md:text-left">Quick Links</h4>
-            <ul className="text-gray-400 text-sm space-y-2 font-montserrat text-center md:text-left">
-              <li><a href="#home" className="hover:text-[#e31041] transition-colors">Home</a></li>
-              <li><a href="#calculator" className="hover:text-[#e31041] transition-colors">SOB Calculator</a></li>
-              <li><a href="#testimonials" className="hover:text-[#e31041] transition-colors">Success Stories</a></li>
-              <li><a href="#contact" className="hover:text-[#e31041] transition-colors">Partnership Inquiry</a></li>
+            <ul className="text-white text-sm space-y-2 font-montserrat text-center md:text-left">
+              <li><a href="#home" className="hover:text-[#cc0000] transition-colors">Home</a></li>
+              <li><a href="#calculator" className="hover:text-[#cc0000] transition-colors">SOB Calculator</a></li>
+              <li><a href="#testimonials" className="hover:text-[#cc0000] transition-colors">Success Stories</a></li>
+              <li><a href="#contact" className="hover:text-[#cc0000] transition-colors">Partnership Inquiry</a></li>
             </ul>
           </div>
           
