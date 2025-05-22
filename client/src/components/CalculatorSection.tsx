@@ -463,51 +463,55 @@ const CalculatorSection = () => {
         }}
       ></div>
       {/* Gradient overlay for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a]/70 to-[#0f172a]/70"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1a0505]/90 to-[#1a0505]/95"></div>
 
       {/* Error Message */}
       <div
         id="messageBox"
-        className={`fixed top-5 right-5 bg-[#800020] text-white p-3 rounded-lg shadow-lg transition-opacity duration-300 max-w-sm z-50 font-montserrat ${
+        className={`fixed top-5 right-5 bg-[#cc0f35] text-white p-4 rounded-lg shadow-lg transition-opacity duration-300 max-w-sm z-50 font-montserrat animate-pulse-red ${
           showErrorMessage ? "" : "hidden"
         }`}
       >
-        {errorMessage}
+        <div className="flex items-center">
+          <i className="fas fa-exclamation-circle mr-2"></i>
+          {errorMessage}
+        </div>
       </div>
 
       <div className="container mx-auto px-4 pt-16 relative z-10">
         <div className={`text-center max-w-2xl mx-auto mb-16 ${animationClass}`}>
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 text-[#FF3333]">
-            SOB Revenue Calculator
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 text-[#e31041] relative inline-block">
+            <span className="relative z-10">SOB Revenue Calculator</span>
+            <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#cc0f35]/20 via-[#e31041]/40 to-[#cc0f35]/20 -z-10 transform -skew-x-12"></span>
           </h2>
           <p className="text-lg text-gray-300 font-montserrat">
             Discover your hotel's revenue potential with OYO Hotels and Homes Pvt. Ltd's Self-Operated Business model
           </p>
-          <div className="h-1 w-40 bg-gradient-to-r from-[#FF3333] to-[#FF5555] mx-auto mt-8 rounded-full"></div>
+          <div className="h-1 w-40 bg-gradient-to-r from-[#cc0f35] to-[#e31041] mx-auto mt-8 rounded-full animate-pulse-red"></div>
         </div>
 
         {/* Calculator Card */}
         <div className="max-w-4xl mx-auto">
-          <div className={`rounded-xl glass-effect p-8 md:p-10 shadow-2xl ${animationClass} delay-200`}>
-            <div className="text-center mb-8">
-              <div className="inline-block bg-[#FF3333] px-6 py-2 rounded-md text-white text-2xl font-bold mb-2 font-playfair">
+          <div className={`rounded-xl glass-effect p-8 md:p-10 shadow-2xl ${animationClass} delay-200 relative overflow-hidden`}>
+            <div className="text-center mb-8 relative z-10">
+              <div className="inline-block bg-gradient-to-r from-[#cc0f35] to-[#e31041] px-6 py-3 rounded-md text-white text-2xl font-bold mb-3 font-playfair transform hover:scale-105 transition-transform duration-300 animate-pulse-red">
                 OYO
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white font-playfair mb-2">
+              <h3 className="text-2xl md:text-3xl font-bold text-white font-playfair mb-3 animate-slide-left delay-200">
                 Self-Operated Brand Calculator
               </h3>
-              <p className="text-md text-gray-300 font-montserrat">
-                {currentBrand.description} - {currentBrand.revSharePercentage}% Revenue Share
+              <p className="text-md text-gray-300 font-montserrat animate-slide-right delay-400">
+                {currentBrand.description} - <span className="text-[#e31041] font-bold">{currentBrand.revSharePercentage}%</span> Revenue Share
               </p>
             </div>
 
             {/* Brand Selection */}
-            <div className="mb-8">
+            <div className="mb-8 relative z-10">
               <label
                 htmlFor="selectedBrand"
                 className="flex items-center text-sm font-medium text-gray-300 mb-2 font-montserrat"
               >
-                <i className="fas fa-building mr-2 text-[#d4af37]"></i>
+                <i className="fas fa-building mr-2 text-[#e31041]"></i>
                 Select Hotel Brand
               </label>
               <select
@@ -516,7 +520,7 @@ const CalculatorSection = () => {
                 value={formData.selectedBrand}
                 onChange={handleInputChange}
                 onBlur={calculateRevenue}
-                className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-gray-600 focus:ring-[#d4af37] focus:border-[#d4af37] font-montserrat"
+                className="w-full p-3 rounded-lg bg-[#1a0505] bg-opacity-70 text-white border border-[#e31041]/30 focus:ring-[#e31041] focus:border-[#e31041] font-montserrat"
               >
                 {brands.map(brand => (
                   <option key={brand.id} value={brand.id}>
@@ -535,12 +539,12 @@ const CalculatorSection = () => {
                 calculateRevenue();
               }}
             >
-              <div>
+              <div className="group">
                 <label
                   htmlFor="roomRate"
-                  className="flex items-center text-sm font-medium text-gray-300 mb-1 font-montserrat"
+                  className="flex items-center text-sm font-medium text-gray-300 mb-1 font-montserrat group-hover:text-[#e31041] transition-colors"
                 >
-                  <i className="fas fa-hotel mr-2 text-[#d4af37]"></i>
+                  <i className="fas fa-hotel mr-2 text-[#e31041]"></i>
                   Room Rate (₹)
                 </label>
                 <input
@@ -550,17 +554,17 @@ const CalculatorSection = () => {
                   value={formData.roomRate}
                   onChange={handleInputChange}
                   onBlur={calculateRevenue}
-                  className="w-full p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-gray-600 focus:ring-[#d4af37] focus:border-[#d4af37] font-montserrat"
+                  className="w-full p-3 rounded-lg bg-[#1a0505] bg-opacity-70 text-white border border-[#cc0f35]/30 focus:ring-[#e31041] focus:border-[#e31041] font-montserrat transition-all hover:border-[#e31041]/50"
                   placeholder={`e.g., ${currentBrand.defaultRate}`}
                 />
               </div>
 
-              <div>
+              <div className="group">
                 <label
                   htmlFor="stayDuration"
-                  className="flex items-center text-sm font-medium text-gray-300 mb-1 font-montserrat"
+                  className="flex items-center text-sm font-medium text-gray-300 mb-1 font-montserrat group-hover:text-[#e31041] transition-colors"
                 >
-                  <i className="fas fa-calendar-alt mr-2 text-[#d4af37]"></i>
+                  <i className="fas fa-calendar-alt mr-2 text-[#e31041]"></i>
                   Stay Duration (Days)
                 </label>
                 <input
