@@ -4,10 +4,10 @@ import { useToast } from "@/hooks/use-toast";
 import { jsPDF } from "jspdf";
 
 interface CalculatorFormData {
-  roomRate: number;
-  stayDuration: number;
-  numberOfRooms: number;
-  occupancyRate: number;
+  roomRate: number | "";
+  stayDuration: number | "";
+  numberOfRooms: number | "";
+  occupancyRate: number | "";
   selectedBrand: string;
 }
 
@@ -149,15 +149,16 @@ const CalculatorSection = () => {
       // Create a new PDF document
       const doc = new jsPDF();
       const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
       
       // Add OYO logo/header
-      doc.setFillColor(15, 23, 42); // Navy background
+      doc.setFillColor(255, 51, 51); // OYO Red background
       doc.rect(0, 0, pageWidth, 40, 'F');
       
-      doc.setTextColor(212, 175, 55); // Gold text
+      doc.setTextColor(255, 255, 255); // White text
       doc.setFont("helvetica", "bold");
       doc.setFontSize(22);
-      doc.text("OYO PREMIUM", pageWidth / 2, 20, { align: "center" });
+      doc.text("OYO Hotels and Homes Pvt. Ltd", pageWidth / 2, 20, { align: "center" });
       
       doc.setTextColor(255, 255, 255); // White text
       doc.setFontSize(14);
@@ -172,81 +173,115 @@ const CalculatorSection = () => {
         month: 'long', 
         day: 'numeric' 
       });
-      doc.text(`Generated on ${today}`, pageWidth - 15, 45, { align: "right" });
+      doc.text(`Generated on ${today}`, pageWidth - 15, 50, { align: "right" });
       
       // Add hotel brand information
       const selectedBrand = brands.find(brand => brand.id === formData.selectedBrand);
       doc.setTextColor(0, 0, 0);
       doc.setFontSize(16);
       doc.setFont("helvetica", "bold");
-      doc.text("Selected Brand:", 15, 60);
+      doc.text("Selected Brand:", 15, 65);
       
       doc.setFont("helvetica", "normal");
       doc.setFontSize(14);
-      doc.text(selectedBrand?.name || "OYO Brand", 15, 70);
+      doc.text(selectedBrand?.name || "OYO Brand", 45, 65);
       
       doc.setFontSize(12);
       doc.setTextColor(80, 80, 80);
-      doc.text(`Revenue Share: ${selectedBrand?.revSharePercentage || 0}%`, 15, 80);
+      doc.text(`Revenue Share: ${selectedBrand?.revSharePercentage || 0}%`, pageWidth - 15, 65, { align: "right" });
       
       // Add hotel details section
-      doc.setTextColor(15, 23, 42);
+      doc.setTextColor(255, 51, 51); // OYO Red
       doc.setFontSize(16);
       doc.setFont("helvetica", "bold");
-      doc.text("Hotel Information:", 15, 100);
-      
-      doc.setFontSize(12);
-      doc.setFont("helvetica", "normal");
-      doc.text(`Number of Rooms: ${formData.numberOfRooms}`, 20, 110);
-      doc.text(`Room Rate (₹): ${formData.roomRate}`, 20, 120);
-      doc.text(`Stay Duration: ${formData.stayDuration} days`, 20, 130);
-      doc.text(`Occupancy Rate: ${formData.occupancyRate}%`, 20, 140);
+      doc.text("Hotel Information", 15, 85);
       
       // Add a separator line
-      doc.setDrawColor(200, 200, 200);
-      doc.line(15, 150, pageWidth - 15, 150);
+      doc.setDrawColor(255, 51, 51); // OYO Red
+      doc.setLineWidth(0.5);
+      doc.line(15, 90, pageWidth - 15, 90);
+      
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(12);
+      doc.setFont("helvetica", "bold");
+      doc.text("Number of Rooms:", 15, 105);
+      doc.setFont("helvetica", "normal");
+      doc.text(`${formData.numberOfRooms}`, 100, 105);
+      
+      doc.setFont("helvetica", "bold");
+      doc.text("Room Rate:", 15, 120);
+      doc.setFont("helvetica", "normal");
+      doc.text(`₹ ${formData.roomRate.toLocaleString('en-IN')}`, 100, 120);
+      
+      doc.setFont("helvetica", "bold");
+      doc.text("Stay Duration:", 15, 135);
+      doc.setFont("helvetica", "normal");
+      doc.text(`${formData.stayDuration} days`, 100, 135);
+      
+      doc.setFont("helvetica", "bold");
+      doc.text("Occupancy Rate:", 15, 150);
+      doc.setFont("helvetica", "normal");
+      doc.text(`${formData.occupancyRate}%`, 100, 150);
       
       // Add results section
-      doc.setTextColor(15, 23, 42);
+      doc.setTextColor(255, 51, 51); // OYO Red
       doc.setFontSize(16);
       doc.setFont("helvetica", "bold");
-      doc.text("Revenue Analysis:", 15, 170);
+      doc.text("Revenue Analysis", 15, 175);
+      
+      // Add a separator line
+      doc.setDrawColor(255, 51, 51); // OYO Red
+      doc.line(15, 180, pageWidth - 15, 180);
       
       // Helper function to clean numbers from results
       const cleanNumber = (text: string) => {
         return text.replace(/[^\d.,]/g, '');
       };
       
+      doc.setTextColor(0, 0, 0);
       doc.setFontSize(12);
-      doc.setFont("helvetica", "normal");
-      doc.text(`Total Sellable Rooms: ${results.totalSellableRooms}`, 20, 180);
-      doc.text(`Total Revenue: ₹${cleanNumber(results.totalRevenue)}`, 20, 190);
-      doc.text(`Occupancy Information: ${results.occupancyInfo}`, 20, 200);
-      
-      // Highlight revenue share in gold box
-      doc.setFillColor(250, 240, 210); // Light gold background
-      doc.roundedRect(15, 210, pageWidth - 30, 25, 3, 3, 'F');
-      
-      doc.setTextColor(15, 23, 42);
-      doc.setFontSize(14);
       doc.setFont("helvetica", "bold");
-      doc.text("Your Revenue Share:", 25, 225);
+      doc.text("Total Sellable Rooms:", 15, 195);
+      doc.setFont("helvetica", "normal");
+      doc.text(results.totalSellableRooms, 120, 195);
       
-      doc.setTextColor(166, 127, 6); // Darker gold for emphasis
+      doc.setFont("helvetica", "bold");
+      doc.text("Total Revenue:", 15, 210);
+      doc.setFont("helvetica", "normal");
+      doc.text(`₹ ${cleanNumber(results.totalRevenue)}`, 120, 210);
+      
+      doc.setFont("helvetica", "bold");
+      doc.text("Occupancy Information:", 15, 225);
+      doc.setFont("helvetica", "normal");
+      doc.text(results.occupancyInfo, 120, 225);
+      
+      // Highlight revenue share in OYO branded box
+      doc.setFillColor(255, 240, 240); // Light red background
+      doc.roundedRect(15, 235, pageWidth - 30, 30, 3, 3, 'F');
+      
+      doc.setDrawColor(255, 51, 51); // OYO Red
+      doc.setLineWidth(1);
+      doc.roundedRect(15, 235, pageWidth - 30, 30, 3, 3, 'S');
+      
+      doc.setTextColor(255, 51, 51); // OYO Red
       doc.setFontSize(16);
-      doc.text(`₹${cleanNumber(results.revShare)}`, pageWidth - 25, 225, { align: "right" });
+      doc.setFont("helvetica", "bold");
+      doc.text("Your Revenue Share:", 25, 253);
+      
+      doc.setFontSize(16);
+      doc.text(`₹ ${cleanNumber(results.revShare)}`, pageWidth - 25, 253, { align: "right" });
       
       // Add footer
-      doc.setFillColor(15, 23, 42); // Navy background
-      doc.rect(0, doc.internal.pageSize.getHeight() - 20, pageWidth, 20, 'F');
+      doc.setFillColor(255, 51, 51); // OYO Red
+      doc.rect(0, pageHeight - 20, pageWidth, 20, 'F');
       
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(10);
       doc.setFont("helvetica", "normal");
-      doc.text("OYO Self-Operated Business (SOB) - Mumbai", pageWidth / 2, doc.internal.pageSize.getHeight() - 10, { align: "center" });
+      doc.text("OYO Hotels and Homes Pvt. Ltd - Self-Operated Business (SOB)", pageWidth / 2, pageHeight - 10, { align: "center" });
       
       // Save the PDF
-      doc.save("OYO_Premium_Calculator_Results.pdf");
+      doc.save("OYO_Revenue_Calculator_Results.pdf");
       
       toast({
         title: "PDF Generated Successfully",
@@ -291,7 +326,7 @@ const CalculatorSection = () => {
     } else {
       setFormData({
         ...formData,
-        [name]: value === "" ? 0 : parseFloat(value),
+        [name]: value === "" ? "" : parseFloat(value),
       });
     }
   };
@@ -332,6 +367,10 @@ const CalculatorSection = () => {
 
     // Basic validation
     if (
+      !roomRate ||
+      !stayDuration ||
+      !numberOfRooms ||
+      !occupancyRate ||
       roomRate <= 0 ||
       stayDuration <= 0 ||
       numberOfRooms <= 0 ||
@@ -438,20 +477,20 @@ const CalculatorSection = () => {
 
       <div className="container mx-auto px-4 pt-16 relative z-10">
         <div className={`text-center max-w-2xl mx-auto mb-16 ${animationClass}`}>
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 text-[#d4af37]">
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 text-[#FF3333]">
             SOB Revenue Calculator
           </h2>
           <p className="text-lg text-gray-300 font-montserrat">
-            Discover your hotel's revenue potential with OYO's Self-Operated Business model
+            Discover your hotel's revenue potential with OYO Hotels and Homes Pvt. Ltd's Self-Operated Business model
           </p>
-          <div className="h-1 w-40 gold-gradient mx-auto mt-8 rounded-full"></div>
+          <div className="h-1 w-40 bg-gradient-to-r from-[#FF3333] to-[#FF5555] mx-auto mt-8 rounded-full"></div>
         </div>
 
         {/* Calculator Card */}
         <div className="max-w-4xl mx-auto">
           <div className={`rounded-xl glass-effect p-8 md:p-10 shadow-2xl ${animationClass} delay-200`}>
             <div className="text-center mb-8">
-              <div className="inline-block bg-[#d4af37] px-6 py-2 rounded-md text-[#0f172a] text-2xl font-bold mb-2 font-playfair">
+              <div className="inline-block bg-[#FF3333] px-6 py-2 rounded-md text-white text-2xl font-bold mb-2 font-playfair">
                 OYO
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-white font-playfair mb-2">
