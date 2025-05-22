@@ -463,12 +463,12 @@ const CalculatorSection = () => {
         }}
       ></div>
       {/* Gradient overlay for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1a0505]/90 to-[#1a0505]/95"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0000]/90 to-[#0a0000]/95"></div>
 
       {/* Error Message */}
       <div
         id="messageBox"
-        className={`fixed top-5 right-5 bg-[#cc0f35] text-white p-4 rounded-lg shadow-lg transition-opacity duration-300 max-w-sm z-50 font-montserrat animate-pulse-red ${
+        className={`fixed top-5 right-5 bg-[#990000] text-white p-4 rounded-lg shadow-lg transition-opacity duration-300 max-w-sm z-50 font-montserrat animate-pulse-red ${
           showErrorMessage ? "" : "hidden"
         }`}
       >
@@ -480,28 +480,28 @@ const CalculatorSection = () => {
 
       <div className="container mx-auto px-4 pt-16 relative z-10">
         <div className={`text-center max-w-2xl mx-auto mb-16 ${animationClass}`}>
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 text-[#e31041] relative inline-block">
-            <span className="relative z-10">SOB Revenue Calculator</span>
-            <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#cc0f35]/20 via-[#e31041]/40 to-[#cc0f35]/20 -z-10 transform -skew-x-12"></span>
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 text-[#cc0000] relative inline-block">
+            <span className="relative z-10 animate-blood-glow">SOB Revenue Calculator</span>
+            <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#660000]/30 via-[#990000]/50 to-[#660000]/30 -z-10 transform -skew-x-12"></span>
           </h2>
-          <p className="text-lg text-gray-300 font-montserrat">
+          <p className="text-lg text-white font-montserrat bg-[#0a0000]/30 p-3 rounded-lg inline-block">
             Discover your hotel's revenue potential with OYO Hotels and Homes Pvt. Ltd's Self-Operated Business model
           </p>
-          <div className="h-1 w-40 bg-gradient-to-r from-[#cc0f35] to-[#e31041] mx-auto mt-8 rounded-full animate-pulse-red"></div>
+          <div className="h-1 w-40 bg-gradient-to-r from-[#660000] to-[#990000] mx-auto mt-8 rounded-full animate-pulse-red"></div>
         </div>
 
         {/* Calculator Card */}
         <div className="max-w-4xl mx-auto">
           <div className={`rounded-xl glass-effect p-8 md:p-10 shadow-2xl ${animationClass} delay-200 relative overflow-hidden`}>
             <div className="text-center mb-8 relative z-10">
-              <div className="inline-block bg-gradient-to-r from-[#cc0f35] to-[#e31041] px-6 py-3 rounded-md text-white text-2xl font-bold mb-3 font-playfair transform hover:scale-105 transition-transform duration-300 animate-pulse-red">
-                OYO
+              <div className="inline-block bg-gradient-to-r from-[#660000] to-[#990000] px-6 py-3 rounded-md text-white text-2xl font-bold mb-3 font-playfair transform hover:scale-105 transition-transform duration-300 animate-pulse-red">
+                <span className="animate-blood-glow">OYO</span>
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white font-playfair mb-3 animate-slide-left delay-200">
+              <h3 className="text-2xl md:text-3xl font-bold text-white font-playfair mb-3 animate-slide-left delay-200 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
                 Self-Operated Brand Calculator
               </h3>
-              <p className="text-md text-gray-300 font-montserrat animate-slide-right delay-400">
-                {currentBrand.description} - <span className="text-[#e31041] font-bold">{currentBrand.revSharePercentage}%</span> Revenue Share
+              <p className="text-md text-white font-montserrat animate-slide-right delay-400 bg-[#0a0000]/40 py-2 px-4 rounded-lg inline-block">
+                {currentBrand.description} - <span className="text-[#cc0000] font-bold animate-blood-glow">{currentBrand.revSharePercentage}%</span> Revenue Share
               </p>
             </div>
 
@@ -509,9 +509,9 @@ const CalculatorSection = () => {
             <div className="mb-8 relative z-10">
               <label
                 htmlFor="selectedBrand"
-                className="flex items-center text-sm font-medium text-gray-300 mb-2 font-montserrat"
+                className="flex items-center text-sm font-medium text-white mb-2 font-montserrat"
               >
-                <i className="fas fa-building mr-2 text-[#e31041]"></i>
+                <i className="fas fa-building mr-2 text-[#cc0000]"></i>
                 Select Hotel Brand
               </label>
               <select
@@ -520,7 +520,7 @@ const CalculatorSection = () => {
                 value={formData.selectedBrand}
                 onChange={handleInputChange}
                 onBlur={calculateRevenue}
-                className="w-full p-3 rounded-lg bg-[#1a0505] bg-opacity-70 text-white border border-[#e31041]/30 focus:ring-[#e31041] focus:border-[#e31041] font-montserrat"
+                className="w-full p-3 rounded-lg bg-[#0a0000] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#990000] focus:border-[#990000] font-montserrat"
               >
                 {brands.map(brand => (
                   <option key={brand.id} value={brand.id}>
@@ -542,9 +542,9 @@ const CalculatorSection = () => {
               <div className="group">
                 <label
                   htmlFor="roomRate"
-                  className="flex items-center text-sm font-medium text-gray-300 mb-1 font-montserrat group-hover:text-[#e31041] transition-colors"
+                  className="flex items-center text-sm font-medium text-white mb-1 font-montserrat group-hover:text-[#cc0000] transition-colors"
                 >
-                  <i className="fas fa-hotel mr-2 text-[#e31041]"></i>
+                  <i className="fas fa-hotel mr-2 text-[#cc0000]"></i>
                   Room Rate (₹)
                 </label>
                 <input
@@ -554,7 +554,7 @@ const CalculatorSection = () => {
                   value={formData.roomRate}
                   onChange={handleInputChange}
                   onBlur={calculateRevenue}
-                  className="w-full p-3 rounded-lg bg-[#1a0505] bg-opacity-70 text-white border border-[#cc0f35]/30 focus:ring-[#e31041] focus:border-[#e31041] font-montserrat transition-all hover:border-[#e31041]/50"
+                  className="w-full p-3 rounded-lg bg-[#0a0000] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#990000] focus:border-[#990000] font-montserrat transition-all hover:border-[#990000]/50"
                   placeholder={`e.g., ${currentBrand.defaultRate}`}
                 />
               </div>
@@ -562,9 +562,9 @@ const CalculatorSection = () => {
               <div className="group">
                 <label
                   htmlFor="stayDuration"
-                  className="flex items-center text-sm font-medium text-gray-300 mb-1 font-montserrat group-hover:text-[#e31041] transition-colors"
+                  className="flex items-center text-sm font-medium text-white mb-1 font-montserrat group-hover:text-[#cc0000] transition-colors"
                 >
-                  <i className="fas fa-calendar-alt mr-2 text-[#e31041]"></i>
+                  <i className="fas fa-calendar-alt mr-2 text-[#cc0000]"></i>
                   Stay Duration (Days)
                 </label>
                 <input
@@ -574,7 +574,7 @@ const CalculatorSection = () => {
                   value={formData.stayDuration}
                   onChange={handleInputChange}
                   onBlur={calculateRevenue}
-                  className="w-full p-3 rounded-lg bg-[#1a0505] bg-opacity-70 text-white border border-[#cc0f35]/30 focus:ring-[#e31041] focus:border-[#e31041] font-montserrat transition-all hover:border-[#e31041]/50"
+                  className="w-full p-3 rounded-lg bg-[#0a0000] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#990000] focus:border-[#990000] font-montserrat transition-all hover:border-[#990000]/50"
                   placeholder="e.g., 30"
                 />
               </div>
@@ -582,9 +582,9 @@ const CalculatorSection = () => {
               <div className="group">
                 <label
                   htmlFor="numberOfRooms"
-                  className="flex items-center text-sm font-medium text-gray-300 mb-1 font-montserrat group-hover:text-[#e31041] transition-colors"
+                  className="flex items-center text-sm font-medium text-white mb-1 font-montserrat group-hover:text-[#cc0000] transition-colors"
                 >
-                  <i className="fas fa-door-open mr-2 text-[#e31041]"></i>
+                  <i className="fas fa-door-open mr-2 text-[#cc0000]"></i>
                   Number of Rooms
                 </label>
                 <input
@@ -594,7 +594,7 @@ const CalculatorSection = () => {
                   value={formData.numberOfRooms}
                   onChange={handleInputChange}
                   onBlur={calculateRevenue}
-                  className="w-full p-3 rounded-lg bg-[#1a0505] bg-opacity-70 text-white border border-[#cc0f35]/30 focus:ring-[#e31041] focus:border-[#e31041] font-montserrat transition-all hover:border-[#e31041]/50"
+                  className="w-full p-3 rounded-lg bg-[#0a0000] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#990000] focus:border-[#990000] font-montserrat transition-all hover:border-[#990000]/50"
                   placeholder="e.g., 15"
                 />
               </div>
@@ -602,9 +602,9 @@ const CalculatorSection = () => {
               <div className="group">
                 <label
                   htmlFor="occupancyRate"
-                  className="flex items-center text-sm font-medium text-gray-300 mb-1 font-montserrat group-hover:text-[#e31041] transition-colors"
+                  className="flex items-center text-sm font-medium text-white mb-1 font-montserrat group-hover:text-[#cc0000] transition-colors"
                 >
-                  <i className="fas fa-percent mr-2 text-[#e31041]"></i>
+                  <i className="fas fa-percent mr-2 text-[#cc0000]"></i>
                   Occupancy Rate (%)
                 </label>
                 <input
@@ -614,7 +614,7 @@ const CalculatorSection = () => {
                   value={formData.occupancyRate}
                   onChange={handleInputChange}
                   onBlur={calculateRevenue}
-                  className="w-full p-3 rounded-lg bg-[#1a0505] bg-opacity-70 text-white border border-[#cc0f35]/30 focus:ring-[#e31041] focus:border-[#e31041] font-montserrat transition-all hover:border-[#e31041]/50"
+                  className="w-full p-3 rounded-lg bg-[#0a0000] bg-opacity-70 text-white border border-[#990000]/30 focus:ring-[#990000] focus:border-[#990000] font-montserrat transition-all hover:border-[#990000]/50"
                   placeholder="e.g., 70"
                 />
               </div>
@@ -624,7 +624,7 @@ const CalculatorSection = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div className="rounded-lg glass-effect p-4 text-center transform transition-transform hover:scale-105">
                 <div className="relative">
-                  <h4 className="text-[#e31041] font-montserrat text-sm mb-1 uppercase tracking-wider">
+                  <h4 className="text-[#cc0000] font-montserrat text-sm mb-1 uppercase tracking-wider animate-blood-glow">
                     Total Sellable Room Nights
                   </h4>
                   <p
@@ -633,13 +633,13 @@ const CalculatorSection = () => {
                   >
                     {results.totalSellableRooms}
                   </p>
-                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#e31041] to-transparent"></div>
+                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#990000] to-transparent"></div>
                 </div>
               </div>
 
               <div className="rounded-lg glass-effect p-4 text-center transform transition-transform hover:scale-105">
                 <div className="relative">
-                  <h4 className="text-[#e31041] font-montserrat text-sm mb-1 uppercase tracking-wider">
+                  <h4 className="text-[#cc0000] font-montserrat text-sm mb-1 uppercase tracking-wider animate-blood-glow">
                     Total Revenue Generated
                   </h4>
                   <p
@@ -650,27 +650,27 @@ const CalculatorSection = () => {
                   </p>
                   <small
                     id="occupancyInfo"
-                    className="text-gray-400 text-xs font-montserrat"
+                    className="text-white text-xs font-montserrat bg-[#0a0000]/70 px-2 py-1 rounded-full inline-block"
                   >
                     {results.occupancyInfo}
                   </small>
-                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#e31041] to-transparent"></div>
+                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#990000] to-transparent"></div>
                 </div>
               </div>
             </div>
 
             <div className="rounded-lg glass-effect p-6 mb-8 text-center relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#cc0f35]/5 via-[#e31041]/10 to-[#cc0f35]/5 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-              <h4 className="text-xl font-semibold text-white mb-3 font-playfair relative z-10">
-                Your Revenue Share <span className="text-[#e31041]">({currentBrand.revSharePercentage}%)</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#660000]/10 via-[#990000]/15 to-[#660000]/10 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+              <h4 className="text-xl font-semibold text-white mb-3 font-playfair relative z-10 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                Your Revenue Share <span className="text-[#cc0000] animate-blood-glow">({currentBrand.revSharePercentage}%)</span>
               </h4>
               <p
                 id="revShare"
-                className="text-3xl md:text-5xl font-bold text-[#e31041] font-montserrat relative z-10 animate-pulse-red"
+                className="text-3xl md:text-5xl font-bold text-[#cc0000] font-montserrat relative z-10 animate-blood-glow"
               >
                 {results.revShare}
               </p>
-              <div className="h-1 w-32 mx-auto mt-4 bg-gradient-to-r from-[#cc0f35] via-[#e31041] to-[#cc0f35] rounded-full"></div>
+              <div className="h-1 w-32 mx-auto mt-4 bg-gradient-to-r from-[#660000] via-[#990000] to-[#660000] rounded-full"></div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
