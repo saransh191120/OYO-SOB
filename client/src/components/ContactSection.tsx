@@ -278,10 +278,10 @@ const ContactSection = () => {
               <div className="space-y-4 font-montserrat">
                 <div className="flex items-start">
                   <i className="fas fa-map-marker-alt text-[#cc0000] mt-1 mr-4"></i>
-                  <p className="text-white"> OYO Hotels and Homes India Pvt. Ltd.
+                  <p className="text-white">
+                    OYO Hotels and Homes India Pvt. Ltd.
                     <br />
                     7th Floor, Building No.11, Solitaire corporate park, Chakala, Andheri East,
-
                     <br />
                     Maharashtra, India
                   </p>
