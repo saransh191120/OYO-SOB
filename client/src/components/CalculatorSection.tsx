@@ -761,9 +761,12 @@ const CalculatorSection = () => {
               <div className="flex justify-center mt-6">
                 <button
                   onClick={() => generatePDF()}
-                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#660000] to-[#990000] text-white font-bold rounded-md transition-all hover:shadow-lg hover:shadow-[#990000]/40 transform hover:-translate-y-1 font-montserrat flex items-center justify-center"
+                  className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-[#cc0000] to-[#990000] text-white font-bold rounded-full transition-all hover:shadow-2xl hover:shadow-[#cc0000]/60 transform hover:-translate-y-2 hover:scale-105 font-montserrat relative overflow-hidden group"
                 >
-                  <i className="fas fa-file-pdf mr-2 text-lg"></i>Download OYO PDF Report
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#ff0000] to-[#cc0000] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                  <span className="relative z-10 flex items-center justify-center">
+                    <i className="fas fa-file-pdf mr-3 text-lg animate-pulse"></i>Download OYO PDF Report
+                  </span>
                 </button>
               </div>
             </div>
