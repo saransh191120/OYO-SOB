@@ -511,7 +511,7 @@ const CalculatorSection = () => {
             <span className="relative z-10 animate-blood-glow">SOB Revenue Calculator</span>
             <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#660000]/30 via-[#990000]/50 to-[#660000]/30 -z-10 transform -skew-x-12"></span>
           </h2>
-          <p className="text-lg text-white font-montserrat bg-[#0a0000]/30 p-3 rounded-lg inline-block">
+          <p className="text-lg text-white font-montserrat bg-[#0a0000]/70 p-4 rounded-lg inline-block shadow-lg font-medium">
             Discover your hotel's revenue potential with OYO Hotels and Homes Pvt. Ltd's Self-Operated Business model
           </p>
           <div className="h-1 w-40 bg-gradient-to-r from-[#660000] to-[#990000] mx-auto mt-8 rounded-full animate-pulse-red"></div>
@@ -527,7 +527,7 @@ const CalculatorSection = () => {
               <h3 className="text-2xl md:text-3xl font-bold text-white font-playfair mb-3 animate-slide-left delay-200 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
                 Self-Operated Brand Calculator
               </h3>
-              <p className="text-md text-white font-montserrat animate-slide-right delay-400 bg-[#0a0000]/40 py-2 px-4 rounded-lg inline-block">
+              <p className="text-md text-white font-montserrat animate-slide-right delay-400 bg-[#0a0000]/70 py-3 px-5 rounded-lg inline-block shadow-md font-medium">
                 {currentBrand.description} - <span className="text-[#cc0000] font-bold animate-blood-glow">{currentBrand.revSharePercentage}%</span> Revenue Share
               </p>
             </div>
@@ -536,7 +536,7 @@ const CalculatorSection = () => {
             <div className="mb-8 relative z-10">
               <label
                 htmlFor="selectedBrand"
-                className="flex items-center text-sm font-medium text-white mb-2 font-montserrat"
+                className="flex items-center text-md font-semibold text-white mb-2 font-montserrat bg-[#0a0000]/60 p-2 rounded-md"
               >
                 <i className="fas fa-building mr-2 text-[#cc0000]"></i>
                 Select Hotel Brand
@@ -569,7 +569,7 @@ const CalculatorSection = () => {
               <div className="group">
                 <label
                   htmlFor="roomRate"
-                  className="flex items-center text-sm font-medium text-white mb-1 font-montserrat group-hover:text-[#cc0000] transition-colors"
+                  className="flex items-center text-md font-semibold text-white mb-1 font-montserrat group-hover:text-[#cc0000] transition-colors bg-[#0a0000]/60 p-2 rounded-md"
                 >
                   <i className="fas fa-hotel mr-2 text-[#cc0000]"></i>
                   Room Rate (₹)
@@ -589,7 +589,7 @@ const CalculatorSection = () => {
               <div className="group">
                 <label
                   htmlFor="stayDuration"
-                  className="flex items-center text-sm font-medium text-white mb-1 font-montserrat group-hover:text-[#cc0000] transition-colors"
+                  className="flex items-center text-md font-semibold text-white mb-1 font-montserrat group-hover:text-[#cc0000] transition-colors bg-[#0a0000]/60 p-2 rounded-md"
                 >
                   <i className="fas fa-calendar-alt mr-2 text-[#cc0000]"></i>
                   Stay Duration (Days)
@@ -609,7 +609,7 @@ const CalculatorSection = () => {
               <div className="group">
                 <label
                   htmlFor="numberOfRooms"
-                  className="flex items-center text-sm font-medium text-white mb-1 font-montserrat group-hover:text-[#cc0000] transition-colors"
+                  className="flex items-center text-md font-semibold text-white mb-1 font-montserrat group-hover:text-[#cc0000] transition-colors bg-[#0a0000]/60 p-2 rounded-md"
                 >
                   <i className="fas fa-door-open mr-2 text-[#cc0000]"></i>
                   Number of Rooms
@@ -629,7 +629,7 @@ const CalculatorSection = () => {
               <div className="group">
                 <label
                   htmlFor="occupancyRate"
-                  className="flex items-center text-sm font-medium text-white mb-1 font-montserrat group-hover:text-[#cc0000] transition-colors"
+                  className="flex items-center text-md font-semibold text-white mb-1 font-montserrat group-hover:text-[#cc0000] transition-colors bg-[#0a0000]/60 p-2 rounded-md"
                 >
                   <i className="fas fa-percent mr-2 text-[#cc0000]"></i>
                   Occupancy Rate (%)
