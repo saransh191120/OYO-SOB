@@ -92,20 +92,20 @@ const ContactSection = () => {
       className="py-24 bg-gradient-to-b from-[#1a2442] to-[#0f172a]"
     >
       <div className="container mx-auto px-4">
-        <div className={`text-center max-w-2xl mx-auto mb-16 ${animationClass}`}>
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 text-[#d4af37]">
+        <div className={`text-center max-w-2xl mx-auto px-4 mb-12 md:mb-16 ${animationClass}`}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold mb-4 md:mb-6 text-[#d4af37]">
             Partner With OYO
           </h2>
-          <p className="text-lg text-gray-300 font-montserrat">
+          <p className="text-base md:text-lg text-gray-300 font-montserrat">
             Interested in joining OYO's self-operated hotel brands in Mumbai? Connect with our partnership team today.
           </p>
-          <div className="h-1 w-40 gold-gradient mx-auto mt-8 rounded-full"></div>
+          <div className="h-1 w-32 md:w-40 gold-gradient mx-auto mt-6 md:mt-8 rounded-full"></div>
         </div>
 
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
           {/* Contact Form */}
-          <div className={`glass-effect rounded-xl p-8 shadow-2xl ${animationClass} delay-200`}>
-            <h3 className="text-2xl font-playfair font-bold text-white mb-6">
+          <div className={`glass-effect rounded-xl p-4 sm:p-6 md:p-8 shadow-2xl ${animationClass} delay-200`}>
+            <h3 className="text-xl sm:text-2xl font-playfair font-bold text-white mb-4 md:mb-6">
               Contact Our Partnership Team
             </h3>
             {submitted ? (
@@ -261,14 +261,14 @@ const ContactSection = () => {
           {/* Contact Info */}
           <div className={animationClass + " delay-400"}>
             {/* Hotel Exterior Image */}
-            <div className="rounded-xl overflow-hidden mb-8">
+            <div className="rounded-xl overflow-hidden mb-4 md:mb-8">
               <img
                 src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80"
                 alt="OYO Mumbai Hotel Exterior"
-                className="w-full h-64 object-cover"
+                className="w-full h-48 sm:h-56 md:h-64 object-cover"
               />
             </div>
-            <div className="glass-effect rounded-xl p-8 shadow-2xl">
+            <div className="glass-effect rounded-xl p-4 sm:p-6 md:p-8 shadow-2xl">
               <h3 className="text-2xl font-playfair font-bold text-white mb-6">
                 Mumbai Partnership Office
               </h3>

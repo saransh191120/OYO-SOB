@@ -123,23 +123,23 @@ const TestimonialsSection = () => {
         }}
       ></div>
       <div className="container mx-auto px-4 relative z-10">
-        <div className={`text-center max-w-2xl mx-auto mb-16 ${animationClass}`}>
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 text-[#d4af37]">
+        <div className={`text-center max-w-2xl mx-auto px-4 mb-12 md:mb-16 ${animationClass}`}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold mb-4 md:mb-6 text-[#d4af37]">
             Mumbai Success Stories
           </h2>
-          <p className="text-lg text-gray-300 font-montserrat">
+          <p className="text-base md:text-lg text-gray-300 font-montserrat">
             Hear from our Mumbai partners who have experienced the OYO self-operated brand advantage
           </p>
-          <div className="h-1 w-40 gold-gradient mx-auto mt-8 rounded-full"></div>
+          <div className="h-1 w-32 md:w-40 gold-gradient mx-auto mt-6 md:mt-8 rounded-full"></div>
         </div>
 
         {/* Testimonial Carousel */}
         <div className="max-w-4xl mx-auto">
           <div id="testimonial-carousel" className={`relative ${animationClass} delay-200`}>
             {/* Current Testimonial */}
-            <div className="testimonial-slide glass-effect rounded-xl p-8 shadow-2xl">
-              <div className="flex flex-col md:flex-row md:items-center mb-6">
-                <div className="w-20 h-20 rounded-full overflow-hidden mb-4 md:mb-0 md:mr-4 mx-auto md:mx-0">
+            <div className="testimonial-slide glass-effect rounded-xl p-4 sm:p-6 md:p-8 shadow-2xl">
+              <div className="flex flex-col md:flex-row md:items-center mb-4 md:mb-6">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden mb-3 md:mb-0 md:mr-4 mx-auto md:mx-0 border-2 border-[#d4af37]">
                   <img
                     src={testimonials[activeIndex].image}
                     alt={testimonials[activeIndex].name}
@@ -147,14 +147,14 @@ const TestimonialsSection = () => {
                   />
                 </div>
                 <div className="text-center md:text-left">
-                  <h3 className="text-xl font-bold text-white font-playfair">
+                  <h3 className="text-lg sm:text-xl font-bold text-white font-playfair">
                     {testimonials[activeIndex].name}
                   </h3>
-                  <p className="text-gray-300 font-montserrat text-sm">
+                  <p className="text-gray-300 font-montserrat text-xs sm:text-sm">
                     {testimonials[activeIndex].position}, {testimonials[activeIndex].hotel}
                   </p>
-                  <div className="flex items-center mt-1 justify-center md:justify-start">
-                    <span className="text-[#d4af37] font-montserrat text-sm font-semibold mr-2">
+                  <div className="flex flex-wrap items-center mt-1 justify-center md:justify-start">
+                    <span className="text-[#d4af37] font-montserrat text-xs sm:text-sm font-semibold mr-2">
                       {testimonials[activeIndex].brand}
                     </span>
                     <span className="text-gray-400 font-montserrat text-xs">
@@ -163,30 +163,30 @@ const TestimonialsSection = () => {
                   </div>
                 </div>
                 <div className="ml-auto text-[#d4af37] hidden md:block">
-                  <i className="fas fa-quote-right text-4xl opacity-50"></i>
+                  <i className="fas fa-quote-right text-3xl sm:text-4xl opacity-50"></i>
                 </div>
               </div>
-              <p className="text-gray-300 font-montserrat text-lg italic mb-6 border-l-4 border-[#d4af37] pl-4">
+              <p className="text-gray-300 font-montserrat text-sm sm:text-base md:text-lg italic mb-4 md:mb-6 border-l-2 sm:border-l-4 border-[#d4af37] pl-3 sm:pl-4">
                 "{testimonials[activeIndex].quote}"
               </p>
-              <div className="flex justify-between items-center">
-                <div className="flex text-[#d4af37]">
+              <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0">
+                <div className="flex text-[#d4af37] text-sm sm:text-base">
                   {renderStars(testimonials[activeIndex].rating)}
                 </div>
                 <div className="flex space-x-2">
                   <button
                     onClick={handlePrev}
-                    className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#d4af37] flex items-center justify-center text-[#d4af37] transition-all hover:bg-[#d4af37] hover:text-[#0f172a]"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#0f172a] border border-[#d4af37] flex items-center justify-center text-[#d4af37] transition-all hover:bg-[#d4af37] hover:text-[#0f172a]"
                     aria-label="Previous testimonial"
                   >
-                    <i className="fas fa-chevron-left"></i>
+                    <i className="fas fa-chevron-left text-sm sm:text-base"></i>
                   </button>
                   <button
                     onClick={handleNext}
-                    className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#d4af37] flex items-center justify-center text-[#d4af37] transition-all hover:bg-[#d4af37] hover:text-[#0f172a]"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#0f172a] border border-[#d4af37] flex items-center justify-center text-[#d4af37] transition-all hover:bg-[#d4af37] hover:text-[#0f172a]"
                     aria-label="Next testimonial"
                   >
-                    <i className="fas fa-chevron-right"></i>
+                    <i className="fas fa-chevron-right text-sm sm:text-base"></i>
                   </button>
                 </div>
               </div>

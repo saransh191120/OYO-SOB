@@ -28,30 +28,30 @@ const BrandCard = ({
   const animationClass = inView ? `animate-fade-in ${delay}` : "opacity-0";
 
   return (
-    <div className={`feature-card glass-effect rounded-xl overflow-hidden shadow-2xl ${animationClass}`}>
-      <div className="h-64 overflow-hidden">
+    <div className={`feature-card glass-effect rounded-xl overflow-hidden shadow-2xl h-full flex flex-col ${animationClass}`}>
+      <div className="h-56 sm:h-64 overflow-hidden">
         <img
           src={image}
           alt={imageAlt}
           className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
         />
       </div>
-      <div className="p-6">
-        <div className="w-12 h-12 rounded-full bg-[#d4af37] flex items-center justify-center mb-4">
-          <i className={`${icon} text-[#0f172a] text-xl`}></i>
+      <div className="p-4 sm:p-6 flex-grow">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#d4af37] flex items-center justify-center mb-3 sm:mb-4">
+          <i className={`${icon} text-[#0f172a] text-lg sm:text-xl`}></i>
         </div>
-        <h3 className="text-2xl font-playfair font-bold text-white mb-2">
+        <h3 className="text-xl sm:text-2xl font-playfair font-bold text-white mb-1 sm:mb-2">
           {title}
         </h3>
-        <p className="text-[#d4af37] font-montserrat text-sm mb-3 italic">{tagline}</p>
-        <p className="text-gray-300 font-montserrat mb-4">{description}</p>
+        <p className="text-[#d4af37] font-montserrat text-xs sm:text-sm mb-2 sm:mb-3 italic">{tagline}</p>
+        <p className="text-gray-300 font-montserrat text-sm mb-3 sm:mb-4">{description}</p>
         
-        <div className="mt-4 pt-4 border-t border-gray-700">
-          <p className="text-white font-montserrat text-sm mb-1 font-bold">Target Audience:</p>
-          <p className="text-gray-300 font-montserrat text-sm mb-3">{targetAudience}</p>
+        <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-700">
+          <p className="text-white font-montserrat text-xs sm:text-sm mb-1 font-bold">Target Audience:</p>
+          <p className="text-gray-300 font-montserrat text-xs sm:text-sm mb-2 sm:mb-3">{targetAudience}</p>
           
-          <p className="text-white font-montserrat text-sm mb-1 font-bold">Key Amenities:</p>
-          <p className="text-gray-300 font-montserrat text-sm">{amenities}</p>
+          <p className="text-white font-montserrat text-xs sm:text-sm mb-1 font-bold">Key Amenities:</p>
+          <p className="text-gray-300 font-montserrat text-xs sm:text-sm">{amenities}</p>
         </div>
       </div>
     </div>
@@ -151,18 +151,18 @@ const FeaturesSection = () => {
       className="py-24 bg-gradient-to-b from-[#0f172a] to-[#1a2442]"
     >
       <div className="container mx-auto px-4">
-        <div className={`text-center max-w-2xl mx-auto mb-16 ${headerAnimation}`}>
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 text-[#d4af37]">
+        <div className={`text-center max-w-2xl mx-auto px-4 mb-12 md:mb-16 ${headerAnimation}`}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold mb-4 md:mb-6 text-[#d4af37]">
             Self-Operated Hotel Brands
           </h2>
-          <p className="text-lg text-gray-300 font-montserrat">
+          <p className="text-base md:text-lg text-gray-300 font-montserrat">
             Discover OYO's diverse portfolio of self-operated hotel brands in Mumbai,
             each designed to cater to specific customer preferences and needs.
           </p>
-          <div className="h-1 w-40 gold-gradient mx-auto mt-8 rounded-full"></div>
+          <div className="h-1 w-32 md:w-40 gold-gradient mx-auto mt-6 md:mt-8 rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {hotelBrands.map((brand, index) => (
             <BrandCard
               key={index}
