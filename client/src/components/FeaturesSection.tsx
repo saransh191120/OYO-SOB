@@ -181,7 +181,7 @@ const FeaturesSection = () => {
           className={`text-center max-w-2xl mx-auto px-4 mb-12 md:mb-16 ${headerAnimation}`}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold mb-4 md:mb-6 text-[#cc0000] animate-blood-glow drop-shadow-[0_3px_3px_rgba(0,0,0,0.8)]">
-            Self-Operated Hotel Brands
+            Category
           </h2>
           <p className="text-base md:text-lg text-white font-montserrat">
             Discover OYO's diverse portfolio of self-operated hotel brands in

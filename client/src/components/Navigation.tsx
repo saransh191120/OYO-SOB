@@ -61,11 +61,11 @@ const Navigation = ({ activeSection }: NavigationProps) => {
             Calculator
           </a>
           <a
-            href="#features"
+            href="#category"
             onClick={(e) => { e.preventDefault(); scrollToSection("features"); }}
             className={`nav-item transition-all hover:text-[#e31041] ${activeSection === "features" ? "text-[#e31041]" : "text-white"}`}
           >
-            Features
+            Category
           </a>
           <a
             href="#testimonials"
@@ -93,7 +93,7 @@ const Navigation = ({ activeSection }: NavigationProps) => {
           </button>
         </div>
       </div>
-      
+
       {/* Mobile Menu */}
       <div id="mobile-menu" className={`md:hidden bg-[#1a0505] bg-opacity-95 px-4 py-2 border-t border-[#cc0f35]/30 ${isOpen ? '' : 'hidden'} red-glow`}>
         <div className="flex flex-col space-y-1 font-montserrat py-3">
@@ -112,11 +112,11 @@ const Navigation = ({ activeSection }: NavigationProps) => {
             <i className="fas fa-calculator mr-3 w-5 text-center text-[#e31041]"></i> Calculator
           </a>
           <a
-            href="#features"
+            href="#category"
             onClick={(e) => { e.preventDefault(); scrollToSection("features"); }}
             className={`nav-item transition-all hover:text-[#e31041] py-3 border-b border-[#cc0f35]/30 flex items-center ${activeSection === "features" ? "text-[#e31041]" : "text-white"}`}
           >
-            <i className="fas fa-star mr-3 w-5 text-center text-[#e31041]"></i> Features
+            <i className="fas fa-star mr-3 w-5 text-center text-[#e31041]"></i> Category
           </a>
           <a
             href="#testimonials"
