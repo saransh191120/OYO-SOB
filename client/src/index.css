@@ -7,13 +7,13 @@
   --background: 0 0% 100%;
   --foreground: 20 14.3% 4.1%;
   
-  /* Custom colors */
-  --gold: 43 77% 52%; /* #d4af37 */
-  --gold-light: 48 79% 65%; /* #f2ce56 */
-  --navy: 222 33% 10%; /* #0f172a */
-  --navy-light: 222 33% 18%; /* #1a2442 */
+  /* Custom colors - OYO Red Theme */
+  --oyo-red: 358 83% 40%; /* #cc0f35 - OYO's primary red */
+  --oyo-red-light: 358 83% 50%; /* #e31041 - lighter red */
+  --oyo-red-dark: 358 83% 30%; /* #a00c2a - darker red */
+  --oyo-crimson: 345 83% 35%; /* #b01036 - rich crimson */
+  --oyo-maroon: 345 83% 25%; /* #80102a - deep maroon */
   --charcoal: 0 0% 20%; /* #333333 */
-  --burgundy: 345 100% 25%; /* #800020 */
   
   /* UI elements */
   --muted: 60 4.8% 95.9%;
@@ -24,38 +24,38 @@
   --card-foreground: 20 14.3% 4.1%;
   --border: 20 5.9% 90%;
   --input: 20 5.9% 90%;
-  --primary: 43 77% 52%; /* same as gold */
-  --primary-foreground: 211 100% 99%;
-  --secondary: 222 33% 10%; /* same as navy */
+  --primary: 358 83% 40%; /* OYO red as primary */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 10%; /* Nearly black */
   --secondary-foreground: 0 0% 98%;
-  --accent: 43 77% 52%; /* same as gold */
-  --accent-foreground: 222 33% 10%; /* navy */
-  --destructive: 345 100% 25%; /* burgundy */
-  --destructive-foreground: 60 9.1% 97.8%;
-  --ring: 43 77% 52%; /* gold */
+  --accent: 358 83% 40%; /* OYO red as accent */
+  --accent-foreground: 0 0% 100%; /* white text on red */
+  --destructive: 345 83% 35%; /* crimson */
+  --destructive-foreground: 0 0% 100%;
+  --ring: 358 83% 40%; /* red ring */
   --radius: 0.5rem;
 }
 
 .dark {
-  --background: 222 33% 10%; /* Navy */
+  --background: 358 83% 10%; /* Dark red background */
   --foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
-  --popover: 222 33% 10%; /* Navy */
+  --muted: 358 40% 15%;
+  --muted-foreground: 358 30% 70%;
+  --popover: 358 83% 15%; /* Dark red */
   --popover-foreground: 0 0% 98%;
-  --card: 222 33% 10%; /* Navy */
+  --card: 358 83% 15%; /* Dark red */
   --card-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --primary: 43 77% 52%; /* Gold */
-  --primary-foreground: 222 33% 10%; /* Navy */
-  --secondary: 240 3.7% 15.9%;
+  --border: 358 40% 20%;
+  --input: 358 40% 20%;
+  --primary: 358 83% 50%; /* Brighter OYO red */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 358 30% 20%;
   --secondary-foreground: 0 0% 98%;
-  --accent: 43 77% 52%; /* Gold */
-  --accent-foreground: 222 33% 10%; /* Navy */
-  --destructive: 345 100% 25%; /* Burgundy */
+  --accent: 358 83% 50%; /* Brighter OYO red */
+  --accent-foreground: 0 0% 100%;
+  --destructive: 345 83% 35%; /* Crimson */
   --destructive-foreground: 0 0% 98%;
-  --ring: 43 77% 52%; /* Gold */
+  --ring: 358 83% 50%; /* Brighter OYO red */
 }
 
 html {
@@ -64,7 +64,7 @@ html {
 
 body {
   font-family: 'Montserrat', sans-serif;
-  @apply bg-[#0f172a] text-white antialiased;
+  @apply bg-[#1a0505] text-white antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -84,14 +84,24 @@ h1, h2, h3, h4, h5, h6 {
   background-size: cover;
 }
 
-/* Gold Gradient */
+/* OYO Red Luxury Gradient */
 .gold-gradient {
-  background: linear-gradient(135deg, #d4af37 0%, #f2ce56 50%, #d4af37 100%);
+  background: linear-gradient(135deg, #a00c2a 0%, #cc0f35 50%, #e31041 100%);
+}
+
+/* Red Glow Effect */
+.red-glow {
+  box-shadow: 0 0 15px rgba(204, 15, 53, 0.5), 0 0 30px rgba(204, 15, 53, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.red-glow:hover {
+  box-shadow: 0 0 20px rgba(204, 15, 53, 0.7), 0 0 40px rgba(204, 15, 53, 0.5);
 }
 
 /* Active Navigation */
 .nav-item.active {
-  @apply text-[#d4af37] border-b-2 border-[#d4af37];
+  @apply text-[#e31041] border-b-2 border-[#e31041];
 }
 
 /* Fade In Animation */
@@ -115,13 +125,13 @@ h1, h2, h3, h4, h5, h6 {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  @apply bg-[#0f172a];
+  @apply bg-[#1a0505];
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-[#d4af37] rounded;
+  @apply bg-[#cc0f35] rounded;
 }
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-[#f2ce56];
+  @apply bg-[#e31041];
 }
 
 @layer base {
