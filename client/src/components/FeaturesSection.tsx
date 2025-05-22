@@ -1,8 +1,11 @@
 import { useInView } from "./ScrollToTop";
 
-type FeatureCardProps = {
+type BrandCardProps = {
   title: string;
+  tagline: string;
   description: string;
+  targetAudience: string;
+  amenities: string;
   icon: string;
   image: string;
   imageAlt: string;
@@ -10,15 +13,18 @@ type FeatureCardProps = {
   inView: boolean;
 };
 
-const FeatureCard = ({
+const BrandCard = ({
   title,
+  tagline,
   description,
+  targetAudience,
+  amenities,
   icon,
   image,
   imageAlt,
   delay,
   inView,
-}: FeatureCardProps) => {
+}: BrandCardProps) => {
   const animationClass = inView ? `animate-fade-in ${delay}` : "opacity-0";
 
   return (
@@ -34,10 +40,19 @@ const FeatureCard = ({
         <div className="w-12 h-12 rounded-full bg-[#d4af37] flex items-center justify-center mb-4">
           <i className={`${icon} text-[#0f172a] text-xl`}></i>
         </div>
-        <h3 className="text-2xl font-playfair font-bold text-white mb-3">
+        <h3 className="text-2xl font-playfair font-bold text-white mb-2">
           {title}
         </h3>
-        <p className="text-gray-300 font-montserrat">{description}</p>
+        <p className="text-[#d4af37] font-montserrat text-sm mb-3 italic">{tagline}</p>
+        <p className="text-gray-300 font-montserrat mb-4">{description}</p>
+        
+        <div className="mt-4 pt-4 border-t border-gray-700">
+          <p className="text-white font-montserrat text-sm mb-1 font-bold">Target Audience:</p>
+          <p className="text-gray-300 font-montserrat text-sm mb-3">{targetAudience}</p>
+          
+          <p className="text-white font-montserrat text-sm mb-1 font-bold">Key Amenities:</p>
+          <p className="text-gray-300 font-montserrat text-sm">{amenities}</p>
+        </div>
       </div>
     </div>
   );
@@ -46,35 +61,83 @@ const FeatureCard = ({
 const FeaturesSection = () => {
   const { ref, inView } = useInView({ threshold: 0.1 });
 
-  const features = [
+  const hotelBrands = [
     {
-      title: "Luxury Pools",
-      description:
-        "Indulge in our temperature-controlled infinity pools with panoramic views and premium poolside service.",
-      icon: "fas fa-swimming-pool",
+      title: "OYO Sunday Hotels",
+      tagline: "Premium 5-star hotel chain",
+      description: 
+        "Luxury 4 & 5-star hotels for affluent leisure and senior executives. High potential in Mumbai with positive reviews highlighting professionalism and luxury standards.",
+      targetAudience: "Affluent leisure travelers and senior executives",
+      amenities: "Fine dining, spa, pools, concierge service, premium and luxurious accommodations",
+      icon: "fas fa-crown",
       image:
         "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
-      imageAlt: "Luxury Hotel Swimming Pool",
+      imageAlt: "Luxury OYO Sunday Hotel",
       delay: "delay-200",
     },
     {
-      title: "Premium Suites",
+      title: "OYO Palette",
+      tagline: "Premium self-operated upscale resorts",
       description:
-        "Experience unparalleled comfort in our meticulously designed suites with premium amenities and personalized service.",
-      icon: "fas fa-bed",
+        "Upscale resorts crafted for premium leisure, relaxing staycations, and bleisure travelers. Palghar resort serves the extended Mumbai market with promising expansion opportunities.",
+      targetAudience: "Premium leisure, staycation, and bleisure travelers",
+      amenities: "Inviting pools, rejuvenating spas, unique dining, and stylish spaces to unwind",
+      icon: "fas fa-umbrella-beach",
       image:
-        "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
-      imageAlt: "Luxury Hotel Room",
+        "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
+      imageAlt: "OYO Palette Resort",
       delay: "delay-400",
     },
     {
-      title: "Fine Dining",
+      title: "OYO Clubhouse",
+      tagline: "Resort-style self-operated hotels",
       description:
-        "Savor exquisite cuisine crafted by renowned chefs in an elegant atmosphere with impeccable service.",
-      icon: "fas fa-utensils",
+        "Modern, company-serviced hotels focused on comfort and reliability. Perfect opportunity for expansion in the Mumbai market.",
+      targetAudience: "Value-conscious solo travelers, couples, families, and business guests",
+      amenities: "Restaurant, Wi-Fi, AC, modern decor, with pools and gyms at select locations",
+      icon: "fas fa-glass-cheers",
       image:
-        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
-      imageAlt: "Luxury Hotel Dining",
+        "https://images.unsplash.com/photo-1551516594-56cb78394645?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
+      imageAlt: "OYO Clubhouse Hotel",
+      delay: "delay-600",
+    },
+    {
+      title: "OYO Townhouse",
+      tagline: "Premium neighborhood hotels for millennials",
+      description:
+        "Smart, friendly neighborhood hotels designed for millennials. Established in Khar, Airport, Goregaon, Worli, with promising café expansions.",
+      targetAudience: "Millennials, students, and young professionals who value affordability and local vibes",
+      amenities: "In-room Netflix, high-speed Wi-Fi, signature cafes, and communal workspaces",
+      icon: "fas fa-home",
+      image:
+        "https://images.unsplash.com/photo-1590073242678-70ee3fc28f17?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
+      imageAlt: "OYO Townhouse",
+      delay: "delay-200",
+    },
+    {
+      title: "OYO Townhouse Oak",
+      tagline: "Upscale version of the Townhouse concept",
+      description:
+        "Premium extension offering stylish, refined experiences. Locations in Vashi, Khar, Andheri East, Kopar Khairane with growth potential.",
+      targetAudience: "Discerning millennials, young professionals, corporate guests",
+      amenities: "Premium finishes, gym, pools, enhanced in-room comforts, restaurants",
+      icon: "fas fa-tree",
+      image:
+        "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
+      imageAlt: "OYO Townhouse Oak",
+      delay: "delay-400",
+    },
+    {
+      title: "OYO Collection O",
+      tagline: "Business hotels with standard amenities for corporate travelers",
+      description:
+        "Affordable premium features tailored for business and leisure travelers. Strong presence in Kurla, Andheri, Sanpada, Mumbai Central with growth potential.",
+      targetAudience: "Value-conscious business travelers and leisure tourists",
+      amenities: "AC rooms, free Wi-Fi, TV, clean linen, breakfast, 24/7 check-in available",
+      icon: "fas fa-briefcase",
+      image:
+        "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
+      imageAlt: "OYO Collection O",
       delay: "delay-600",
     },
   ];
@@ -90,20 +153,20 @@ const FeaturesSection = () => {
       <div className="container mx-auto px-4">
         <div className={`text-center max-w-2xl mx-auto mb-16 ${headerAnimation}`}>
           <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 text-[#d4af37]">
-            Premium Features
+            Self-Operated Hotel Brands
           </h2>
           <p className="text-lg text-gray-300 font-montserrat">
-            Experience the luxury and exclusive amenities that set OYO Premium
-            hotels apart.
+            Discover OYO's diverse portfolio of self-operated hotel brands in Mumbai,
+            each designed to cater to specific customer preferences and needs.
           </p>
           <div className="h-1 w-40 gold-gradient mx-auto mt-8 rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <FeatureCard
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {hotelBrands.map((brand, index) => (
+            <BrandCard
               key={index}
-              {...feature}
+              {...brand}
               inView={inView}
             />
           ))}

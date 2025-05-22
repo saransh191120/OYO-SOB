@@ -4,6 +4,9 @@ import { useInView } from "./ScrollToTop";
 interface Testimonial {
   name: string;
   position: string;
+  hotel: string;
+  location: string;
+  brand: string;
   image: string;
   quote: string;
   rating: number;
@@ -16,35 +19,78 @@ const TestimonialsSection = () => {
   const testimonials: Testimonial[] = [
     {
       name: "Rajesh Sharma",
-      position: "Owner, Rajasthan Palace",
+      position: "Owner",
+      hotel: "Seaside Luxury Resort",
+      location: "Worli, Mumbai",
+      brand: "Sunday Hotels",
       image:
         "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80",
       quote:
-        "Partnering with OYO Premium transformed our boutique hotel. Our revenue increased by 45% in just six months, and the SOB calculator helped us forecast accurately.",
+        "Converting our property to Sunday Hotels was the best decision. Our revenue increased by 45% in just six months, and our guests love the 5-star experience. The team at OYO handled everything from training staff to upgrading our amenities.",
       rating: 5,
     },
     {
       name: "Priya Patel",
-      position: "Director, Hill View Resort",
+      position: "Director",
+      hotel: "Metro Heights",
+      location: "Andheri East, Mumbai",
+      brand: "OYO Townhouse Oak",
       image:
         "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80",
       quote:
-        "The premium branding and superior booking system elevated our property's status. Our occupancy rates have never been better, and the revenue calculator is remarkably accurate.",
+        "The Townhouse Oak branding and superior booking system elevated our property's status. Young professionals love the stylish spaces, and our occupancy rates have increased to 82%. The self-operated model means we maintain consistent quality.",
       rating: 5,
     },
     {
       name: "Vikram Singh",
-      position: "CEO, Luxury Stays Group",
+      position: "CEO",
+      hotel: "Bayview Business Suites",
+      location: "Kurla, Mumbai",
+      brand: "OYO Collection O",
       image:
         "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80",
       quote:
-        "As a premium hotel chain, we were skeptical about partnering with OYO. The SOB model convinced us, and we've seen a 38% increase in our revenue streams across all properties.",
+        "As a business hotel operator, I was skeptical about partnering with OYO. The Collection O self-operated model convinced us, and we've seen a 38% increase in corporate bookings. The seamless operations and standardized quality ensure our business guests keep returning.",
       rating: 4,
+    },
+    {
+      name: "Anjali Mehta",
+      position: "Managing Partner",
+      hotel: "Millennial Nest",
+      location: "Goregaon, Mumbai",
+      brand: "OYO Townhouse",
+      image:
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80",
+      quote:
+        "Our property was struggling to attract the younger demographic until we converted to OYO Townhouse. The community spaces, in-room technology, and signature café have transformed our business completely. The self-operated model ensures consistent guest experience.",
+      rating: 5,
+    },
+    {
+      name: "Rohan Kapoor",
+      position: "Owner",
+      hotel: "Serene Retreat",
+      location: "Palghar, Mumbai Region",
+      brand: "OYO Palette",
+      image:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80",
+      quote:
+        "Converting our resort to OYO Palette has given us a distinct identity in the premium leisure segment. The unique dining experiences and stylish spaces have attracted high-value customers. The self-operated model allows us to maintain our resort's character while benefiting from OYO's reach.",
+      rating: 5,
     },
   ];
 
   const handleDotClick = (index: number) => {
     setActiveIndex(index);
+  };
+
+  const handleNext = () => {
+    setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+  };
+
+  const handlePrev = () => {
+    setActiveIndex((prevIndex) => 
+      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+    );
   };
 
   const renderStars = (rating: number) => {
@@ -79,10 +125,10 @@ const TestimonialsSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className={`text-center max-w-2xl mx-auto mb-16 ${animationClass}`}>
           <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 text-[#d4af37]">
-            What Hoteliers Say
+            Mumbai Success Stories
           </h2>
           <p className="text-lg text-gray-300 font-montserrat">
-            Hear from our partners who have experienced the OYO Premium advantage.
+            Hear from our Mumbai partners who have experienced the OYO self-operated brand advantage
           </p>
           <div className="h-1 w-40 gold-gradient mx-auto mt-8 rounded-full"></div>
         </div>
@@ -92,31 +138,57 @@ const TestimonialsSection = () => {
           <div id="testimonial-carousel" className={`relative ${animationClass} delay-200`}>
             {/* Current Testimonial */}
             <div className="testimonial-slide glass-effect rounded-xl p-8 shadow-2xl">
-              <div className="flex items-center mb-6">
-                <div className="w-20 h-20 rounded-full overflow-hidden mr-4">
+              <div className="flex flex-col md:flex-row md:items-center mb-6">
+                <div className="w-20 h-20 rounded-full overflow-hidden mb-4 md:mb-0 md:mr-4 mx-auto md:mx-0">
                   <img
                     src={testimonials[activeIndex].image}
                     alt={testimonials[activeIndex].name}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div>
+                <div className="text-center md:text-left">
                   <h3 className="text-xl font-bold text-white font-playfair">
                     {testimonials[activeIndex].name}
                   </h3>
-                  <p className="text-[#d4af37] font-montserrat">
-                    {testimonials[activeIndex].position}
+                  <p className="text-gray-300 font-montserrat text-sm">
+                    {testimonials[activeIndex].position}, {testimonials[activeIndex].hotel}
                   </p>
+                  <div className="flex items-center mt-1 justify-center md:justify-start">
+                    <span className="text-[#d4af37] font-montserrat text-sm font-semibold mr-2">
+                      {testimonials[activeIndex].brand}
+                    </span>
+                    <span className="text-gray-400 font-montserrat text-xs">
+                      • {testimonials[activeIndex].location}
+                    </span>
+                  </div>
                 </div>
-                <div className="ml-auto text-[#d4af37]">
+                <div className="ml-auto text-[#d4af37] hidden md:block">
                   <i className="fas fa-quote-right text-4xl opacity-50"></i>
                 </div>
               </div>
-              <p className="text-gray-300 font-montserrat text-lg italic mb-6">
+              <p className="text-gray-300 font-montserrat text-lg italic mb-6 border-l-4 border-[#d4af37] pl-4">
                 "{testimonials[activeIndex].quote}"
               </p>
-              <div className="flex text-[#d4af37]">
-                {renderStars(testimonials[activeIndex].rating)}
+              <div className="flex justify-between items-center">
+                <div className="flex text-[#d4af37]">
+                  {renderStars(testimonials[activeIndex].rating)}
+                </div>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={handlePrev}
+                    className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#d4af37] flex items-center justify-center text-[#d4af37] transition-all hover:bg-[#d4af37] hover:text-[#0f172a]"
+                    aria-label="Previous testimonial"
+                  >
+                    <i className="fas fa-chevron-left"></i>
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    className="w-10 h-10 rounded-full bg-[#0f172a] border border-[#d4af37] flex items-center justify-center text-[#d4af37] transition-all hover:bg-[#d4af37] hover:text-[#0f172a]"
+                    aria-label="Next testimonial"
+                  >
+                    <i className="fas fa-chevron-right"></i>
+                  </button>
+                </div>
               </div>
             </div>
 

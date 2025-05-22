@@ -44,13 +44,13 @@ const HeroSection = () => {
         <div className="text-center max-w-4xl mx-auto">
           <div className="mb-4 inline-block animate-fade-in">
             <span className="text-4xl md:text-6xl font-playfair font-bold text-[#d4af37] tracking-wider">OYO</span>
-            <span className="text-3xl md:text-5xl font-playfair font-semibold text-white ml-2">Premium</span>
+            <span className="text-3xl md:text-5xl font-playfair font-semibold text-white ml-2">Self-Operated Brands</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-playfair font-bold mb-6 text-white leading-tight animate-fade-in delay-200">
-            Luxury Redefined
+            Mumbai's Premium Hotel Collection
           </h1>
           <p className="text-xl md:text-2xl font-montserrat text-gray-200 mb-10 animate-fade-in delay-400">
-            Experience unparalleled luxury with OYO Premium hotels and maximize your revenue potential.
+            Discover OYO's exclusive self-operated hotel brands designed for luxury, comfort, and exceptional experiences
           </p>
           <div className="flex flex-col md:flex-row justify-center gap-4 animate-fade-in delay-600">
             <button
@@ -63,7 +63,7 @@ const HeroSection = () => {
               onClick={scrollToContact}
               className="px-8 py-4 border-2 border-white text-white font-montserrat font-semibold rounded-full transition-all hover:bg-white hover:text-[#0f172a]"
             >
-              Contact Us
+              Partner With Us
             </button>
           </div>
         </div>
