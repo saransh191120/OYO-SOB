@@ -37,14 +37,14 @@ const BrandCard = ({
         />
       </div>
       <div className="p-4 sm:p-6 flex-grow">
-        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#d4af37] flex items-center justify-center mb-3 sm:mb-4">
-          <i className={`${icon} text-[#0f172a] text-lg sm:text-xl`}></i>
+        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-[#cc0000] to-[#990000] flex items-center justify-center mb-3 sm:mb-4 shadow-lg shadow-[#cc0000]/50">
+          <i className={`${icon} text-white text-lg sm:text-xl animate-pulse`}></i>
         </div>
-        <h3 className="text-xl sm:text-2xl font-playfair font-bold text-white mb-1 sm:mb-2">
+        <h3 className="text-xl sm:text-2xl font-playfair font-bold text-white mb-1 sm:mb-2 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
           {title}
         </h3>
-        <p className="text-[#d4af37] font-montserrat text-xs sm:text-sm mb-2 sm:mb-3 italic">{tagline}</p>
-        <p className="text-gray-300 font-montserrat text-sm mb-3 sm:mb-4">{description}</p>
+        <p className="text-[#cc0000] font-montserrat text-xs sm:text-sm mb-2 sm:mb-3 italic font-semibold animate-blood-glow">{tagline}</p>
+        <p className="text-white font-montserrat text-sm mb-3 sm:mb-4">{description}</p>
         
         <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-700">
           <p className="text-white font-montserrat text-xs sm:text-sm mb-1 font-bold">Target Audience:</p>
@@ -152,14 +152,14 @@ const FeaturesSection = () => {
     >
       <div className="container mx-auto px-4">
         <div className={`text-center max-w-2xl mx-auto px-4 mb-12 md:mb-16 ${headerAnimation}`}>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold mb-4 md:mb-6 text-[#d4af37]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold mb-4 md:mb-6 text-[#cc0000] animate-blood-glow drop-shadow-[0_3px_3px_rgba(0,0,0,0.8)]">
             Self-Operated Hotel Brands
           </h2>
-          <p className="text-base md:text-lg text-gray-300 font-montserrat">
+          <p className="text-base md:text-lg text-white font-montserrat">
             Discover OYO's diverse portfolio of self-operated hotel brands in Mumbai,
             each designed to cater to specific customer preferences and needs.
           </p>
-          <div className="h-1 w-32 md:w-40 gold-gradient mx-auto mt-6 md:mt-8 rounded-full"></div>
+          <div className="h-1 w-32 md:w-40 bg-gradient-to-r from-[#660000] via-[#cc0000] to-[#660000] mx-auto mt-6 md:mt-8 rounded-full animate-pulse"></div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
