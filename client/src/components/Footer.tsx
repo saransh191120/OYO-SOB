@@ -48,7 +48,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center justify-center md:justify-start">
                 <i className="fas fa-map-marker-alt text-[#990000] mr-2"></i>
-                <span>Mumbai Partner Center, Andheri East</span>
+                <span>OYO Hotels and Homes India Pvt. Ltd., 7th Floor, Building No.11, Solitaire corporate park, Chakala, Andheri East, Maharashtra, India</span>
               </li>
             </ul>
           </div>
