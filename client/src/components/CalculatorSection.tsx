@@ -412,7 +412,7 @@ const CalculatorSection = () => {
     <section
       id="calculator"
       ref={ref}
-      className="min-h-screen py-20 relative"
+      className="min-h-screen py-16 md:py-20 relative"
     >
       {/* Background Image */}
       <div
@@ -423,6 +423,8 @@ const CalculatorSection = () => {
           opacity: 0.2,
         }}
       ></div>
+      {/* Gradient overlay for better text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a]/70 to-[#0f172a]/70"></div>
 
       {/* Error Message */}
       <div
@@ -488,7 +490,7 @@ const CalculatorSection = () => {
             {/* Calculator Form */}
             <form
               id="calculatorForm"
-              className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8"
               onSubmit={(e) => {
                 e.preventDefault();
                 calculateRevenue();
@@ -646,10 +648,10 @@ const CalculatorSection = () => {
                 Download a detailed PDF report of your revenue calculation for future reference.
               </p>
               
-              <div className="flex justify-center">
+              <div className="flex justify-center mt-2">
                 <button
                   onClick={() => generatePDF()}
-                  className="px-8 py-4 bg-[#d4af37] text-[#0f172a] font-bold rounded-lg transition-all hover:bg-opacity-90 font-montserrat flex items-center"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[#d4af37] text-[#0f172a] font-bold rounded-lg transition-all hover:bg-opacity-90 font-montserrat flex items-center justify-center"
                 >
                   <i className="fas fa-file-pdf mr-2 text-lg"></i>Download PDF Report
                 </button>
