@@ -150,7 +150,7 @@ const CalculatorSection = () => {
     }
   };
   
-  // Function to generate and download PDF report of calculation with luxury styling
+  // Function to generate and download PDF report of calculation with clean styling
   const generatePDF = () => {
     if (!results.totalRevenue) {
       toast({
@@ -171,344 +171,177 @@ const CalculatorSection = () => {
       const pageWidth = doc.internal.pageSize.getWidth();
       const pageHeight = doc.internal.pageSize.getHeight();
       
-      // Add black header and footer background for luxury feel
-      doc.setFillColor(0, 0, 0);
+      // Clean white background
+      doc.setFillColor(255, 255, 255);
       doc.rect(0, 0, pageWidth, pageHeight, 'F');
       
-      // Add decorative border
-      const borderMargin = 10;
-      const borderWidth = 1;
+      // Simple header with brand color
+      doc.setFillColor(255, 51, 51); // OYO Red
+      doc.rect(0, 0, pageWidth, 25, 'F');
       
-      // Gold border (simulated with yellow)
-      doc.setDrawColor(218, 165, 32); // Gold color
-      doc.setLineWidth(borderWidth);
-      doc.rect(
-        borderMargin, 
-        borderMargin, 
-        pageWidth - (2 * borderMargin), 
-        pageHeight - (2 * borderMargin), 
-        'S'
-      );
-      
-      // Inner white content area
-      doc.setFillColor(255, 255, 255);
-      doc.rect(
-        borderMargin + 3, 
-        borderMargin + 3, 
-        pageWidth - (2 * (borderMargin + 3)), 
-        pageHeight - (2 * (borderMargin + 3)), 
-        'F'
-      );
-      
-      // Add OYO logo/header
-      doc.setFillColor(255, 51, 51); // OYO Red background
-      doc.rect(borderMargin + 3, borderMargin + 3, pageWidth - (2 * (borderMargin + 3)), 35, 'F');
-      
-      // Add pattern to header for luxury feel
-      for (let i = 0; i < pageWidth - 20; i += 4) {
-        doc.setDrawColor(190, 30, 30); // Darker red
-        doc.setLineWidth(0.2);
-        doc.line(borderMargin + 5 + i, borderMargin + 3, borderMargin + 5 + i, borderMargin + 38);
-      }
-      
-      // Header content
-      doc.setTextColor(255, 255, 255); // White text
+      // Header content - logo and title
+      doc.setTextColor(255, 255, 255);
       doc.setFont("helvetica", "bold");
-      doc.setFontSize(24);
-      doc.text("OYO Hotels and Homes Pvt. Ltd", pageWidth / 2, borderMargin + 20, { align: "center" });
-      
-      doc.setFontSize(14);
-      doc.text("Revenue Calculator Results", pageWidth / 2, borderMargin + 30, { align: "center" });
-      
-      // Add calculation date
-      doc.setTextColor(100, 100, 100);
-      doc.setFontSize(10);
-      doc.setFont("helvetica", "italic");
-      const today = new Date().toLocaleDateString('en-IN', { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-      });
-      doc.text(`Generated on ${today}`, pageWidth - 20, borderMargin + 45, { align: "right" });
-      
-      // Define consistent margins and spacing for content
-      const contentStartY = borderMargin + 55;
-      const leftMargin = 20;
-      const rightColumnX = 95;
-      const lineSpacing = 8;
-      
-      // Brand information with decorative elements
-      const selectedBrand = brands.find(brand => brand.id === formData.selectedBrand);
-      
-      // Decorative line above brand info
-      doc.setDrawColor(218, 165, 32); // Gold color
-      doc.setLineWidth(0.5);
-      doc.line(leftMargin, contentStartY - 5, pageWidth - leftMargin, contentStartY - 5);
-      
-      // Brand information section with proper spacing
-      doc.setTextColor(0, 0, 0);
       doc.setFontSize(16);
-      doc.setFont("helvetica", "bold");
-      doc.text(`Selected Brand: ${selectedBrand?.name || "OYO Brand"}`, leftMargin, contentStartY);
+      doc.text("OYO Hotels and Homes", 10, 10);
       
       doc.setFontSize(12);
-      doc.setTextColor(80, 80, 80);
-      doc.text(`Revenue Share: ${selectedBrand?.revSharePercentage || 0}%`, pageWidth - 20, contentStartY, { align: "right" });
+      doc.text("Revenue Calculator Results", 10, 18);
       
-      // Decorative line below brand info
-      doc.setDrawColor(218, 165, 32);
+      // Add calculation date on the right
+      const today = new Date().toLocaleDateString('en-IN', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      doc.setFontSize(10);
+      doc.setFont("helvetica", "normal");
+      doc.text(`Generated: ${today}`, pageWidth - 10, 18, { align: "right" });
+      
+      // Define consistent spacing
+      let y = 35; // Start Y position after header
+      const leftMargin = 15;
+      const rightColumnX = 85;
+      const rowHeight = 10;
+      const sectionGap = 15;
+      
+      // Selected Brand Information
+      const selectedBrand = brands.find(brand => brand.id === formData.selectedBrand);
+      
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "bold");
+      doc.text("Selected Brand", leftMargin, y);
+      
+      // Add a separator line
+      doc.setDrawColor(220, 220, 220);
       doc.setLineWidth(0.5);
-      doc.line(leftMargin, contentStartY + 5, pageWidth - leftMargin, contentStartY + 5);
+      doc.line(leftMargin, y + 5, pageWidth - leftMargin, y + 5);
       
-      // Add hotel details section
-      let y = contentStartY + 20;
+      y += 15;
       
-      // Section header with luxurious styling
-      doc.setFillColor(240, 240, 240); // Light gray background
-      doc.rect(leftMargin - 5, y - 5, pageWidth - 2 * (leftMargin - 5), 10, 'F');
+      // Brand info in single row
+      doc.setFontSize(12);
+      doc.setFont("helvetica", "bold");
+      doc.text(selectedBrand?.name || "OYO Brand", leftMargin, y);
       
-      doc.setTextColor(255, 51, 51); // OYO Red
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(10);
+      doc.text(`Revenue Share: ${selectedBrand?.revSharePercentage || 0}%`, pageWidth - leftMargin, y, { align: "right" });
+      
+      // Hotel Information Section
+      y += sectionGap;
+      
       doc.setFontSize(14);
       doc.setFont("helvetica", "bold");
       doc.text("Hotel Information", leftMargin, y);
       
-      // Add a decorative line for the section header
-      doc.setDrawColor(255, 51, 51); // OYO Red
+      doc.setDrawColor(220, 220, 220);
       doc.setLineWidth(0.5);
       doc.line(leftMargin, y + 5, pageWidth - leftMargin, y + 5);
       
-      // Details section with consistent formatting and elegant layout
-      doc.setTextColor(0, 0, 0);
-      doc.setFontSize(11);
-      
-      // Setting the base Y position for hotel details
       y += 15;
       
-      // Create a two-column layout for details with luxurious styling
-      // For each row, add subtle background for alternating rows
+      // Create a simple, clean table for hotel details
+      const drawTableRow = (label: string, value: string, isFirst: boolean = false) => {
+        if (!isFirst) {
+          y += rowHeight;
+        }
+        
+        doc.setFontSize(10);
+        doc.setFont("helvetica", "bold");
+        doc.text(label, leftMargin, y);
+        
+        doc.setFont("helvetica", "normal");
+        doc.text(value, rightColumnX, y);
+      };
       
-      // Row 1 - Number of Rooms
-      doc.setFillColor(248, 248, 248);
-      doc.rect(leftMargin - 5, y - 5, pageWidth - 2 * (leftMargin - 5), 10, 'F');
+      // Hotel details in clear, properly spaced rows
+      drawTableRow("Number of Rooms:", `${formData.numberOfRooms}`, true);
+      drawTableRow("Room Rate:", `₹ ${formData.roomRate.toLocaleString('en-IN')}`);
+      drawTableRow("Stay Duration:", `${formData.stayDuration} days`);
+      drawTableRow("Occupancy Rate:", `${formData.occupancyRate}%`);
       
-      doc.setFont("helvetica", "bold");
-      doc.text("Number of Rooms:", leftMargin, y);
-      doc.setFont("helvetica", "normal");
-      doc.text(`${formData.numberOfRooms}`, rightColumnX, y);
+      // Calculate values for results section
+      const totalSellableRoomNights = Number(formData.numberOfRooms || 0) * Number(formData.stayDuration || 0);
+      const occupiedRoomNights = totalSellableRoomNights * (Number(formData.occupancyRate || 0) / 100);
+      const totalRevenue = occupiedRoomNights * Number(formData.roomRate || 0);
+      const revShare = totalRevenue * (selectedBrand?.revSharePercentage || 0) / 100;
       
-      // Row 2 - Room Rate
-      y += lineSpacing * 3;
-      
-      doc.setFillColor(255, 255, 255); // White for alternating row
-      doc.rect(leftMargin - 5, y - 5, pageWidth - 2 * (leftMargin - 5), 10, 'F');
-      
-      doc.setFont("helvetica", "bold");
-      doc.text("Room Rate:", leftMargin, y);
-      doc.setFont("helvetica", "normal");
-      doc.text(`₹ ${formData.roomRate.toLocaleString('en-IN')}`, rightColumnX, y);
-      
-      // Row 3 - Stay Duration
-      y += lineSpacing * 3;
-      
-      doc.setFillColor(248, 248, 248);
-      doc.rect(leftMargin - 5, y - 5, pageWidth - 2 * (leftMargin - 5), 10, 'F');
-      
-      doc.setFont("helvetica", "bold");
-      doc.text("Stay Duration:", leftMargin, y);
-      doc.setFont("helvetica", "normal");
-      doc.text(`${formData.stayDuration} days`, rightColumnX, y);
-      
-      // Row 4 - Occupancy Rate
-      y += lineSpacing * 3;
-      
-      doc.setFillColor(255, 255, 255);
-      doc.rect(leftMargin - 5, y - 5, pageWidth - 2 * (leftMargin - 5), 10, 'F');
-      
-      doc.setFont("helvetica", "bold");
-      doc.text("Occupancy Rate:", leftMargin, y);
-      doc.setFont("helvetica", "normal");
-      doc.text(`${formData.occupancyRate}%`, rightColumnX, y);
-      
-      // Add results section with luxury styling
-      y += lineSpacing * 5;
-      
-      // Section header with luxury styling
-      doc.setFillColor(240, 240, 240);
-      doc.rect(leftMargin - 5, y - 5, pageWidth - 2 * (leftMargin - 5), 10, 'F');
-      
-      doc.setTextColor(255, 51, 51); // OYO Red
-      doc.setFontSize(14);
-      doc.setFont("helvetica", "bold");
-      doc.text("Revenue Analysis", leftMargin, y);
-      
-      // Add a separator line
-      doc.setDrawColor(255, 51, 51); // OYO Red
-      doc.line(leftMargin, y + 5, pageWidth - leftMargin, y + 5);
-      
-      // Format number function with luxury styling
+      // Format currency for display
       const formatCurrencyForPDF = (amount: string | number): string => {
         if (typeof amount === 'string') {
-          // Clean the string first
           amount = amount.replace(/[^\d.,]/g, '');
           amount = parseFloat(amount);
         }
         
-        // Format with thousand separators
         return new Intl.NumberFormat('en-IN', {
           maximumFractionDigits: 2,
           minimumFractionDigits: 2
         }).format(amount);
       };
       
-      // Results section with consistent spacing and luxury styling
-      y += lineSpacing * 3;
+      // Results Section
+      y += sectionGap;
       
-      // Calculate the actual values directly to ensure accuracy
-      const totalSellableRoomNights = Number(formData.numberOfRooms || 0) * Number(formData.stayDuration || 0);
-      const occupiedRoomNights = totalSellableRoomNights * (Number(formData.occupancyRate || 0) / 100);
-      const totalRevenue = occupiedRoomNights * Number(formData.roomRate || 0);
-      const revShare = totalRevenue * (selectedBrand?.revSharePercentage || 0) / 100;
-      
-      // Row 1 - Total Sellable Rooms
-      doc.setFillColor(248, 248, 248);
-      doc.rect(leftMargin - 5, y - 5, pageWidth - 2 * (leftMargin - 5), 10, 'F');
-      
-      doc.setTextColor(0, 0, 0);
-      doc.setFontSize(11);
-      doc.setFont("helvetica", "bold");
-      doc.text("Total Sellable Rooms:", leftMargin, y);
-      doc.setFont("helvetica", "normal");
-      doc.text(`${totalSellableRoomNights} rooms`, rightColumnX, y);
-      
-      // Row 2 - Total Revenue with elegant formatting
-      y += lineSpacing * 3;
-      
-      doc.setFillColor(255, 255, 255);
-      doc.rect(leftMargin - 5, y - 5, pageWidth - 2 * (leftMargin - 5), 10, 'F');
-      
-      doc.setFont("helvetica", "bold");
-      doc.text("Total Revenue:", leftMargin, y);
-      doc.setFont("helvetica", "normal");
-      doc.text(`₹ ${formatCurrencyForPDF(totalRevenue)}`, rightColumnX, y);
-      
-      // Row 3 - Occupancy info
-      y += lineSpacing * 3;
-      
-      doc.setFillColor(248, 248, 248);
-      doc.rect(leftMargin - 5, y - 5, pageWidth - 2 * (leftMargin - 5), 10, 'F');
-      
-      doc.setFont("helvetica", "bold");
-      doc.text("Occupancy Information:", leftMargin, y);
-      doc.setFont("helvetica", "normal");
-      doc.text(`Based on ${formData.occupancyRate}% occupancy rate`, rightColumnX, y);
-      
-      // Revenue share box - with luxury styling
-      y += lineSpacing * 5;
-      
-      // Calculate safe position for the box to not overlap with footer
-      const boxHeight = 30;
-      const boxY = Math.min(y, pageHeight - 45 - boxHeight);
-      
-      // Elegant gradient effect using multiple rectangles with decreasing opacity
-      const gradientSteps = 5;
-      for (let i = 0; i < gradientSteps; i++) {
-        const opacity = 0.1 + (i * 0.1);
-        doc.setFillColor(255, 51, 51, opacity);
-        const padding = (gradientSteps - i);
-        doc.roundedRect(
-          leftMargin - padding, 
-          boxY - padding, 
-          pageWidth - 2 * (leftMargin - padding), 
-          boxHeight + (2 * padding), 
-          3, 3, 'F'
-        );
-      }
-      
-      // Main box for revenue share
-      doc.setFillColor(255, 245, 245);
-      doc.roundedRect(leftMargin, boxY, pageWidth - 2 * leftMargin, boxHeight, 3, 3, 'F');
-      
-      doc.setDrawColor(255, 51, 51);
-      doc.setLineWidth(1);
-      doc.roundedRect(leftMargin, boxY, pageWidth - 2 * leftMargin, boxHeight, 3, 3, 'S');
-      
-      // Decorative pattern inside the box
-      for (let i = 0; i < 10; i++) {
-        const patternY = boxY + (i * 3);
-        if (patternY < boxY + boxHeight) {
-          doc.setDrawColor(255, 51, 51, 0.1);
-          doc.setLineWidth(0.5);
-          doc.line(leftMargin + 5, patternY, pageWidth - leftMargin - 5, patternY);
-        }
-      }
-      
-      // Revenue share text with elegant styling
-      doc.setTextColor(255, 51, 51);
       doc.setFontSize(14);
       doc.setFont("helvetica", "bold");
-      doc.text("Your Revenue Share:", leftMargin + 5, boxY + boxHeight/2);
+      doc.text("Results", leftMargin, y);
       
-      // Format and display revenue share with large, elegant font
-      doc.setFontSize(16);
-      doc.text(`₹ ${formatCurrencyForPDF(revShare)}`, pageWidth - leftMargin - 5, boxY + boxHeight/2, { align: "right" });
+      doc.setDrawColor(220, 220, 220);
+      doc.setLineWidth(0.5);
+      doc.line(leftMargin, y + 5, pageWidth - leftMargin, y + 5);
       
-      // Safe footer placement - ensure no overlap with content
-      const footerY = pageHeight - 25;
+      y += 15;
       
-      // Add decorative line above footer
-      doc.setDrawColor(218, 165, 32); // Gold color
+      // Results in clean table format
+      drawTableRow("Total Sellable Rooms:", `${totalSellableRoomNights} rooms`, true);
+      drawTableRow("Total Revenue:", `₹ ${formatCurrencyForPDF(totalRevenue)}`);
+      drawTableRow("Occupancy Information:", `Based on ${formData.occupancyRate}% occupancy rate`);
+      
+      // Highlight Revenue Share in a simple box
+      y += 20;
+      
+      // Simple box with brand color border
+      doc.setDrawColor(255, 51, 51);
+      doc.setLineWidth(1);
+      doc.roundedRect(leftMargin, y - 5, pageWidth - (2 * leftMargin), 20, 3, 3, 'S');
+      
+      // Revenue share text
+      doc.setTextColor(255, 51, 51);
+      doc.setFontSize(12);
+      doc.setFont("helvetica", "bold");
+      doc.text("Your Revenue Share:", leftMargin + 5, y + 5);
+      
+      doc.setFontSize(12);
+      doc.text(`₹ ${formatCurrencyForPDF(revShare)}`, pageWidth - leftMargin - 5, y + 5, { align: "right" });
+      
+      // Simple footer
+      const footerY = pageHeight - 15;
+      
+      doc.setDrawColor(220, 220, 220);
       doc.setLineWidth(0.5);
       doc.line(leftMargin, footerY - 5, pageWidth - leftMargin, footerY - 5);
       
-      // Footer with luxury styling
-      doc.setFillColor(0, 0, 0); // Black background
-      doc.rect(0, footerY, pageWidth, 25, 'F');
-      
-      // Add pattern to footer for luxury feel
-      for (let i = 0; i < pageWidth; i += 10) {
-        doc.setDrawColor(50, 50, 50);
-        doc.setLineWidth(0.2);
-        doc.line(i, footerY, i + 5, footerY + 25);
-      }
-      
-      // Footer text
-      doc.setTextColor(255, 255, 255);
-      doc.setFontSize(10);
-      doc.setFont("helvetica", "normal");
-      doc.text("OYO Hotels and Homes Pvt. Ltd - Self-Operated Business (SOB)", pageWidth / 2, footerY + 10, { align: "center" });
-      
-      // Decorative logo or trademark in footer
+      doc.setTextColor(100, 100, 100);
       doc.setFontSize(8);
-      doc.text("© 2025 - Premium Luxury Hotels", pageWidth / 2, footerY + 18, { align: "center" });
+      doc.setFont("helvetica", "normal");
+      doc.text("OYO Hotels and Homes Pvt. Ltd - Self-Operated Business", pageWidth / 2, footerY, { align: "center" });
+      doc.text("© 2025 - Premium Hotels", pageWidth / 2, footerY + 5, { align: "center" });
       
-      // Decorative corner elements for luxury feel
-      const cornerSize = 15;
-      
-      // Top left corner
-      doc.setDrawColor(218, 165, 32);
-      doc.setLineWidth(1);
-      doc.line(borderMargin, borderMargin, borderMargin + cornerSize, borderMargin);
-      doc.line(borderMargin, borderMargin, borderMargin, borderMargin + cornerSize);
-      
-      // Top right corner
-      doc.line(pageWidth - borderMargin, borderMargin, pageWidth - borderMargin - cornerSize, borderMargin);
-      doc.line(pageWidth - borderMargin, borderMargin, pageWidth - borderMargin, borderMargin + cornerSize);
-      
-      // Bottom corners are inside the footer, so no need to draw them
-      
-      // Save the PDF with a premium name
-      doc.save("OYO_Premium_Revenue_Analysis.pdf");
+      // Save the PDF with a clear name
+      doc.save("OYO_Revenue_Analysis.pdf");
       
       toast({
-        title: "Premium PDF Generated",
-        description: "Your luxury revenue analysis report has been downloaded.",
+        title: "PDF Generated",
+        description: "Your revenue analysis report has been downloaded.",
         variant: "default"
       });
     } catch (error) {
       console.error("Error generating PDF:", error);
       toast({
         title: "PDF Generation Failed",
-        description: "There was an error creating your premium PDF. Please try again.",
+        description: "There was an error creating your PDF. Please try again.",
         variant: "destructive"
       });
     }
