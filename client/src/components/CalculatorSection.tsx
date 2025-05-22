@@ -879,7 +879,7 @@ const CalculatorSection = () => {
               <div className={`rounded-lg glass-effect p-4 text-center transform transition-transform hover:scale-105 ${!isLoading ? "calculator-reveal" : "opacity-0"}`} style={{animationDelay: '600ms'}}>
                 <div className="relative">
                   <h4 className="text-[#cc0000] font-montserrat text-sm mb-1 uppercase tracking-wider animate-blood-glow">
-                    Total Revenue Generated
+                    Monthly Revenue Generated (approx)
                   </h4>
                   <p
                     id="totalRevenue"
