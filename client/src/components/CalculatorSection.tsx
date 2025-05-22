@@ -40,6 +40,18 @@ interface SavedCalculation {
 
 const CalculatorSection = () => {
   const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(true);
+  
+  // Loading effect for a luxurious experience
+  useEffect(() => {
+    // Simulate loading data with a short delay for smooth transition
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 800);
+    
+    return () => clearTimeout(timer);
+  }, []);
+  
   const brands: BrandData[] = [
     {
       id: "sunday",
@@ -464,6 +476,21 @@ const CalculatorSection = () => {
       ></div>
       {/* Gradient overlay for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0000]/90 to-[#0a0000]/95"></div>
+      
+      {/* Loading Animation */}
+      {isLoading && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center z-40 bg-[#0a0000]/90">
+          <div className="text-3xl text-[#cc0000] font-playfair mb-4 animate-blood-glow">
+            Loading Calculator
+          </div>
+          <div className="w-64 mb-8">
+            <div className="calculator-loader"></div>
+          </div>
+          <div className="text-white text-sm opacity-70">
+            Preparing your luxury experience...
+          </div>
+        </div>
+      )}
 
       {/* Error Message */}
       <div
@@ -479,7 +506,7 @@ const CalculatorSection = () => {
       </div>
 
       <div className="container mx-auto px-4 pt-16 relative z-10">
-        <div className={`text-center max-w-2xl mx-auto mb-16 ${animationClass}`}>
+        <div className={`text-center max-w-2xl mx-auto mb-16 ${animationClass} ${!isLoading ? "calculator-reveal" : "opacity-0"}`} style={{animationDelay: '100ms'}}>
           <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 text-[#cc0000] relative inline-block">
             <span className="relative z-10 animate-blood-glow">SOB Revenue Calculator</span>
             <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#660000]/30 via-[#990000]/50 to-[#660000]/30 -z-10 transform -skew-x-12"></span>
@@ -492,7 +519,7 @@ const CalculatorSection = () => {
 
         {/* Calculator Card */}
         <div className="max-w-4xl mx-auto">
-          <div className={`rounded-xl glass-effect p-8 md:p-10 shadow-2xl ${animationClass} delay-200 relative overflow-hidden`}>
+          <div className={`rounded-xl glass-effect p-8 md:p-10 shadow-2xl ${animationClass} ${!isLoading ? "calculator-reveal" : "opacity-0"} relative overflow-hidden`} style={{animationDelay: '300ms'}}>
             <div className="text-center mb-8 relative z-10">
               <div className="inline-block bg-gradient-to-r from-[#660000] to-[#990000] px-6 py-3 rounded-md text-white text-2xl font-bold mb-3 font-playfair transform hover:scale-105 transition-transform duration-300 animate-pulse-red">
                 <span className="animate-blood-glow">OYO</span>
@@ -622,7 +649,7 @@ const CalculatorSection = () => {
 
             {/* Result Display */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div className="rounded-lg glass-effect p-4 text-center transform transition-transform hover:scale-105">
+              <div className={`rounded-lg glass-effect p-4 text-center transform transition-transform hover:scale-105 ${!isLoading ? "calculator-reveal" : "opacity-0"}`} style={{animationDelay: '500ms'}}>
                 <div className="relative">
                   <h4 className="text-[#cc0000] font-montserrat text-sm mb-1 uppercase tracking-wider animate-blood-glow">
                     Total Sellable Room Nights
@@ -637,7 +664,7 @@ const CalculatorSection = () => {
                 </div>
               </div>
 
-              <div className="rounded-lg glass-effect p-4 text-center transform transition-transform hover:scale-105">
+              <div className={`rounded-lg glass-effect p-4 text-center transform transition-transform hover:scale-105 ${!isLoading ? "calculator-reveal" : "opacity-0"}`} style={{animationDelay: '600ms'}}>
                 <div className="relative">
                   <h4 className="text-[#cc0000] font-montserrat text-sm mb-1 uppercase tracking-wider animate-blood-glow">
                     Total Revenue Generated
@@ -659,7 +686,7 @@ const CalculatorSection = () => {
               </div>
             </div>
 
-            <div className="rounded-lg glass-effect p-6 mb-8 text-center relative overflow-hidden group">
+            <div className={`rounded-lg glass-effect p-6 mb-8 text-center relative overflow-hidden group ${!isLoading ? "calculator-reveal" : "opacity-0"}`} style={{animationDelay: '700ms'}}>
               <div className="absolute inset-0 bg-gradient-to-r from-[#660000]/10 via-[#990000]/15 to-[#660000]/10 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
               <h4 className="text-xl font-semibold text-white mb-3 font-playfair relative z-10 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
                 Your Revenue Share <span className="text-[#cc0000] animate-blood-glow">({currentBrand.revSharePercentage}%)</span>
@@ -673,7 +700,7 @@ const CalculatorSection = () => {
               <div className="h-1 w-32 mx-auto mt-4 bg-gradient-to-r from-[#660000] via-[#990000] to-[#660000] rounded-full"></div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+            <div className={`flex flex-col sm:flex-row gap-4 justify-center mb-6 ${!isLoading ? "calculator-reveal" : "opacity-0"}`} style={{animationDelay: '800ms'}}>
               <button
                 id="calculateBtn"
                 onClick={calculateRevenue}
@@ -691,7 +718,7 @@ const CalculatorSection = () => {
             </div>
             
             {/* PDF Generation Section */}
-            <div className="mt-8 pt-6 border-t border-[#990000]/30">
+            <div className={`mt-8 pt-6 border-t border-[#990000]/30 ${!isLoading ? "calculator-reveal" : "opacity-0"}`} style={{animationDelay: '900ms'}}>
               <h4 className="text-xl font-semibold text-white mb-4 font-playfair text-center relative inline-block">
                 <span className="relative z-10 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">Save Your Calculation</span>
                 <span className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-[#660000]/30 via-[#990000]/50 to-[#660000]/30"></span>
