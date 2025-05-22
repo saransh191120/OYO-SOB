@@ -56,42 +56,42 @@ const CalculatorSection = () => {
     {
       id: "sunday",
       name: "Sunday Hotels",
-      revSharePercentage: 45,
+      revSharePercentage: 55,
       defaultRate: 4500,
       description: "Premium 5-star luxury hotel chain"
     },
     {
       id: "palette",
       name: "OYO Palette",
-      revSharePercentage: 42,
+      revSharePercentage: 52,
       defaultRate: 3800,
       description: "Premium self-operated upscale resorts"
     },
     {
       id: "clubhouse",
       name: "OYO Clubhouse",
-      revSharePercentage: 40,
+      revSharePercentage: 48,
       defaultRate: 3200,
       description: "Resort-style self-operated hotels"
     },
     {
       id: "townhouse",
       name: "OYO Townhouse",
-      revSharePercentage: 38,
+      revSharePercentage: 45,
       defaultRate: 2800,
       description: "Premium neighborhood hotels for millennials"
     },
     {
       id: "townhouse-oak",
       name: "OYO Townhouse Oak",
-      revSharePercentage: 40,
+      revSharePercentage: 47,
       defaultRate: 3000,
       description: "Upscale version of the Townhouse concept"
     },
     {
       id: "collection-o",
       name: "OYO Collection O",
-      revSharePercentage: 35,
+      revSharePercentage: 40,
       defaultRate: 2200,
       description: "Business hotels with standard amenities"
     }
@@ -705,7 +705,7 @@ const CalculatorSection = () => {
                 </h4>
                 
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 mb-4 border border-[#cc0000]/50">
-                  <span className="text-[#cc0000] text-xl font-bold animate-blood-glow">({currentBrand.revSharePercentage}%)</span>
+                  <span className="text-white text-xl font-bold animate-blood-glow">({currentBrand.revSharePercentage}%)</span>
                 </div>
                 
                 <div className="bg-gradient-to-r from-[#cc0000] to-[#ff0000] rounded-xl p-6 shadow-2xl border-2 border-white/20">
