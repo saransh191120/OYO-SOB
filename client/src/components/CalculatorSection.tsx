@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useInView } from "./ScrollToTop";
+import { useToast } from "@/hooks/use-toast";
 
 interface CalculatorFormData {
   roomRate: number;
@@ -24,7 +25,20 @@ interface BrandData {
   description: string;
 }
 
+interface SavedCalculation {
+  id: number;
+  brandId: string;
+  roomRate: number;
+  stayDuration: number;
+  numberOfRooms: number;
+  occupancyRate: number;
+  totalRevenue: number;
+  revShare: number;
+  createdAt: string;
+}
+
 const CalculatorSection = () => {
+  const { toast } = useToast();
   const brands: BrandData[] = [
     {
       id: "sunday",
@@ -85,10 +99,60 @@ const CalculatorSection = () => {
     revShare: "₹ 0.00",
   });
 
+  const [email, setEmail] = useState<string>("");
+  const [savedCalculations, setSavedCalculations] = useState<SavedCalculation[]>([]);
+  const [showHistory, setShowHistory] = useState<boolean>(false);
   const [currentBrand, setCurrentBrand] = useState<BrandData>(brands[0]);
   const [errorMessage, setErrorMessage] = useState("");
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const { ref, inView } = useInView({ threshold: 0.1 });
+
+  // Load email from localStorage if available
+  useEffect(() => {
+    const savedEmail = localStorage.getItem('userEmail');
+    if (savedEmail) {
+      setEmail(savedEmail);
+      // Fetch saved calculations for this email
+      fetchSavedCalculations(savedEmail);
+    }
+  }, []);
+  
+  // Function to fetch saved calculations from the API
+  const fetchSavedCalculations = async (email: string) => {
+    try {
+      const response = await fetch(`/api/calculator-results?email=${encodeURIComponent(email)}`);
+      
+      if (response.ok) {
+        const data = await response.json();
+        setSavedCalculations(data);
+      } else {
+        console.error("Failed to fetch saved calculations");
+      }
+    } catch (error) {
+      console.error("Error fetching saved calculations:", error);
+    }
+  };
+  
+  // Function to save user email
+  const saveEmail = () => {
+    if (!email || !email.includes('@')) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address to save your calculations.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    localStorage.setItem('userEmail', email);
+    toast({
+      title: "Email Saved",
+      description: "Your email has been saved. Future calculations will be stored for you.",
+    });
+    
+    // Fetch any previous calculations
+    fetchSavedCalculations(email);
+  };
 
   // Update current brand whenever the selected brand changes
   useEffect(() => {
@@ -154,7 +218,7 @@ const CalculatorSection = () => {
     return new Intl.NumberFormat("en-IN").format(num);
   };
 
-  const calculateRevenue = () => {
+  const calculateRevenue = async () => {
     const { roomRate, stayDuration, numberOfRooms, occupancyRate } = formData;
 
     // Basic validation
@@ -204,6 +268,33 @@ const CalculatorSection = () => {
 
     // Clear any error messages
     setShowErrorMessage(false);
+    
+    // Save calculation result to database if user provided email
+    const userEmail = localStorage.getItem('userEmail');
+    if (userEmail) {
+      try {
+        // Store calculation in database
+        await fetch('/api/calculator-results', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            brandId: formData.selectedBrand,
+            roomRate,
+            stayDuration,
+            numberOfRooms,
+            occupancyRate,
+            totalRevenue: totalRevenueMade,
+            revShare: initialRevShare,
+            userEmail
+          }),
+        });
+      } catch (error) {
+        console.error("Error saving calculation:", error);
+        // Do not show error to user, fail silently as this is not critical
+      }
+    }
   };
 
   const animationClass = inView ? "animate-fade-in" : "";
@@ -420,7 +511,7 @@ const CalculatorSection = () => {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
               <button
                 id="calculateBtn"
                 onClick={calculateRevenue}
@@ -435,6 +526,96 @@ const CalculatorSection = () => {
               >
                 <i className="fas fa-redo mr-2"></i>Reset
               </button>
+            </div>
+            
+            {/* Email Save Section */}
+            <div className="mt-8 pt-6 border-t border-gray-700">
+              <h4 className="text-xl font-semibold text-white mb-4 font-playfair text-center">
+                Save Your Calculations
+              </h4>
+              <p className="text-gray-300 text-sm mb-4 text-center font-montserrat">
+                Enter your email to save your calculation history and access them later.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-3 mb-4">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="flex-grow p-3 rounded-lg bg-[#0f172a] bg-opacity-70 text-white border border-gray-600 focus:ring-[#d4af37] focus:border-[#d4af37] font-montserrat"
+                  placeholder="your@email.com"
+                />
+                <button
+                  onClick={saveEmail}
+                  className="px-6 py-3 bg-[#d4af37] text-[#0f172a] font-bold rounded-lg transition-all hover:bg-opacity-90 font-montserrat whitespace-nowrap"
+                >
+                  <i className="fas fa-save mr-2"></i>Save Email
+                </button>
+              </div>
+              
+              {/* Calculation History */}
+              {savedCalculations.length > 0 && (
+                <div>
+                  <button
+                    onClick={() => setShowHistory(!showHistory)}
+                    className="w-full px-4 py-2 bg-[#1a2442] text-white rounded-lg mb-2 font-montserrat flex items-center justify-center"
+                  >
+                    <i className={`fas fa-chevron-${showHistory ? 'up' : 'down'} mr-2`}></i>
+                    {showHistory ? 'Hide' : 'Show'} Calculation History ({savedCalculations.length})
+                  </button>
+                  
+                  {showHistory && (
+                    <div className="mt-4 max-h-64 overflow-y-auto">
+                      {savedCalculations.map((calc) => {
+                        // Find the brand name
+                        const brand = brands.find(b => b.id === calc.brandId);
+                        
+                        return (
+                          <div key={calc.id} className="p-3 bg-[#0f172a] rounded-lg mb-3 border border-gray-700">
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="text-[#d4af37] font-semibold font-montserrat">{brand?.name || calc.brandId}</span>
+                              <span className="text-xs text-gray-400 font-montserrat">
+                                {new Date(calc.createdAt).toLocaleDateString()}
+                              </span>
+                            </div>
+                            <div className="grid grid-cols-2 gap-2 text-sm text-gray-300 font-montserrat">
+                              <div>Rooms: {calc.numberOfRooms}</div>
+                              <div>Rate: ₹{calc.roomRate}</div>
+                              <div>Duration: {calc.stayDuration} days</div>
+                              <div>Occupancy: {calc.occupancyRate}%</div>
+                            </div>
+                            <div className="mt-2 text-right">
+                              <span className="text-white font-semibold font-montserrat">Revenue Share: </span>
+                              <span className="text-[#d4af37] font-bold font-montserrat">
+                                ₹{new Intl.NumberFormat("en-IN").format(calc.revShare)}
+                              </span>
+                            </div>
+                            <button
+                              onClick={() => {
+                                // Load this calculation
+                                setFormData({
+                                  selectedBrand: calc.brandId,
+                                  roomRate: calc.roomRate,
+                                  stayDuration: calc.stayDuration,
+                                  numberOfRooms: calc.numberOfRooms,
+                                  occupancyRate: calc.occupancyRate
+                                });
+                                // Hide history after loading
+                                setShowHistory(false);
+                                // Calculate with these values
+                                setTimeout(() => calculateRevenue(), 100);
+                              }}
+                              className="mt-2 w-full px-2 py-1 text-xs bg-[#1a2442] hover:bg-[#2a3454] text-white rounded transition-colors font-montserrat"
+                            >
+                              <i className="fas fa-sync-alt mr-1"></i> Load This Calculation
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>

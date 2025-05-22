@@ -35,26 +35,52 @@ const ContactSection = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, we would send this data to a server
-    console.log("Form submitted:", formData);
-    // Show success message
-    setSubmitted(true);
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      hotelName: "",
-      location: "",
-      rooms: "",
-      brandPreference: "",
-      message: "",
-    });
-    // Hide success message after 5 seconds
-    setTimeout(() => {
-      setSubmitted(false);
-    }, 5000);
+    try {
+      // Send the form data to the server
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          hotelName: formData.hotelName,
+          location: formData.location,
+          rooms: parseInt(formData.rooms) || 0,
+          brandPreference: formData.brandPreference,
+          message: formData.message,
+        }),
+      });
+
+      if (response.ok) {
+        // Show success message
+        setSubmitted(true);
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          hotelName: "",
+          location: "",
+          rooms: "",
+          brandPreference: "",
+          message: "",
+        });
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 5000);
+      } else {
+        const errorData = await response.json();
+        console.error("Form submission error:", errorData);
+        alert("There was a problem submitting your form. Please try again.");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      alert("There was a problem submitting your form. Please try again.");
+    }
   };
 
   const animationClass = inView ? "animate-fade-in" : "opacity-0";
