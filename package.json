@@ -5,9 +5,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "tsx server/index.ts",
-    "build": "tsc",
+    "build": "tsc && vite build",
     "start": "node dist/server/index.js",
-    "vercel-build": "tsc"
+    "vercel-build": "tsc && vite build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
