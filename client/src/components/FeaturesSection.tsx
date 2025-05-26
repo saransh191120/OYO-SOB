@@ -1,4 +1,5 @@
 import { useInView } from "./ScrollToTop";
+import clubhouseImage from "../assets/clubhouse.jpeg";
 
 type BrandCardProps = {
   title: string;
@@ -116,8 +117,7 @@ const FeaturesSection = () => {
       amenities:
         "Restaurant, Wi-Fi, AC, modern decor, with pools and gyms at select locations",
       icon: "fas fa-glass-cheers",
-      image:
-        "/src/assets/clubhouse.jpeg",
+      image: clubhouseImage,
       imageAlt: "OYO Clubhouse Hotel",
       delay: "delay-600",
     },

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useInView } from "./ScrollToTop";
+import contactImage from "../assets/ChatGPT Image May 23, 2025, 04_54_49 AM.png";
 
 interface FormData {
   name: string;
@@ -266,7 +267,7 @@ const ContactSection = () => {
             {/* Hotel Exterior Image */}
             <div className="rounded-xl overflow-hidden mb-4 md:mb-8">
               <img
-                src="/src/assets/ChatGPT Image May 23, 2025, 04_54_49 AM.png"
+                src={contactImage}
                 alt="OYO Mumbai Hotel Exterior"
                 className="w-full h-48 sm:h-56 md:h-64 object-cover"
               />
