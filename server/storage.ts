@@ -204,7 +204,8 @@ export class MemStorage implements IStorage {
       const newTestimonial: Testimonial = {
         ...testimonial,
         id,
-        createdAt: new Date()
+        createdAt: new Date(),
+        featured: testimonial.featured ?? 0
       };
       this.testimonialsList.set(id, newTestimonial);
     });
@@ -285,7 +286,8 @@ export class MemStorage implements IStorage {
     const newTestimonial: Testimonial = {
       ...testimonial,
       id,
-      createdAt: new Date()
+      createdAt: new Date(),
+      featured: testimonial.featured ?? 0
     };
     this.testimonialsList.set(id, newTestimonial);
     return newTestimonial;
@@ -327,7 +329,8 @@ export class MemStorage implements IStorage {
     const newResult: CalculatorResult = {
       ...result,
       id,
-      createdAt: new Date()
+      createdAt: new Date(),
+      userEmail: result.userEmail ?? null
     };
     this.calcResults.set(id, newResult);
     return newResult;
