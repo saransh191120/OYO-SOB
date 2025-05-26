@@ -18,6 +18,9 @@
     "paths": {
       "@/*": ["./client/src/*"],
       "@shared/*": ["./shared/*"]
-    }
+    },
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "isolatedModules": true
   }
 }
