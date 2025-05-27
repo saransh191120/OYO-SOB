@@ -39,21 +39,13 @@ const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // Send the form data to the server
-      const response = await fetch('/api/contact', {
+      const formElement = e.target as HTMLFormElement;
+      const formData = new FormData(formElement);
+
+      const response = await fetch('/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          hotelName: formData.hotelName,
-          location: formData.location,
-          rooms: parseInt(formData.rooms) || 0,
-          brandPreference: formData.brandPreference,
-          message: formData.message,
-        }),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as any).toString(),
       });
 
       if (response.ok) {
@@ -74,8 +66,7 @@ const ContactSection = () => {
           setSubmitted(false);
         }, 5000);
       } else {
-        const errorData = await response.json();
-        console.error("Form submission error:", errorData);
+        console.error("Form submission error:", response);
         alert("There was a problem submitting your form. Please try again.");
       }
     } catch (error) {
@@ -114,7 +105,14 @@ const ContactSection = () => {
                 Thank you for your interest in OYO's self-operated brands. Our team will contact you shortly!
               </div>
             ) : null}
-            <form id="contactForm" onSubmit={handleSubmit}>
+            <form 
+              id="contactForm" 
+              onSubmit={handleSubmit}
+              name="oyo-partnership"
+              data-netlify="true"
+              method="POST"
+            >
+              <input type="hidden" name="form-name" value="oyo-partnership" />
               <div className="mb-6">
                 <label
                   htmlFor="name"
