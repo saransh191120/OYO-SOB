@@ -57,7 +57,9 @@ const ContactSection = () => {
       formObject['form-name'] = 'contact';
 
       console.log('Sending form data to Netlify...');
-      const response = await fetch("/", {
+
+      // Use fetch to submit the form
+      const response = await fetch(formElement.action, {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -129,10 +131,11 @@ const ContactSection = () => {
               method="POST"
               data-netlify="true"
               netlify-honeypot="bot-field"
+              action="/"
               onSubmit={handleSubmit}
             >
               <input type="hidden" name="form-name" value="contact" />
-              <p hidden>
+              <p className="hidden">
                 <label>
                   Don't fill this out if you're human: <input name="bot-field" />
                 </label>
