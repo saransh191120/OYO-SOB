@@ -108,11 +108,11 @@ const ContactSection = () => {
             <form 
               id="contactForm" 
               onSubmit={handleSubmit}
-              name="oyo-partnership"
+              name="contact"
               data-netlify="true"
               method="POST"
             >
-              <input type="hidden" name="form-name" value="oyo-partnership" />
+              <input type="hidden" name="form-name" value="contact" />
               <div className="mb-6">
                 <label
                   htmlFor="name"
