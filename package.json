@@ -5,9 +5,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "tsx server/index.ts",
-    "build": "tsc && vite build",
+    "build": "npx tsc && vite build",
     "start": "node dist/server/index.js",
-    "vercel-build": "tsc && vite build",
+    "vercel-build": "npx tsc && vite build",
     "migrate": "tsx scripts/migrate.ts",
     "start-dev": "node start-dev.js"
   },
