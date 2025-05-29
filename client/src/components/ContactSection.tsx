@@ -41,17 +41,36 @@ const ContactSection = () => {
     try {
       const formElement = e.target as HTMLFormElement;
       const formData = new FormData(formElement);
+      
+      // Debug log
+      console.log('Form submission started');
+      
+      // Convert form data to a simple object
+      const formObject: Record<string, string> = {};
+      formData.forEach((value, key) => {
+        formObject[key] = value.toString();
+        // Debug log each field
+        console.log(`Form field: ${key} = ${value}`);
+      });
+      
+      // Ensure form name is included
+      formObject['form-name'] = 'contact';
 
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData as any).toString(),
+      console.log('Sending form data to Netlify...');
+      const response = await fetch("/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams(formObject).toString(),
       });
 
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
+
       if (response.ok) {
-        // Show success message
+        console.log('Form submitted successfully');
         setSubmitted(true);
-        // Reset form
         setFormData({
           name: "",
           email: "",
@@ -61,13 +80,13 @@ const ContactSection = () => {
           brandPreference: "",
           message: "",
         });
-        // Hide success message after 5 seconds
         setTimeout(() => {
           setSubmitted(false);
         }, 5000);
       } else {
-        console.error("Form submission error:", response);
-        alert("There was a problem submitting your form. Please try again.");
+        const errorText = await response.text();
+        console.error('Form submission failed:', errorText);
+        throw new Error(`Form submission failed: ${response.status} - ${errorText}`);
       }
     } catch (error) {
       console.error("Form submission error:", error);
@@ -106,13 +125,18 @@ const ContactSection = () => {
               </div>
             ) : null}
             <form 
-              id="contactForm" 
-              onSubmit={handleSubmit}
               name="contact"
-              data-netlify="true"
               method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              onSubmit={handleSubmit}
             >
               <input type="hidden" name="form-name" value="contact" />
+              <p hidden>
+                <label>
+                  Don't fill this out if you're human: <input name="bot-field" />
+                </label>
+              </p>
               <div className="mb-6">
                 <label
                   htmlFor="name"
