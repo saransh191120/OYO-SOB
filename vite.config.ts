@@ -20,4 +20,13 @@ export default defineConfig({
       input: path.resolve(import.meta.dirname, "client/index.html")
     }
   },
+  server: {
+    port: 3000,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      }
+    }
+  }
 });
