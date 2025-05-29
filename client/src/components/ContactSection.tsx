@@ -42,36 +42,22 @@ const ContactSection = () => {
       const formElement = e.target as HTMLFormElement;
       const formData = new FormData(formElement);
       
-      // Debug log
-      console.log('Form submission started');
-      
       // Convert form data to a simple object
       const formObject: Record<string, string> = {};
       formData.forEach((value, key) => {
         formObject[key] = value.toString();
-        // Debug log each field
-        console.log(`Form field: ${key} = ${value}`);
       });
       
-      // Ensure form name is included
-      formObject['form-name'] = 'contact';
-
-      console.log('Sending form data to Netlify...');
-
-      // Use fetch to submit the form
-      const response = await fetch(formElement.action, {
+      // Use fetch to submit the form to our API
+      const response = await fetch('/api/contact', {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
         },
-        body: new URLSearchParams(formObject).toString(),
+        body: JSON.stringify(formObject),
       });
 
-      console.log('Response status:', response.status);
-      console.log('Response ok:', response.ok);
-
       if (response.ok) {
-        console.log('Form submitted successfully');
         setSubmitted(true);
         setFormData({
           name: "",
@@ -87,7 +73,6 @@ const ContactSection = () => {
         }, 5000);
       } else {
         const errorText = await response.text();
-        console.error('Form submission failed:', errorText);
         throw new Error(`Form submission failed: ${response.status} - ${errorText}`);
       }
     } catch (error) {
@@ -127,19 +112,9 @@ const ContactSection = () => {
               </div>
             ) : null}
             <form 
-              name="contact"
-              method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
-              action="/"
               onSubmit={handleSubmit}
+              className="space-y-6"
             >
-              <input type="hidden" name="form-name" value="contact" />
-              <p className="hidden">
-                <label>
-                  Don't fill this out if you're human: <input name="bot-field" />
-                </label>
-              </p>
               <div className="mb-6">
                 <label
                   htmlFor="name"
